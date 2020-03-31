@@ -26,7 +26,7 @@ body {
   text-align: center;
   color: white;
   font-family: 'Playfair Display', serif;
-  font-size: 3rem;
+  font-size: 2em;
   font-weight: bold; }
 
 input.form__item[type="text"], input.form__item[type="password"], input.form__item[type="email"] {
@@ -59,7 +59,7 @@ a {
   text-decoration: none;
   color: #ffa600;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.3rem;
   letter-spacing: .2rem; }
 
 input.login__item[type="text"], input.login__item[type="password"] {
