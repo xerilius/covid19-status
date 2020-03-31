@@ -1,0 +1,126 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 75%; }
+
+body {
+  box-sizing: border-box;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: calc(100vh - 100px);
+  margin: 50px; }
+
+.heading-secondary {
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight: bold;
+  text-align: center; }
+
+.heading-tertiary {
+  text-align: center;
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: bold; }
+
+input[type="text"], input[type="password"], input[type="email"] {
+  color: white;
+  font-weight: 500;
+  font-size: 1.2rem;
+  font-family: 'Raleway', sans-serif; }
+
+input::placeholder {
+  color: white;
+  font-weight: bolder;
+  opacity: 1; }
+
+.form__item--btn {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bolder;
+  color: #ffa7b6;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .3rem; }
+
+.form__item--4 {
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: 'Raleway', sans-serif;
+  color: #ff8da1;
+  letter-spacing: .1rem; }
+
+a {
+  text-decoration: none;
+  color: #ffa600;
+  font-weight: 500;
+  font-size: 1.3rem;
+  letter-spacing: .2rem; }
+
+.u-margin-bottom-h2 {
+  margin-bottom: 1.5rem !important; }
+
+.signup-bg {
+  background: linear-gradient(to right bottom, pink, lightyellow); }
+
+.form__container {
+  border: black;
+  display: grid;
+  grid-template-columns: 1fr fit-content(1fr) 1fr;
+  grid-template-rows: repeat(8, 1fr);
+  grid-template-areas: ". . ." ".  heading ." ". subheading ." ".  form ." ".  form ." ".  form ." ". form ."; }
+
+.heading-secondary {
+  grid-area: heading; }
+
+.heading-tertiary {
+  grid-area: subheading;
+  align-self: center; }
+
+.form {
+  grid-area: form;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas: " . item1 item1  . " " . item2 item2 . " " . item3 item3 . " " . button button ." ". item4 item4 ."; }
+
+input[type="text"], input[type="password"], input[type="email"] {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dashed white; }
+
+input:focus {
+  outline: none;
+  box-shadow: 0 4px 2px -2px white;
+  /* 2px blur, neg spread for bottom shaddow*/ }
+
+.form__item--1 {
+  grid-area: item1; }
+
+.form__item--2 {
+  grid-area: item2; }
+
+.form__item--3 {
+  grid-area: item3; }
+
+.form__item--btn {
+  margin-top: 1rem;
+  grid-area: button;
+  background: white;
+  border: 0;
+  border-radius: 50px;
+  height: 5rem; }
+  .form__item--btn:focus {
+    outline: none; }
+  .form__item--btn:hover {
+    box-shadow: 5px 6px 1px 3px #ffcfd0; }
+
+.form__item--4 {
+  grid-area: item4;
+  margin-top: 1rem; }

@@ -1,0 +1,61 @@
+// font-family: 'Sofia', cursive;
+// font-family: 'Raleway', sans-serif;
+
+.heading-secondary {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+}
+.heading-tertiary {
+    text-align: center;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+input {
+    &[type="text"], &[type="password"], &[type="email"] {
+        color: white;
+        font-weight: 500;
+        font-size: 1.2rem;
+        font-family: 'Raleway', sans-serif;
+    }
+
+    &::placeholder {
+        color:white;
+        font-weight: bolder;
+        opacity: 1;
+    }
+}
+
+.form__item {
+    &--btn {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bolder;
+    color: darken(pink, 5%);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    }
+    &--4 {
+        text-align: center;
+        font-size: 1.3rem;
+        font-family: 'Raleway', sans-serif;
+        color: darken(pink, 10%);
+        letter-spacing: .1rem;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: rgb(255, 166, 0);
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: .2rem;
+}
+
+
+
