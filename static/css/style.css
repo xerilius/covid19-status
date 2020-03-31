@@ -26,16 +26,16 @@ body {
   text-align: center;
   color: white;
   font-family: 'Playfair Display', serif;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold; }
 
-input[type="text"], input[type="password"], input[type="email"] {
+input.form__item[type="text"], input.form__item[type="password"], input.form__item[type="email"] {
   color: white;
   font-weight: 500;
   font-size: 1.2rem;
   font-family: 'Raleway', sans-serif; }
 
-input::placeholder {
+input.form__item::placeholder {
   color: white;
   font-weight: bolder;
   opacity: 1; }
@@ -59,25 +59,63 @@ a {
   text-decoration: none;
   color: #ffa600;
   font-weight: 500;
-  font-size: 1.3rem;
+  font-size: 1rem;
   letter-spacing: .2rem; }
+
+input.login__item[type="text"], input.login__item[type="password"] {
+  color: pink;
+  font-size: 1.3rem; }
+
+.login__container {
+  font-family: 'Raleway'; }
+  .login__container--left {
+    font-family: 'Raleway';
+    letter-spacing: .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    font-size: 2rem;
+    text-align: left; }
+  .login__container--right {
+    font-family: 'Raleway';
+    color: #ff8da1;
+    text-align: left;
+    font-size: 1.2rem; }
+
+.login--btn {
+  font-family: 'Raleway';
+  color: white;
+  font-weight: 700;
+  letter-spacing: .2rem;
+  font-size: 1.2rem; }
 
 .u-margin-bottom-h2 {
   margin-bottom: 1.5rem !important; }
+
+.u-font-pink {
+  color: lightpink; }
+
+.u-font-white {
+  color: white; }
+
+.u-text-center {
+  text-align: center; }
 
 .signup-bg {
   background: linear-gradient(to right bottom, pink, lightyellow); }
 
 .form__container {
+  align-content: center;
   border: black;
   display: grid;
   grid-template-columns: 1fr fit-content(1fr) 1fr;
-  grid-template-rows: repeat(7, 1fr);
-  grid-template-areas: ". . ." ".  heading ." ". subheading ." ".  form ." ".  form ." ".  form ." ". form ."; }
+  grid-template-rows: 30% 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: ".  heading ." ". subheading ." ".  form ." ".  form ." ".  form ." ". form ."; }
 
 .heading-secondary {
   grid-area: heading;
-  align-self: center; }
+  align-self: end;
+  margin-top: 5rem; }
 
 .heading-tertiary {
   grid-area: subheading;
@@ -91,15 +129,15 @@ a {
   grid-template-rows: repeat(6, 1fr);
   grid-template-areas: " . item1 item1  . " " . item2 item2 . " " . item3 item3 . " " . button button ." ". item4 item4 ."; }
 
-input[type="text"], input[type="password"], input[type="email"] {
-  background: transparent;
-  border: 0;
-  border-bottom: 1px dashed white; }
-
 input:focus {
   outline: none;
   box-shadow: 0 4px 2px -2px white;
-  /* 2px blur, neg spread for bottom shaddow*/ }
+  /* 2px blur, neg spread for bottom shadow*/ }
+
+input.form__item[type="text"], input.form__item[type="password"], input.form__item[type="email"] {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dashed white; }
 
 .form__item--1 {
   grid-area: item1; }
@@ -116,7 +154,9 @@ input:focus {
   background: white;
   border: 0;
   border-radius: 50px;
-  height: 5rem; }
+  width: 100%;
+  justify-self: center;
+  height: 4rem; }
   .form__item--btn:focus {
     outline: none; }
   .form__item--btn:hover {
@@ -125,3 +165,58 @@ input:focus {
 .form__item--4 {
   grid-area: item4;
   margin-top: 1rem; }
+
+.login--bg {
+  background: linear-gradient(to right bottom, lightyellow, pink); }
+
+input.login__item[type="text"], input.login__item[type="password"] {
+  border: 0;
+  /* note: order --> border must be before border-bottom */
+  border-bottom: 2px solid pink;
+  background: transparent;
+  height: 45px;
+  width: 100%; }
+
+.left-title {
+  font-size: 4.5rem;
+  width: 100%;
+  padding: 35% 25px; }
+
+.login__formbox {
+  width: 100%;
+  padding: 80px 40px;
+  box-sizing: box-border;
+  height: 400px;
+  background: white; }
+
+.login--btn {
+  margin: 20px 25%;
+  border-radius: 50px;
+  width: 55%;
+  height: 4rem;
+  background-color: lightpink;
+  border: 0; }
+  margin
+.login--btn:focus {
+    outline: none; }
+  .login--btn:hover {
+    background: #ffcfd6; }
+
+.login__container {
+  width: 50%;
+  height: 400px;
+  margin: 10% auto;
+  background: white;
+  box-shadow: 0 15px 40px lightyellow; }
+  .login__container__container, .login__container--left {
+    float: left;
+    width: 50%;
+    height: 400px;
+    background: linear-gradient(to left bottom, white, pink);
+    background-size: cover;
+    box-sizing: border-box; }
+  .login__container__container, .login__container--right {
+    float: right;
+    width: 50%;
+    height: 400px;
+    box-sizing: border-box; }

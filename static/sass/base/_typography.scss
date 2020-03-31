@@ -8,27 +8,28 @@
     font-weight: bold;
     text-align: center;
 }
+
 .heading-tertiary {
     text-align: center;
     color: white;
     font-family: 'Playfair Display', serif;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
 }
 
-input {
-    &[type="text"], &[type="password"], &[type="email"] {
-        color: white;
+// SIGN UP
+input.form__item{
+    &[type="text"],  &[type="password"],  &[type="email"] {
+        color:white;
         font-weight: 500;
         font-size: 1.2rem;
         font-family: 'Raleway', sans-serif;
     }
-
-    &::placeholder {
+&::placeholder {
         color:white;
         font-weight: bolder;
         opacity: 1;
-    }
+   }
 }
 
 .form__item {
@@ -53,9 +54,44 @@ a {
     text-decoration: none;
     color: rgb(255, 166, 0);
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1rem;
     letter-spacing: .2rem;
 }
 
 
+// LOGIN
+input.login__item {
+    &[type="text"], &[type="password"] {
+        color: pink;
+        font-size: 1.3rem;
+    }
+}
+.login{
+    &__container {
+       font-family: 'Raleway';    
+       &--left {
+           font-family: 'Raleway';
+           letter-spacing: .5rem;
+           text-transform: uppercase;
+           font-weight: 700;
+           color: white;
+           font-size: 2rem;
+           text-align: left;
+       }
 
+       &--right {
+        font-family: 'Raleway';
+        color: darken(pink, 10%);
+        text-align: left;
+        font-size: 1.2rem;
+       }
+    }
+
+    &--btn {
+        font-family: 'Raleway';
+        color: white;
+        font-weight: 700;
+        letter-spacing: .2rem;
+        font-size: 1.2rem;
+    }
+}

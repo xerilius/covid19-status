@@ -1,0 +1,75 @@
+.login--bg {
+    background:
+    linear-gradient(to right bottom,
+     lightyellow, pink);
+}
+input.login__item {
+    &[type="text"], &[type="password"]{
+        border: 0;  /* note: order --> border must be before border-bottom */
+        border-bottom: 2px solid pink;
+        background: transparent;
+        height: 45px;
+        width: 100%;
+    }
+}
+.left-title {
+    font-size: 4.5rem;
+    width: 100%;
+    padding: 35% 25px;
+
+}
+.login {
+    &__formbox {
+        width: 100%;
+        padding: 80px 40px;
+        box-sizing: box-border;
+        height: 400px;
+        background: white;
+    }
+
+    &--btn {
+        margin: 20px 25%;
+        border-radius: 50px;
+        width: 55%;
+        height: 4rem;  
+        background-color: lightpink;
+        border: 0;
+        margin
+
+        &:focus {
+            outline:none;
+        }
+
+        &:hover {
+           background: rgb(255, 207, 214);
+        }
+    }
+    &__container {
+        width: 50%;
+        height: 400px;
+        margin: 10% auto;
+        background: white;
+      
+        box-shadow: 0 15px 40px lightyellow;
+    
+        &__container, &--left {
+            float: left;
+            width: 50%;
+            height: 400px;
+            background: linear-gradient(to left bottom,
+            white, pink);
+            background-size: cover;
+            box-sizing: border-box;
+        }
+
+        &__container, &--right {
+            float: right;
+            width: 50%;
+            height: 400px;
+            box-sizing: border-box;
+        }
+        
+    }
+
+
+}

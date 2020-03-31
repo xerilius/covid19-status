@@ -1,6 +1,31 @@
 {% extends 'base.html' %}
-
-
+{% block title %}Login{% endblock %}
 {% block content %}
+<body class="login--bg" >
+<div class="login__container">
+    <!-- LEFT SIDE  -->
+    <div class="login__container--left"> 
+
+        <h1 class="left-title">Welcome back</h1>
+    </div>
+    <!-- RIGHT SIDE -->
+    <div class="login__container--right">  
+        <div class="login__formbox">
+            <h3 class="heading-tertiary u-font-pink">Login</h3>
+            <form class="login" action="/login" method="POST">
+                <label for="username"></label>
+                <input type="text" class="login__item" name="username" placeholder="Username" required>
+
+                <label for="pwd"></label>
+                <input type="password" class="login__item" name="pwd" placeholder="Password" required>
+            
+                <button type="submit" class="login--btn">
+                        Sign In
+                </button>
+                <p class="login--signup u-text-center">Don't have an account? <a id=hyperlinks href="/signup">Sign up.</a></p>       
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

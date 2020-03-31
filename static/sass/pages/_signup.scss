@@ -5,12 +5,12 @@
 }
 
 .form__container {
+    align-content: center;	
     border: black;
     display: grid;
     grid-template-columns: 1fr fit-content(1fr) 1fr;
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-rows: 30% 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
-        ". . ."
         ".  heading ."
         ". subheading ."
         ".  form ."
@@ -21,7 +21,8 @@
 
 .heading-secondary {
     grid-area: heading;
-    align-self: center;
+    align-self: end;
+    margin-top: 5rem;
 }
 
 .heading-tertiary {
@@ -44,18 +45,21 @@
 }
 
 input {
-    &[type="text"], &[type="password"], &[type="email"] {
-        background: transparent;
-        border: 0;
-        border-bottom: 1px dashed white;
-    }
     &:focus {
         outline: none;
-        box-shadow: 0 4px 2px -2px white; /* 2px blur, neg spread for bottom shaddow*/
+        box-shadow: 0 4px 2px -2px white; /* 2px blur, neg spread for bottom shadow*/
     }
 }
 
-.form__item {    
+input.form__item{
+    &[type="text"], &[type="password"], &[type="email"] { 
+        background: transparent;
+        border: 0;
+        border-bottom: 1px dashed white;
+        } 
+}
+
+.form__item {  
     &--1 {        
         grid-area: item1;
     }
@@ -65,26 +69,22 @@ input {
     &--3 {
         grid-area: item3    
     }
-
     &--btn {
         margin-top: 1rem;
         grid-area: button;
         background: white;
         border: 0;
         border-radius: 50px;
-        // width: 50%;
-        height: 5rem;
-        // justify-self: center;
-
+        width: 100%;
+        justify-self: center;
+        height: 4rem; 
         &:focus {
             outline:none;
         }
-
         &:hover {
             box-shadow: 5px 6px 1px 3px #ffcfd0;
         }
     }
-
     &--4 {
         grid-area: item4;
         margin-top: 1rem;
