@@ -2,28 +2,5 @@
 
 
 {% block content %}
-<body class="signup-bg">
-<div class="form__container">
-<h2 class="heading-secondary u-margin-bottom-h2">Create an Account</h2>
-<h3 class="heading-tertiary">Keep track of COVID-19 in your state.</h3>
-<form class="form" action="/register" method="POST">
-  
-      <label for="username"></label>
-        <input type="text" class="form__item--1" name="username" placeholder="Username" required>
-      
-      <label for="email"></label>
-        <input type="email" class="form__item--2" name="email" placeholder="Email" required>
-    
-      <label for="pwd"></label>
-        <input type="password" class="form__item--3" name="pwd" placeholder="Password" required>
 
-        <button type="submit" class="form__item--btn">
-            Sign Up
-        </button>
-    <p class="form__item--4">Already have an account? <a id=hyperlinks href="/login">Sign in.</a></p>
-    
-  </form>
-</div>
-</body>
 {% endblock %}
-</body>

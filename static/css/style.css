@@ -72,11 +72,12 @@ a {
   border: black;
   display: grid;
   grid-template-columns: 1fr fit-content(1fr) 1fr;
-  grid-template-rows: repeat(8, 1fr);
+  grid-template-rows: repeat(7, 1fr);
   grid-template-areas: ". . ." ".  heading ." ". subheading ." ".  form ." ".  form ." ".  form ." ". form ."; }
 
 .heading-secondary {
-  grid-area: heading; }
+  grid-area: heading;
+  align-self: center; }
 
 .heading-tertiary {
   grid-area: subheading;

@@ -12,18 +12,30 @@ def index():
     """Homepage"""
     return render_template("index.html")
 
-
+# SIGNUP
 @app.route('/signup', methods=["GET"])
 def show_signup_form():
     """Displays signup form"""
-    return render_template("signup-form.html")
+    return render_template("signup.html")
 
 @app.route('/signup', methods=["POST"])
 def process_signup():
     """Stores user registration data in db, redirect to homepage"""
     return redirect('/')
 
+# LOGIN
+@app.route('/login', methods=["GET"])
+def show_login_form():
+    """Displays login form"""
+    return render_template("login.html")
 
+@app.route('/login', methods=["POST"])
+def process_login():
+    """Queries database, redirects to dashboard"""
+    return redirect('/user')
+
+
+# DASHBOARD
 @app.route('/user')
 def user_login():
     """Redirects user to Dashboard"""

@@ -2,15 +2,13 @@
     background:
      linear-gradient(to right bottom,
         pink, lightyellow);
-    
-
 }
 
 .form__container {
     border: black;
     display: grid;
     grid-template-columns: 1fr fit-content(1fr) 1fr;
-    grid-template-rows: repeat(8,1fr);
+    grid-template-rows: repeat(7, 1fr);
     grid-template-areas:
         ". . ."
         ".  heading ."
@@ -23,6 +21,7 @@
 
 .heading-secondary {
     grid-area: heading;
+    align-self: center;
 }
 
 .heading-tertiary {
@@ -42,7 +41,6 @@
         " . item3 item3 . "
         " . button button ."
         ". item4 item4 ."
-
 }
 
 input {
@@ -56,19 +54,18 @@ input {
         box-shadow: 0 4px 2px -2px white; /* 2px blur, neg spread for bottom shaddow*/
     }
 }
+
 .form__item {    
     &--1 {        
         grid-area: item1;
-
     }
     &--2 {
-        grid-area: item2;
-       
+        grid-area: item2;      
     }
     &--3 {
-        grid-area: item3;
-        
+        grid-area: item3    
     }
+
     &--btn {
         margin-top: 1rem;
         grid-area: button;
@@ -78,7 +75,7 @@ input {
         // width: 50%;
         height: 5rem;
         // justify-self: center;
-        
+
         &:focus {
             outline:none;
         }
@@ -87,6 +84,7 @@ input {
             box-shadow: 5px 6px 1px 3px #ffcfd0;
         }
     }
+
     &--4 {
         grid-area: item4;
         margin-top: 1rem;
