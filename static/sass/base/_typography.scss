@@ -1,5 +1,28 @@
 // font-family: 'Sofia', cursive;
 // font-family: 'Raleway', sans-serif;
+// HYPERLINKS
+a {
+    text-decoration: none;
+}
+a.link {   
+    &__signup {
+        color: $color-1;
+        font-weight: 600;
+        font-size: 1.2rem;
+        &:hover {
+            color: lighten($color-1, 40%);
+        }
+    }
+
+    &__login {
+        color: $color-1;
+        font-weight: 600;
+        font-size: 1.3rem;  
+        &:hover {
+            color: lighten($color-1, 40%);
+        }      
+    }
+}
 
 .heading-secondary {
     color: white;
@@ -22,7 +45,7 @@
     &--btn {
     font-family: 'Raleway', sans-serif;
     font-weight: bolder;
-    color: darken(pink, 5%);
+    color: darken($color-1, 5%);
     font-size: 1.2rem;
     text-transform: uppercase;
     letter-spacing: .3rem;
@@ -31,17 +54,11 @@
         text-align: center;
         font-size: 1.3rem;
         font-family: 'Raleway', sans-serif;
-        color: darken(pink, 10%);
+        color: darken($color-1, 10%);
         letter-spacing: .1rem;
     }
 }
-a {
-    text-decoration: none;
-    color: rgb(255, 166, 0);
-    font-weight: 500;
-    font-size: 1.3rem;
-    letter-spacing: .2rem;
-}
+
 input.form__item{
     &[type="text"],  &[type="password"],  &[type="email"] {
         color:white;
@@ -51,7 +68,6 @@ input.form__item{
     }
     &::placeholder {
         color:white;
-        font-weight: bolder;
         opacity: 1;
    }
 }
@@ -60,11 +76,11 @@ input.form__item{
 // LOGIN
 input.login__item {
     &[type="text"], &[type="password"] {
-        color: pink;
+        color: $color-1;
         font-size: 1.3rem;
     }
     &::placeholder {
-        color:pink;
+        color:$color-1;
         opacity: 1;
     }
 }
@@ -83,7 +99,7 @@ input.login__item {
 
        &--right {
         font-family: 'Raleway';
-        color: darken(pink, 10%);
+        color: $color-1;
         text-align: left;
         font-size: 1.2rem;
        }
@@ -94,6 +110,7 @@ input.login__item {
         color: white;
         font-weight: 700;
         letter-spacing: .2rem;
+        text-transform:  uppercase;
         font-size: 1.2rem;
     }
 }

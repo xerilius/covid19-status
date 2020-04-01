@@ -6,14 +6,28 @@
   box-sizing: inherit; }
 
 html {
-  font-size: 75%; }
+  font-size: 75%;
+  height: 100%; }
 
 body {
-  box-sizing: border-box;
-  background-attachment: fixed;
-  background-size: cover;
-  min-height: calc(100vh - 100px);
-  margin: 50px; }
+  box-sizing: border-box; }
+
+a {
+  text-decoration: none; }
+
+a.link__signup {
+  color: #052049;
+  font-weight: 600;
+  font-size: 1.2rem; }
+  a.link__signup:hover {
+    color: #2a79f0; }
+
+a.link__login {
+  color: #052049;
+  font-weight: 600;
+  font-size: 1.3rem; }
+  a.link__login:hover {
+    color: #2a79f0; }
 
 .heading-secondary {
   color: white;
@@ -32,7 +46,7 @@ body {
 .form__item--btn {
   font-family: 'Raleway', sans-serif;
   font-weight: bolder;
-  color: #ffa7b6;
+  color: #031631;
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: .3rem; }
@@ -41,15 +55,8 @@ body {
   text-align: center;
   font-size: 1.3rem;
   font-family: 'Raleway', sans-serif;
-  color: #ff8da1;
+  color: #020b19;
   letter-spacing: .1rem; }
-
-a {
-  text-decoration: none;
-  color: #ffa600;
-  font-weight: 500;
-  font-size: 1.3rem;
-  letter-spacing: .2rem; }
 
 input.form__item[type="text"], input.form__item[type="password"], input.form__item[type="email"] {
   color: white;
@@ -59,15 +66,14 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
 
 input.form__item::placeholder {
   color: white;
-  font-weight: bolder;
   opacity: 1; }
 
 input.login__item[type="text"], input.login__item[type="password"] {
-  color: pink;
+  color: #052049;
   font-size: 1.3rem; }
 
 input.login__item::placeholder {
-  color: pink;
+  color: #052049;
   opacity: 1; }
 
 .login__container {
@@ -82,7 +88,7 @@ input.login__item::placeholder {
     text-align: left; }
   .login__container--right {
     font-family: 'Raleway';
-    color: #ff8da1;
+    color: #052049;
     text-align: left;
     font-size: 1.2rem; }
 
@@ -91,13 +97,14 @@ input.login__item::placeholder {
   color: white;
   font-weight: 700;
   letter-spacing: .2rem;
+  text-transform: uppercase;
   font-size: 1.2rem; }
 
 .u-margin-bottom {
   margin-bottom: 1.5rem !important; }
 
-.u-font-pink {
-  color: lightpink; }
+.u-font-blue {
+  color: #052049; }
 
 .u-font-white {
   color: white; }
@@ -105,16 +112,29 @@ input.login__item::placeholder {
 .u-text-center {
   text-align: center; }
 
+.navbar {
+  display: grid;
+  min-height: 50px;
+  grid-auto-flow: column;
+  background-color: rgba(0, 0, 0, 0.192);
+  grid-gap: 20px;
+  padding-left: 20px;
+  padding-right: 20px; }
+
+.logo {
+  display: grid;
+  justify-content: start;
+  align-content: center; }
+
 .signup-bg {
-  background: linear-gradient(to right bottom, pink, lightyellow); }
+  background: linear-gradient(to right bottom, #052049, white) fixed; }
 
 .form__container {
   align-content: center;
-  border: black;
   display: grid;
   grid-template-columns: 1fr fit-content(1fr) 1fr;
-  grid-template-rows: 30% 1fr 1fr 1fr 1fr 1fr;
-  grid-template-areas: ".  heading ." ". subheading ." ".  form ." ".  form ." ".  form ." ". form ."; }
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas: " . . . " ".  heading ." ". subheading ." ".  form ." ".  form ." ".  form ." ". form ."; }
 
 .heading-secondary {
   grid-area: heading;
@@ -164,19 +184,45 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
   .form__item--btn:focus {
     outline: none; }
   .form__item--btn:hover {
-    box-shadow: 5px 6px 1px 3px #ffcfd0; }
+    box-shadow: 5px 6px 1px 3px #052049; }
 
 .form__item--4 {
   grid-area: item4;
   margin-top: 1rem; }
 
 .login--bg {
-  background: linear-gradient(to right bottom, lightyellow, pink); }
+  background: white fixed;
+  height: 100%; }
 
 .left-title {
   font-size: 5.5rem;
-  width: 100%;
-  padding: 35% 25px; }
+  grid-area: title;
+  margin-left: 30px; }
+
+.login__container {
+  width: 50%;
+  height: 500px;
+  position: absolute;
+  right: 25%;
+  top: 20%;
+  background: white;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.356); }
+  .login__container--left {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas: ". . . . .  . " ". . . . . . " " title title title title .  ." " title title title title .  .";
+    height: 500px;
+    float: left;
+    width: 50%;
+    background: #052049;
+    background-size: cover;
+    box-sizing: border-box; }
+  .login__container__container, .login__container--right {
+    float: right;
+    width: 50%;
+    height: 500px;
+    box-sizing: border-box; }
 
 .login__formbox {
   width: 100%;
@@ -190,37 +236,17 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
   border-radius: 50px;
   width: 55%;
   height: 4rem;
-  background-color: lightpink;
+  background-color: #052049;
   border: 0; }
-  margin
-.login--btn:focus {
+  .login--btn:focus {
     outline: none; }
   .login--btn:hover {
-    background: #ffcfd6; }
-
-.login__container {
-  width: 50%;
-  height: 500px;
-  margin: 10% auto;
-  background: white;
-  box-shadow: 0 15px 40px lightyellow; }
-  .login__container__container, .login__container--left {
-    float: left;
-    width: 50%;
-    height: 500px;
-    background: linear-gradient(to left bottom, white, pink);
-    background-size: cover;
-    box-sizing: border-box; }
-  .login__container__container, .login__container--right {
-    float: right;
-    width: 50%;
-    height: 500px;
-    box-sizing: border-box; }
+    background: #083579; }
 
 input.login__item[type="text"], input.login__item[type="password"] {
   border: 0;
   /* note: order --> border must be before border-bottom */
-  border-bottom: 1px dashed lightpink;
+  border-bottom: 1px dashed #052049;
   background: transparent;
   height: 50px;
   width: 100%;

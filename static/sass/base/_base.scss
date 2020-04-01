@@ -8,12 +8,9 @@
 
 html {
     font-size: 75%;
+    height: 100%;
 }
 
 body {
     box-sizing: border-box;
-    background-attachment: fixed;
-    background-size: cover;
-    min-height: calc(100vh - 100px);
-    margin: 50px;
 }

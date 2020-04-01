@@ -1,16 +1,16 @@
 .signup-bg{
     background:
      linear-gradient(to right bottom,
-        pink, lightyellow);
+        $color-1, white)  fixed;
 }
 
 .form__container {
     align-content: center;	
-    border: black;
     display: grid;
     grid-template-columns: 1fr fit-content(1fr) 1fr;
-    grid-template-rows: 30% 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(6, 1fr);
     grid-template-areas:
+        " . . . "
         ".  heading ."
         ". subheading ."
         ".  form ."
@@ -82,7 +82,7 @@ input.form__item{
             outline:none;
         }
         &:hover {
-            box-shadow: 5px 6px 1px 3px #ffcfd0;
+            box-shadow: 5px 6px 1px 3px $color-1;
         }
     }
     &--4 {

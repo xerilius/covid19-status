@@ -1,17 +1,51 @@
 .login--bg {
-    background:
-    linear-gradient(to right bottom,
-     lightyellow, pink);
+    background:white fixed;
+    height: 100%;
 }
 
 .left-title {
     font-size: 5.5rem;
-    width: 100%;
-    padding: 35% 25px;
-
-
+    grid-area: title;
+    margin-left: 30px;
 }
+
 .login {
+    &__container {
+        width: 50%;
+        height: 500px;
+
+        position: absolute;
+        right: 25%;
+        top: 20%;
+
+        background: white;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.356);
+    
+         &--left {
+            display:grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            grid-template-areas:
+                ". . . . .  . "
+                ". . . . . . "
+                " title title title title .  ."
+                " title title title title .  .";
+
+            height: 500px;
+            float: left;
+            width: 50%;
+
+            background: $color-1;
+            background-size: cover;
+            box-sizing: border-box;
+        }
+        &__container, &--right {
+            float: right;
+            width: 50%;
+            height: 500px;
+            box-sizing: border-box;
+        }
+    }
     &__formbox {
         width: 100%;
         padding: 80px 40px;
@@ -19,57 +53,26 @@
         height: 500px;
         background: white;
     }
-
     &--btn {
         margin: 20px 25%;
         border-radius: 50px;
         width: 55%;
         height: 4rem;  
-        background-color: lightpink;
+        background-color: $color-1;
         border: 0;
-        margin
-
         &:focus {
             outline:none;
         }
-
         &:hover {
-           background: rgb(255, 207, 214);
+           background: lighten($color-1, 10%);
         }
-    }
-    
-    &__container {
-        width: 50%;
-        height: 500px;
-        margin: 10% auto;
-        background: white;
-      
-        box-shadow: 0 15px 40px lightyellow;
-    
-        &__container, &--left {
-            float: left;
-            width: 50%;
-            height: 500px;
-            background: linear-gradient(to left bottom,
-            white, pink);
-            background-size: cover;
-            box-sizing: border-box;
-        }
-
-        &__container, &--right {
-            float: right;
-            width: 50%;
-            height: 500px;
-            box-sizing: border-box;
-        }
-        
     }
 }
 
 input.login__item {
     &[type="text"], &[type="password"]{
         border: 0;  /* note: order --> border must be before border-bottom */
-        border-bottom: 1px dashed lightpink;
+        border-bottom: 1px dashed $color-1;
         background: transparent;
         height: 50px;
         width: 100%;

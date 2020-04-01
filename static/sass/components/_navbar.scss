@@ -1,0 +1,15 @@
+.navbar {
+    display: grid;
+    min-height: 50px;
+    grid-auto-flow: column;
+    background-color: rgba(0, 0, 0, 0.192);
+    grid-gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.logo {
+    display: grid;
+    justify-content: start;
+    align-content: center;
+}
