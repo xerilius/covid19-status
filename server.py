@@ -1,8 +1,11 @@
+from jinja2 import StrictUndefined
 from flask import Flask, render_template, redirect, request, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
-from jinja2 import StrictUndefined
+
+from model import connect_to_db, db, User
 
 app = Flask(__name__)
+app.secret_key = "ABC"
 
 app.jinja_env.undefined = StrictUndefined
 
@@ -59,14 +62,14 @@ def process_login():
 
     username = request.form.get("username")
     pw = request.form.get("password")
-    username=username.title()
+    username = username.title()
     # Query for username & pw in DB
     user = User.query.filter_by(username=username, pw=pw).first()
     if not user:
-        flash("Invalid Username or Passord."
-        return redirect("/login")
+        flash("Invalid Username or Password.")
+        return redirect('/login')
     
-    session['username'] = user.username
+    # session['username'] = user.username
     
     return redirect('/user')
 
@@ -80,7 +83,7 @@ def user_login():
 
 ##########################
 if __name__ == '__main__':
-    # connect_to_db(app)
+    connect_to_db(app)
     DebugToolbarExtension(app)
     app.run(debug=True, host='0.0.0.0')
 

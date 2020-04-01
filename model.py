@@ -1,4 +1,4 @@
-from flask import Flask
+# from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 # db object - represents the database 
 db = SQLAlchemy()
@@ -24,7 +24,6 @@ class User(db.Model):
 
 
 # Helper functions
-
 def connect_to_db(app, db_uri="postgresql:///covid19"):
     """Connect database to Flask app"""
 
@@ -36,7 +35,7 @@ def connect_to_db(app, db_uri="postgresql:///covid19"):
     db.init_app(app)
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     # Run module interactively to work with database directly
     from server import app
     connect_to_db(app)
