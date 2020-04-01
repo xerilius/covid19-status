@@ -89,7 +89,7 @@ input.login__item[type="text"], input.login__item[type="password"] {
   letter-spacing: .2rem;
   font-size: 1.2rem; }
 
-.u-margin-bottom-h2 {
+.u-margin-bottom {
   margin-bottom: 1.5rem !important; }
 
 .u-font-pink {
@@ -169,16 +169,8 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
 .login--bg {
   background: linear-gradient(to right bottom, lightyellow, pink); }
 
-input.login__item[type="text"], input.login__item[type="password"] {
-  border: 0;
-  /* note: order --> border must be before border-bottom */
-  border-bottom: 2px solid pink;
-  background: transparent;
-  height: 45px;
-  width: 100%; }
-
 .left-title {
-  font-size: 4.5rem;
+  font-size: 5.5rem;
   width: 100%;
   padding: 35% 25px; }
 
@@ -186,7 +178,7 @@ input.login__item[type="text"], input.login__item[type="password"] {
   width: 100%;
   padding: 80px 40px;
   box-sizing: box-border;
-  height: 400px;
+  height: 500px;
   background: white; }
 
 .login--btn {
@@ -204,19 +196,28 @@ input.login__item[type="text"], input.login__item[type="password"] {
 
 .login__container {
   width: 50%;
-  height: 400px;
+  height: 500px;
   margin: 10% auto;
   background: white;
   box-shadow: 0 15px 40px lightyellow; }
   .login__container__container, .login__container--left {
     float: left;
     width: 50%;
-    height: 400px;
+    height: 500px;
     background: linear-gradient(to left bottom, white, pink);
     background-size: cover;
     box-sizing: border-box; }
   .login__container__container, .login__container--right {
     float: right;
     width: 50%;
-    height: 400px;
+    height: 500px;
     box-sizing: border-box; }
+
+input.login__item[type="text"], input.login__item[type="password"] {
+  border: 0;
+  /* note: order --> border must be before border-bottom */
+  border-bottom: 2px solid pink;
+  background: transparent;
+  height: 50px;
+  width: 100%;
+  margin: 10px 0; }

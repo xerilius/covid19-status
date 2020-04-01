@@ -3,19 +3,12 @@
     linear-gradient(to right bottom,
      lightyellow, pink);
 }
-input.login__item {
-    &[type="text"], &[type="password"]{
-        border: 0;  /* note: order --> border must be before border-bottom */
-        border-bottom: 2px solid pink;
-        background: transparent;
-        height: 45px;
-        width: 100%;
-    }
-}
+
 .left-title {
-    font-size: 4.5rem;
+    font-size: 5.5rem;
     width: 100%;
     padding: 35% 25px;
+
 
 }
 .login {
@@ -23,7 +16,7 @@ input.login__item {
         width: 100%;
         padding: 80px 40px;
         box-sizing: box-border;
-        height: 400px;
+        height: 500px;
         background: white;
     }
 
@@ -44,9 +37,10 @@ input.login__item {
            background: rgb(255, 207, 214);
         }
     }
+    
     &__container {
         width: 50%;
-        height: 400px;
+        height: 500px;
         margin: 10% auto;
         background: white;
       
@@ -55,7 +49,7 @@ input.login__item {
         &__container, &--left {
             float: left;
             width: 50%;
-            height: 400px;
+            height: 500px;
             background: linear-gradient(to left bottom,
             white, pink);
             background-size: cover;
@@ -65,11 +59,20 @@ input.login__item {
         &__container, &--right {
             float: right;
             width: 50%;
-            height: 400px;
+            height: 500px;
             box-sizing: border-box;
         }
         
     }
+}
 
-
+input.login__item {
+    &[type="text"], &[type="password"]{
+        border: 0;  /* note: order --> border must be before border-bottom */
+        border-bottom: 2px solid pink;
+        background: transparent;
+        height: 50px;
+        width: 100%;
+        margin: 10px 0;
+    }
 }
