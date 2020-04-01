@@ -6,7 +6,7 @@ from datetime import date
 from model import connect_to_db, db, User
 
 app = Flask(__name__)
-app.secret_key = "ABC"
+app.secret_key = "abc"
 
 app.jinja_env.undefined = StrictUndefined
 
@@ -60,9 +60,9 @@ def show_login_form():
 @app.route('/login', methods=["POST"])
 def process_login():
     """Queries database, redirects to dashboard"""
-
+    # request.form.get(name-field-of-form-input)
     username = request.form.get("username")
-    pw = request.form.get("password")
+    pw = request.form.get("pwd")
     username = username.title()
     # Query for username & pw in DB
     user = User.query.filter_by(username=username, pw=pw).first()
@@ -70,16 +70,27 @@ def process_login():
         flash("Invalid Username or Password.")
         return redirect('/login')
     
-    # session['username'] = user.username
-    
-    return redirect('/user')
+    session['username'] = user.username
+
+    return redirect('/user/<username>')
+
+
+# LOGOUT
+@app.route('/logout')
+def logout():
+    """Logout user"""
+    del session['username']
+    return redirect('/')
 
 
 # DASHBOARD
-@app.route('/user')
-def user_login():
+@app.route('/user/<username>')
+def show_dashboard(username):
     """Redirects user to Dashboard"""
     return render_template("dashboard.html")
+# check session username
+# query for favs
+# query for data
     
 
 ##########################
