@@ -216,7 +216,7 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
 input.login__item[type="text"], input.login__item[type="password"] {
   border: 0;
   /* note: order --> border must be before border-bottom */
-  border-bottom: 2px solid pink;
+  border-bottom: 1px dashed lightpink;
   background: transparent;
   height: 50px;
   width: 100%;

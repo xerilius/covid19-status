@@ -69,7 +69,7 @@
 input.login__item {
     &[type="text"], &[type="password"]{
         border: 0;  /* note: order --> border must be before border-bottom */
-        border-bottom: 2px solid pink;
+        border-bottom: 1px dashed lightpink;
         background: transparent;
         height: 50px;
         width: 100%;
