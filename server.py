@@ -64,7 +64,7 @@ def process_login():
     user = User.query.filter_by(username=username, pw=pw).first()
     if not user:
         flash("Invalid Username or Passord."
-        return redirect(/login)
+        return redirect("/login")
     
     session['username'] = user.username
     
