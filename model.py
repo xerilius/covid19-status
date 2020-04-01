@@ -1,3 +1,5 @@
+"""Models and database functions"""
+
 # from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 # db object - represents the database 
@@ -40,3 +42,7 @@ if __name__ == '__main__':
     from server import app
     connect_to_db(app)
     print("Connected to database.")
+
+# 1) createdb
+# 2) python -i model.py
+# 3) >>> db.create_all()
