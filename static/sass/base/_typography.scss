@@ -6,6 +6,10 @@
 // font-family: 'Libre Barcode 39 Extended Text', cursive;
 // font-family: 'Libre Barcode 128 Text', cursive;
 
+// font-family: 'Major Mono Display', monospace;
+// font-family: 'Courier Prime', monospace;
+// font-family: 'Montserrat', sans-serif;
+
 
 // HYPERLINKS
 a {
@@ -124,7 +128,7 @@ input.login__item {
 // NAVBAR
 .navbar {
     font-family: 'Libre Barcode 128 Text', cursive;
-    font-size: 2rem;
+    font-size: 2.5rem;
     letter-spacing: .2rem;
     text-transform: uppercase;
     font-weight: bold;
@@ -143,5 +147,7 @@ a.navbar__logo {
 }
 
 .datetime {
-    text-align: center;
+    font-family: 'Major Mono Display', monospace;
+    font-size: 1.5rem; 
+    margin: 20px;  
 }

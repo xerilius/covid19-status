@@ -1,3 +1,11 @@
+@keyframes marquee {
+  0% {
+    -webkit-transform: translateX(220%);
+    transform: translateX(220%); }
+  100% {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%); } }
+
 *,
 *::before,
 *::after {
@@ -102,7 +110,7 @@ input.login__item::placeholder {
 
 .navbar {
   font-family: 'Libre Barcode 128 Text', cursive;
-  font-size: 2rem;
+  font-size: 2.5rem;
   letter-spacing: .2rem;
   text-transform: uppercase;
   font-weight: bold; }
@@ -114,7 +122,9 @@ a.navbar__logo {
   color: black; }
 
 .datetime {
-  text-align: center; }
+  font-family: 'Major Mono Display', monospace;
+  font-size: 1.5rem;
+  margin: 20px; }
 
 .u-margin-bottom {
   margin-bottom: 1.5rem !important; }
@@ -298,3 +308,11 @@ input.login__item[type="text"], input.login__item[type="password"] {
   height: 50px;
   width: 100%;
   margin: 10px 0; }
+
+.datetime {
+  height: 20px;
+  position: fixed;
+  float: right;
+  animation: marquee 20s linear infinite; }
+  .datetime:hover {
+    animation-play-state: paused; }

@@ -1,0 +1,9 @@
+.datetime{
+    height: 20px;
+    position: fixed;
+    float: right;
+    animation: marquee 20s linear infinite;
+    &:hover {
+        animation-play-state: paused;
+    }
+}  

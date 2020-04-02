@@ -1,5 +1,6 @@
 @import "abstracts/variables";
 
+@import "base/animations";
 @import "base/base";
 @import "base/typography";
 @import "base/utilities";
@@ -8,3 +9,5 @@
 
 @import "pages/signup";
 @import "pages/login";
+@import "pages/homepage";
+
