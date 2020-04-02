@@ -13,7 +13,8 @@ body {
   box-sizing: border-box; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: black; }
 
 a.link__signup {
   color: #052049;
@@ -39,7 +40,7 @@ a.link__login {
 .heading-tertiary {
   text-align: center;
   color: white;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 2em;
   font-weight: bold; }
 
@@ -76,21 +77,20 @@ input.login__item::placeholder {
   color: #052049;
   opacity: 1; }
 
-.login__container {
-  font-family: 'Raleway'; }
-  .login__container--left {
-    font-family: 'Raleway';
-    letter-spacing: .5rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: white;
-    font-size: 2rem;
-    text-align: left; }
-  .login__container--right {
-    font-family: 'Raleway';
-    color: #052049;
-    text-align: left;
-    font-size: 1.2rem; }
+.login__container--left {
+  font-family: 'Raleway';
+  letter-spacing: .5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: white;
+  font-size: 2rem;
+  text-align: left; }
+
+.login__container--right {
+  font-family: 'Raleway';
+  color: #052049;
+  text-align: left;
+  font-size: 1.2rem; }
 
 .login--btn {
   font-family: 'Raleway';
@@ -99,6 +99,18 @@ input.login__item::placeholder {
   letter-spacing: .2rem;
   text-transform: uppercase;
   font-size: 1.2rem; }
+
+.navbar {
+  font-family: 'Libre Barcode 128 Text', cursive;
+  font-size: 2rem;
+  letter-spacing: .2rem;
+  text-transform: uppercase; }
+  .navbar__links--login {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.2rem; }
+
+a.navbar__logo {
+  color: black; }
 
 .u-margin-bottom {
   margin-bottom: 1.5rem !important; }
@@ -112,19 +124,50 @@ input.login__item::placeholder {
 .u-text-center {
   text-align: center; }
 
+.homepage {
+  background-color: white; }
+
 .navbar {
   display: grid;
   min-height: 50px;
   grid-auto-flow: column;
-  background-color: rgba(0, 0, 0, 0.192);
+  background-color: whitesmoke;
   grid-gap: 20px;
   padding-left: 20px;
-  padding-right: 20px; }
+  padding-right: 20px;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3); }
+  .navbar__logo {
+    display: grid;
+    justify-content: start;
+    align-content: center; }
+  .navbar__links {
+    display: grid;
+    justify-content: end;
+    align-content: center;
+    grid-auto-flow: column;
+    grid-gap: 20px;
+    font-size: 20px; }
 
-.logo {
-  display: grid;
-  justify-content: start;
-  align-content: center; }
+.navbar__links--login {
+  display: inline-block;
+  position: relative;
+  padding: 5px; }
+
+.navbar__links--login::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out; }
+
+.navbar__links--login:hover::before {
+  visibility: visible;
+  transform: scaleX(1); }
 
 .signup-bg {
   background: linear-gradient(to right bottom, #052049, white) fixed; }

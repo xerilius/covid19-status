@@ -1,8 +1,19 @@
 // font-family: 'Sofia', cursive;
 // font-family: 'Raleway', sans-serif;
+// font-family: 'Comfortaa', cursive;
+
+// font-family: 'Fredoka One', cursive;
+
+// font-family: 'Poiret One', cursive;
+
+// font-family: 'Libre Barcode 39 Extended Text', cursive;
+// font-family: 'Libre Barcode 128 Text', cursive;
+
+
 // HYPERLINKS
 a {
     text-decoration: none;
+    color:black;
 }
 a.link {   
     &__signup {
@@ -35,7 +46,7 @@ a.link {
 .heading-tertiary {
     text-align: center;
     color: white;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 2em;
     font-weight: bold;
 }
@@ -86,7 +97,7 @@ input.login__item {
 }
 .login{
     &__container {
-       font-family: 'Raleway';    
+          
        &--left {
            font-family: 'Raleway';
            letter-spacing: .5rem;
@@ -113,4 +124,26 @@ input.login__item {
         text-transform:  uppercase;
         font-size: 1.2rem;
     }
+}
+
+// NAVBAR
+.navbar {
+    font-family: 'Libre Barcode 128 Text', cursive;
+    font-size: 2rem;
+    letter-spacing: .2rem;
+    text-transform: uppercase;
+    &__links {
+        &--login {
+            // font-family: 'Poiret One', cursive;
+            font-family: 'Comfortaa', cursive;
+
+            // font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+        }
+    }
+    
+}
+
+a.navbar__logo {
+    color:black;
 }
