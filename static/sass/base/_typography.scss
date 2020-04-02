@@ -15,6 +15,10 @@
 a {
     text-decoration: none;
     color:black;
+    outline: 0;
+    border: none;
+    -moz-outline-style: none;
+    outline-style: none;
 }
 a.link {   
     &__signup {
@@ -150,4 +154,5 @@ a.navbar__logo {
     font-family: 'Major Mono Display', monospace;
     font-size: 1.5rem; 
     margin: 20px;  
+    font-weight: bold;
 }

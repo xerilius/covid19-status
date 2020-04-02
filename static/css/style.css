@@ -22,7 +22,11 @@ body {
 
 a {
   text-decoration: none;
-  color: black; }
+  color: black;
+  outline: 0;
+  border: none;
+  -moz-outline-style: none;
+  outline-style: none; }
 
 a.link__signup {
   color: #384d6e;
@@ -124,7 +128,8 @@ a.navbar__logo {
 .datetime {
   font-family: 'Major Mono Display', monospace;
   font-size: 1.5rem;
-  margin: 20px; }
+  margin: 20px;
+  font-weight: bold; }
 
 .u-margin-bottom {
   margin-bottom: 1.5rem !important; }
@@ -259,6 +264,7 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
 .login__container {
   width: 50%;
   height: 500px;
+  outline: 0;
   position: absolute;
   right: 25%;
   top: 20%;
