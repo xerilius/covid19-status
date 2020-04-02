@@ -9,7 +9,7 @@
     grid-gap: 20px;
     padding-left: 20px;
     padding-right: 20px;
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
     &__logo {
         display: grid;
         justify-content: start;
@@ -23,13 +23,6 @@
         grid-auto-flow: column;
         grid-gap: 20px;
         font-size: 20px;
-        
-        // &--login {
-            
-    
-
-            
-        // }
     }
 }
 .navbar__links--login {

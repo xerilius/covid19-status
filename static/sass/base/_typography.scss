@@ -1,11 +1,8 @@
 // font-family: 'Sofia', cursive;
 // font-family: 'Raleway', sans-serif;
 // font-family: 'Comfortaa', cursive;
-
 // font-family: 'Fredoka One', cursive;
-
 // font-family: 'Poiret One', cursive;
-
 // font-family: 'Libre Barcode 39 Extended Text', cursive;
 // font-family: 'Libre Barcode 128 Text', cursive;
 
@@ -17,20 +14,20 @@ a {
 }
 a.link {   
     &__signup {
-        color: $color-1;
+        color: #384d6e;
         font-weight: 600;
         font-size: 1.2rem;
         &:hover {
-            color: lighten($color-1, 40%);
+            color: $color-2;
         }
     }
 
     &__login {
-        color: $color-1;
+        color:#384d6e;
         font-weight: 600;
         font-size: 1.3rem;  
         &:hover {
-            color: lighten($color-1, 40%);
+            color: $color-2;
         }      
     }
 }
@@ -65,7 +62,7 @@ a.link {
         text-align: center;
         font-size: 1.3rem;
         font-family: 'Raleway', sans-serif;
-        color: darken($color-1, 10%);
+        color: white;
         letter-spacing: .1rem;
     }
 }
@@ -96,8 +93,7 @@ input.login__item {
     }
 }
 .login{
-    &__container {
-          
+    &__container {     
        &--left {
            font-family: 'Raleway';
            letter-spacing: .5rem;
@@ -107,10 +103,9 @@ input.login__item {
            font-size: 2rem;
            text-align: left;
        }
-
        &--right {
         font-family: 'Raleway';
-        color: $color-1;
+        color: lighten($color-1, 20%);
         text-align: left;
         font-size: 1.2rem;
        }
@@ -132,12 +127,11 @@ input.login__item {
     font-size: 2rem;
     letter-spacing: .2rem;
     text-transform: uppercase;
+    font-weight: bold;
+
     &__links {
         &--login {
-            // font-family: 'Poiret One', cursive;
             font-family: 'Comfortaa', cursive;
-
-            // font-family: 'Fredoka One', cursive;
             font-size: 1.2rem;
         }
     }
@@ -146,4 +140,8 @@ input.login__item {
 
 a.navbar__logo {
     color:black;
+}
+
+.datetime {
+    text-align: center;
 }

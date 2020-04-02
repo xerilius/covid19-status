@@ -17,18 +17,18 @@ a {
   color: black; }
 
 a.link__signup {
-  color: #052049;
+  color: #384d6e;
   font-weight: 600;
   font-size: 1.2rem; }
   a.link__signup:hover {
-    color: #2a79f0; }
+    color: #ffdd00; }
 
 a.link__login {
-  color: #052049;
+  color: #384d6e;
   font-weight: 600;
   font-size: 1.3rem; }
   a.link__login:hover {
-    color: #2a79f0; }
+    color: #ffdd00; }
 
 .heading-secondary {
   color: white;
@@ -56,7 +56,7 @@ a.link__login {
   text-align: center;
   font-size: 1.3rem;
   font-family: 'Raleway', sans-serif;
-  color: #020b19;
+  color: white;
   letter-spacing: .1rem; }
 
 input.form__item[type="text"], input.form__item[type="password"], input.form__item[type="email"] {
@@ -88,7 +88,7 @@ input.login__item::placeholder {
 
 .login__container--right {
   font-family: 'Raleway';
-  color: #052049;
+  color: #0c4aa8;
   text-align: left;
   font-size: 1.2rem; }
 
@@ -104,13 +104,17 @@ input.login__item::placeholder {
   font-family: 'Libre Barcode 128 Text', cursive;
   font-size: 2rem;
   letter-spacing: .2rem;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-weight: bold; }
   .navbar__links--login {
     font-family: 'Comfortaa', cursive;
     font-size: 1.2rem; }
 
 a.navbar__logo {
   color: black; }
+
+.datetime {
+  text-align: center; }
 
 .u-margin-bottom {
   margin-bottom: 1.5rem !important; }
@@ -135,7 +139,7 @@ a.navbar__logo {
   grid-gap: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3); }
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2); }
   .navbar__logo {
     display: grid;
     justify-content: start;
@@ -177,7 +181,7 @@ a.navbar__logo {
   display: grid;
   grid-template-columns: 1fr fit-content(1fr) 1fr;
   grid-template-rows: repeat(6, 1fr);
-  grid-template-areas: " . . . " ".  heading ." ". subheading ." ".  form ." ".  form ." ".  form ." ". form ."; }
+  grid-template-areas: " . . . " ". heading ." ". subheading ." ". form ." ". form ." ". form ." ". form ."; }
 
 .heading-secondary {
   grid-area: heading;
@@ -227,7 +231,7 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
   .form__item--btn:focus {
     outline: none; }
   .form__item--btn:hover {
-    box-shadow: 5px 6px 1px 3px #052049; }
+    box-shadow: 5px 6px 1px 3px #384d6e; }
 
 .form__item--4 {
   grid-area: item4;

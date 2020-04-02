@@ -11,11 +11,11 @@
     grid-template-rows: repeat(6, 1fr);
     grid-template-areas:
         " . . . "
-        ".  heading ."
+        ". heading ."
         ". subheading ."
-        ".  form ."
-        ".  form ."
-        ".  form ."
+        ". form ."
+        ". form ."
+        ". form ."
         ". form ."
 }
 
@@ -82,7 +82,7 @@ input.form__item{
             outline:none;
         }
         &:hover {
-            box-shadow: 5px 6px 1px 3px $color-1;
+            box-shadow: 5px 6px 1px 3px #384d6e;
         }
     }
     &--4 {
