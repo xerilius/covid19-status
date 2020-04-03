@@ -7,3 +7,16 @@
         animation-play-state: paused;
     }
 }  
+
+a.navbar__logo--link {
+    &:active, &:visited {
+    color: black;
+    }
+
+}
+
+a.navbar__links--login {
+    &:active, &:visited {
+        color: black;
+        }
+    }

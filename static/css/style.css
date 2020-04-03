@@ -22,7 +22,6 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
   outline: 0;
   border: none;
   -moz-outline-style: none;
@@ -128,8 +127,7 @@ a.navbar__logo {
 .datetime {
   font-family: 'Major Mono Display', monospace;
   font-size: 1.5rem;
-  margin: 20px;
-  font-weight: bold; }
+  margin: 20px; }
 
 .u-margin-bottom {
   margin-bottom: 1.5rem !important; }
@@ -322,3 +320,94 @@ input.login__item[type="text"], input.login__item[type="password"] {
   animation: marquee 20s linear infinite; }
   .datetime:hover {
     animation-play-state: paused; }
+
+a.navbar__logo--link:active, a.navbar__logo--link:visited {
+  color: black; }
+
+a.navbar__links--login:active, a.navbar__links--login:visited {
+  color: black; }
+
+.grid-container {
+  font-family: 'Raleway', sans-serif;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 50px 1fr;
+  grid-template-areas: "sidenav header" "sidenav main";
+  height: 100vh;
+  background: white; }
+
+.header {
+  grid-area: header;
+  background: #000000dc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  color: white;
+  text-transform: uppercase; }
+
+a.header__logout:link, a.header__logout:visited {
+  color: white; }
+
+.sidenav {
+  border-right: 2px solid white;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-area: sidenav;
+  background-color: whitesmoke;
+  color: black;
+  padding: 0 0 30px 0; }
+
+.sidenav__brand {
+  text-align: center;
+  padding-bottom: 30px; }
+
+a.sidenav__brand-link {
+  font-size: 3.5rem;
+  font-family: 'Libre Barcode 128 Text', cursive;
+  text-transform: uppercase;
+  align-self: center;
+  font-weight: bold; }
+  a.sidenav__brand-link:active, a.sidenav__brand-link:visited {
+    color: black; }
+
+.sidenav__list {
+  list-style-type: none; }
+
+.sidenav__list-item {
+  font-family: 'Major Mono Display', monospace;
+  text-transform: lowercase;
+  padding-left: 30px;
+  line-height: 2.5rem;
+  color: black; }
+
+.sidenav__list-item:hover {
+  background-color: rgba(250, 212, 0, 0.329); }
+
+.sidenav__category-title {
+  font-family: 'Major Mono Display', monospace;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.493);
+  font-size: 1.3rem;
+  text-transform: lowercase;
+  letter-spacing: .5rem; }
+
+.main {
+  grid-area: main;
+  background-color: #252830; }
+
+.main-header {
+  background: url(../img/sf.jpg) center no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  height: 350px;
+  background-color: #e3e4e6;
+  color: slategray; }
+
+.main-content {
+  margin: 20px;
+  background-color: black;
+  height: 100px; }
