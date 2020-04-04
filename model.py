@@ -112,12 +112,12 @@ class Status(db.Model):
     __tablename__ = "status"
 
     status_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    status_date = db.Column(db.Column(db.Date, nullable=False))
+    status_date = db.Column(db.Date, nullable=False)
     deaths = db.Column(db.Integer, nullable=False)
     confirmed = db.Column(db.Integer, nullable=False)
 
     # Status relationship with cities
-    city = db.relationship("City", backref="Status")
+    city = db.relationship("City", backref="status")
 
 
     def __repr__(self):
