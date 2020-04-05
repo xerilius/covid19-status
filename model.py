@@ -91,9 +91,9 @@ class City(db.Model):
 
     city_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     city_name = db.Column(db.String(64), nullable=False, unique=True)
+    
     # Foreign Key
     state_id = db.Column(db.Integer, db.ForeignKey("states.state_id"))
-    
     # Backref to States
     states = db.relationship("State", backref="city")
 
@@ -116,8 +116,12 @@ class Status(db.Model):
     deaths = db.Column(db.Integer, nullable=False)
     confirmed = db.Column(db.Integer, nullable=False)
 
+    # Foreign Key
+    state_id = db.Column(db.Integer, db.ForeignKey("states.state_id"))
+    city_id = db.Column(db.Integer, db.ForeignKey("cities.city_id"))
     # Status relationship with cities
     city = db.relationship("City", backref="status")
+    state = db.relationship("State", backref="status")
 
 
     def __repr__(self):
