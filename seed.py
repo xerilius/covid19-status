@@ -9,43 +9,107 @@ import requests, os, bs4, threading, time
 URL = "https://api.covid19api.com/country/us/status/confirmed"
 URL2 = "https://api.covid19api.com/country/us/status/deaths"
 
-# Read Only (‘r’): Open text file for reading.
-# Write Only (‘w’): Open the file for writing.
-# Append Only (‘a’): Open the file for writing. The data being written will be inserted at the end, after the existing data.
-# Read and Write (‘r+’): Open the file for reading and writing.
+confirmed_json = "confirmed-reports.json"
+deaths_json = "death-reports.json"
 
-
-def get_covid_status():
+# JSON Data Saved in json file
+def write_confirmed_data():
     """Writes confirmed/death reports of COVID-19 in each state to txt file."""
     r1 = requests.get(URL)
+    with open('confirmed-reports.txt', 'w') as f:
+        f.write(r1.text)
+
+    print('task done')
+# write_confirmed_data()   
+
+
+def write_death_data(json):
     r2 = requests.get(URL2)
-
-    # Confirmed
-    # Convert JSON data to python data structure
-    confirmed_data = json.loads(r1.text)
-    out_file = open("confirmed-reports.txt", "w")
-    json.dump(confirmed_data, out_file, indent=6)
-    out_file.close()
-
-    # Deaths
-    deaths_data = json.loads(r2.text)
-    out_file = open("death-reports.txt", "w")
-    json.dump(deaths_data, out_file, indent=6)
-    out_file.close()
+    # # Deaths
+    with open('deaths-reports.txt', 'w') as f:
+        f.write(r2.text)
+    # deaths_data = json.loads(r2.text)
+    # out_file = open(json, "w")
+    # json.dump(deaths_data, out_file, indent=4)
+    # out_file.close()
 
 
-api_requests = []
-for i in range(0, 7):   # loop 7 times
-    callAPI = threading.Thread(target=get_covid_status)
-    api_requests.append(callAPI)  # keep track of thread object created
-    callAPI.start()
-    print("starting") 
-    time.sleep(86400)   # pause for 24 hrs
-    print()
-    print('Reeee')
+def extract_confirmed_data():
+    """Temporary dictionary to organize data before transferring into db"""
 
-# Notify when all threads end
-for call_api in api_requests:
-    call_api.join()
+    response = requests.get(URL)
+    response.raise_for_status()
+    data_=json.loads(response.text)
+    w = data_
 
-print('Completed tasks for the week!')
+    api_data = {
+        'state': None,
+        'city': None,
+        'cases': [],
+        'date': [],
+    }
+
+    for dictionaries in w:
+        # dictionaries = all dictionaries in the list
+        print(dictionaries)
+        
+        cities = dictionaries[x]
+        print(cities)
+        # for key in dictionaries:
+
+        #     states = dictionaries.get("Province")
+        #     api_data['state'] = states
+
+        #     # cities = dictionaries.get("City")
+        #     # api_data['city'].append(cities)
+
+        #     # cases = dictionaries.get("Cases")
+        #     # api_data['cases'].append(cases)
+
+        #     # date = dictionaries.get("Date")
+        #     # api_data['date'].append(date)
+            
+            
+            
+    
+
+    
+    # for txt_data in json_file:
+    #     state_name = txt_data['Province']
+    #     api_data['state'] = state_name
+
+    #     city_name = txt_data['City']
+    #     api_data['city'] = city_name
+
+    #     cases = txt_data['Cases']
+    #     api_data['cases'] = cases
+
+    #     status_date = txt_data['Date']
+    #     api_data['date'] = status_date
+
+    #     print(api_data)
+
+extract_confirmed_data()
+
+
+
+if __name__ == "__main__":
+
+    def run_task():
+        """Run task 7 times"""
+        for i in range(0,1):
+            t1 = threading.Thread(target=get_confirmed_status, args=(confirmed_txt,))
+            t2 = threading.Thread(target=get_death_status, args=(deaths_txt,))
+            # start thread 
+            t1.start()
+            print("t1 started")
+            t2.start()
+            print("t2 started")
+
+            # time.sleep(1440)   
+            # wait until threads are completely executed
+            t1.join()
+            t2.join()
+            # both threads are completely executed
+            print("Tasks are completed")
+    # run_task()
