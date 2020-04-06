@@ -65,16 +65,14 @@ class Save(db.Model):
         return city_ids
 
 
-# STATES
-class State(db.Model):
+# STATES cannot use State -- it is a reserved variable
+class State_(db.Model):
     """State information"""
 
     __tablename__ = "states"
 
     state_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     state_name = db.Column(db.String(50), nullable=False, unique=True)
-    postal_code = db.Column(db.String(2), nullable=False, unique=True)
-
 
     def __repr__(self):
         """Provide helpful representation when printed"""
@@ -90,12 +88,12 @@ class City(db.Model):
     __tablename__ = "cities"
 
     city_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    city_name = db.Column(db.String(64), nullable=False, unique=True)
+    city_name = db.Column(db.String(64), unique=True)
     
     # Foreign Key
     state_id = db.Column(db.Integer, db.ForeignKey("states.state_id"))
     # Backref to States
-    states = db.relationship("State", backref="city")
+    states_ = db.relationship("State_", backref="cities")
 
 
 
@@ -113,46 +111,22 @@ class Status(db.Model):
 
     status_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     status_date = db.Column(db.Date, nullable=False)
-    deaths = db.Column(db.Integer, nullable=False)
+    # deaths = db.Column(db.Integer, nullable=False)
     confirmed = db.Column(db.Integer, nullable=False)
 
     # Foreign Key
     state_id = db.Column(db.Integer, db.ForeignKey("states.state_id"))
     city_id = db.Column(db.Integer, db.ForeignKey("cities.city_id"))
     # Status relationship with cities
-    city = db.relationship("City", backref="status")
-    state = db.relationship("State", backref="status")
-
+    city_status = db.relationship("City", backref="status")
+  
 
     def __repr__(self):
         """Provides info when printed"""
-        return "<Status status_id={} status_date={} deaths={} confirmed={}>".format(
-            self.status_id, self.status_date, self.deaths, self.confirmed
+        return "<Status status_id={} status_date={} confirmed={}>".format(
+            self.status_id, self.status_date, self.confirmed
         )
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Helper functions
 def connect_to_db(app, db_uri="postgresql:///covid19"):
@@ -171,9 +145,3 @@ if __name__ == '__main__':
     from server import app
     connect_to_db(app)
     print("Connected to database.")
-
-# 1) createdb
-# 2) python -i model.py
-# 3) >>> db.create_all()
-
-#dropdb db_name
