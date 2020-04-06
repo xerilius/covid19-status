@@ -2,10 +2,9 @@
 
 # from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-# db object - represents the database 
 db = SQLAlchemy()
 
-# USERS
+
 class User(db.Model):
     """User Login Information"""
    
@@ -17,9 +16,8 @@ class User(db.Model):
     pw = db.Column(db.String(50), nullable=False)
     signup_date = db.Column(db.Date, nullable=False)
 
-    # User relationships with saves & city
-    saves = db.relationship("City", secondary="saves",
-                                    backref="users")
+    # saves = db.relationship("City", secondary="saves",
+    #                                 backref="users")
 
     def __repr__(self):
         """Prints user information"""
@@ -28,44 +26,65 @@ class User(db.Model):
         )
 
 
-# SAVES
-class Save(db.Model):
-    """Cities saved by user."""
+class Status(db.Model):
+    """Case information"""
 
-    __tablename__ = "saves"
-    __table_args__ = (db.UniqueConstraint("user_id", "city_id"),)
+    __tablename__ = "status"
 
-    save_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    # Foreign Keys
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
-    city_id = db.Column(db.Integer, db.ForeignKey("cities.city_id"))
+    status_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    status_date = db.Column(db.Date, nullable=False)
+    confirmed = db.Column(db.Integer, nullable=False)
+
+    # Association relationship for city
+    city_status = db.relationship("City", secondary="citystatus",backref="status")
+
+    # state_id = db.Column(db.Integer, db.ForeignKey("states.state_id"))
+    # city_id = db.Column(db.Integer, db.ForeignKey("cities.city_id"))
+    # cities.status.append()
+    # city_status = db.relationship("City", backref="status")
+    # state_status = db.relationship("States_", backref="status")
+  
+
+    def __repr__(self):
+        """Provides info when printed"""
+        return "<Status status_id={} status_date={} confirmed={}>".format(
+            self.status_id, self.status_date, self.confirmed
+        )
+
+ 
+
+class City(db.Model):
+    """Cities information"""
+
+    __tablename__ = "cities"
+
+    city_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    city_name = db.Column(db.String(64), unique=True)
+    state_id = db.Column(db.Integer, db.ForeignKey("states.state_id"))
+    # states.cities.append()
+    states_ = db.relationship("State_", backref="cities")
 
 
     def __repr__(self):
-        """Provide save info when printed."""
-
-        return f"<Save save_id={self.save_id}, user_id={self.user_id}, city_id={self.city_id}>"
-
-
-    def add_saves(self, city):
-        """Instantiates new saved city for user"""
-        self.saves.append(city)
+        """Provides info when printed"""
+        return "<City city_id={} city_name={}>".format(
+            self.city_id, self.city_name
+        )
 
 
-    def get_user_saves(self):
-        """Get user's saved city_ids"""
 
-        city_id_tups = db.session.query(Save.city_id).filter(Save.user_id == self.user_id).all()
+class CityStatus(db.Model):
+    """Association table for City & Status"""
 
-        city_ids = []
-        for tuple_ in city_id_tups:
-            (city_id,) = tuple_
-            city_ids.append(city_id)
+    __tablename__ = "citystatus"
 
-        return city_ids
+    city_id = db.Column(db.Integer, db.ForeignKey('cities.city_id'), primary_key=True)
+    status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'), primary_key=True)
+
+    def __repr__(self):
+        return f"<CityStatus city_id={self.city_id} status_id={self.status_id}"
 
 
-# STATES cannot use State -- it is a reserved variable
 class State_(db.Model):
     """State information"""
 
@@ -81,67 +100,54 @@ class State_(db.Model):
         )
 
 
-# CITIES
-class City(db.Model):
-    """Cities information"""
+# # SAVES
+# class Save(db.Model):
+#     """Cities saved by user."""
 
-    __tablename__ = "cities"
+#     __tablename__ = "saves"
+#     __table_args__ = (db.UniqueConstraint("user_id", "city_id"),)
 
-    city_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    city_name = db.Column(db.String(64), unique=True)
-    
-    # Foreign Key
-    state_id = db.Column(db.Integer, db.ForeignKey("states.state_id"))
-    # Backref to States
-    states_ = db.relationship("State_", backref="cities")
+#     save_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     # Foreign Keys
+#     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+#     city_id = db.Column(db.Integer, db.ForeignKey("cities.city_id"))
 
 
-
-    def __repr__(self):
-        """Provides info when printed"""
-        return "<City city_id={} city_name={}>".format(
-            self.city_id, self.city_name
-        )
+#     def __repr__(self):
+#         """Provide save info when printed."""
+#         return f"<Save save_id={self.save_id}, user_id={self.user_id}, city_id={self.city_id}>"
 
 
-class Status(db.Model):
-    """Case information"""
+#     def add_saves(self, city):
+#         """Instantiates new saved city for user"""
+#         self.saves.append(city)
 
-    __tablename__ = "status"
 
-    status_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    status_date = db.Column(db.Date, nullable=False)
-    # deaths = db.Column(db.Integer, nullable=False)
-    confirmed = db.Column(db.Integer, nullable=False)
+#     def get_user_saves(self):
+#         """Get user's saved city_ids"""
 
-    # Foreign Key
-    state_id = db.Column(db.Integer, db.ForeignKey("states.state_id"))
-    city_id = db.Column(db.Integer, db.ForeignKey("cities.city_id"))
-    # Status relationship with cities
-    city_status = db.relationship("City", backref="status")
-  
+#         city_id_tups = db.session.query(Save.city_id).filter(Save.user_id ==  self.user_id).all()
 
-    def __repr__(self):
-        """Provides info when printed"""
-        return "<Status status_id={} status_date={} confirmed={}>".format(
-            self.status_id, self.status_date, self.confirmed
-        )
-    
+#         city_ids = []
+#         for tuple_ in city_id_tups:
+#             (city_id,) = tuple_
+#             city_ids.append(city_id)
+
+#         return city_ids
+   
 
 # Helper functions
 def connect_to_db(app, db_uri="postgresql:///covid19"):
     """Connect database to Flask app"""
 
-    # Configure to use PostgreSQL database
+    # Postgres DB Configurations
     app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SQLALCHEMY_ECHO'] = True
     db.app = app
     db.init_app(app)
 
-
 if __name__ == '__main__':
-    # Run module interactively to work with database directly
     from server import app
     connect_to_db(app)
     print("Connected to database.")
