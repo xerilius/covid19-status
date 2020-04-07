@@ -26,6 +26,7 @@ class User(db.Model):
         )
 
 
+
 class Status(db.Model):
     """Case information"""
 
@@ -46,6 +47,7 @@ class Status(db.Model):
         )
  
 
+
 class City(db.Model):
     """Cities information"""
 
@@ -63,6 +65,7 @@ class City(db.Model):
         )
 
 
+
 class CityStatus(db.Model):
     """Association table for City & Status"""
 
@@ -76,22 +79,22 @@ class CityStatus(db.Model):
 
 
 
-# # SAVES
-# class Save(db.Model):
-#     """Cities saved by user."""
 
-#     __tablename__ = "saves"
-#     __table_args__ = (db.UniqueConstraint("user_id", "city_id"),)
+class Save(db.Model):
+    """Cities saved by user."""
 
-#     save_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-#     # Foreign Keys
-#     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
-#     city_id = db.Column(db.Integer, db.ForeignKey("cities.city_id"))
+    __tablename__ = "saves"
+    __table_args__ = (db.UniqueConstraint("user_id", "city_id"),)
+
+    save_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    city_id = db.Column(db.Integer, db.ForeignKey("cities.city_id"))
 
 
-#     def __repr__(self):
-#         """Provide save info when printed."""
-#         return f"<Save save_id={self.save_id}, user_id={self.user_id}, city_id={self.city_id}>"
+    def __repr__(self):
+        """Provide save info when printed."""
+        return f"<Save save_id={self.save_id}, user_id={self.user_id}, city_id={self.city_id}>"
+
 
 
 # Helper functions
