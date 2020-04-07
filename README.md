@@ -11,12 +11,10 @@ $ `source env/bin/activate`
 $ `pip3 install -r requirements.txt`
 
 
-
 #### Start Flask Server
 $ `export FLASK_APP=server.py`  
 $ `flask run --host=0.0.0.0`
 
-<br>
 
 #### Seed data into database
 $ `python3 seed.py`  
