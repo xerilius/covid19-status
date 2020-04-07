@@ -1,4 +1,62 @@
-.datetime{
+// font-family: 'Sofia', cursive;
+// font-family: 'Raleway', sans-serif;
+// font-family: 'Comfortaa', cursive;
+// font-family: 'Fredoka One', cursive;
+// font-family: 'Poiret One', cursive;
+// font-family: 'Libre Barcode 39 Extended Text', cursive;
+// font-family: 'Libre Barcode 128 Text', cursive;
+
+// font-family: 'Major Mono Display', monospace;
+// font-family: 'Courier Prime', monospace;
+// font-family: 'Montserrat', sans-serif;
+
+.searchbar {
+    text-align: center;
+    margin: 70px 0;
+    text-transform: lowercase;
+
+    &__search {
+        font-family: 'Major Mono Display', monospace;
+        width: 50%;
+        font-size: 2rem;
+        outline:0;
+        border: 0;
+        border-bottom: 2px solid black;
+
+        &::placeholder {
+            text-transform: lowercase;
+            color: rgba(0, 0, 0, 0.336);
+            font-weight: bold;
+        }
+        &:focus {
+            border-bottom: 2px solid $color-2;
+        }     
+    }
+}
+
+.spacer{
+    width: 100%;
+    height: 90px;
+}
+
+.the5 {
+    font-family: 'Fredoka One', cursive;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 5rem;
+    &__items {
+        font-size: 1.5rem;
+    }
+
+}
+ul{list-style-type: none;}
+
+.datetime {
+    font-family: 'Major Mono Display', monospace;
+    font-size: 1.5rem; 
+    margin: 20px;  
+    // font-weight: bold;
+
     height: 20px;
     position: fixed;
     float: right;
@@ -20,3 +78,4 @@ a.navbar__links--login {
         color: black;
         }
     }
+

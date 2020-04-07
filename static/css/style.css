@@ -20,6 +20,9 @@ html {
 body {
   box-sizing: border-box; }
 
+body {
+  font-family: 'Raleway', sans-serif; }
+
 a {
   text-decoration: none;
   outline: 0;
@@ -55,80 +58,6 @@ a.link__login {
   font-size: 2em;
   font-weight: bold; }
 
-.form__item--btn {
-  font-family: 'Raleway', sans-serif;
-  font-weight: bolder;
-  color: #031631;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: .3rem; }
-
-.form__item--4 {
-  text-align: center;
-  font-size: 1.3rem;
-  font-family: 'Raleway', sans-serif;
-  color: white;
-  letter-spacing: .1rem; }
-
-input.form__item[type="text"], input.form__item[type="password"], input.form__item[type="email"] {
-  color: white;
-  font-weight: 500;
-  font-size: 1.2rem;
-  font-family: 'Raleway', sans-serif; }
-
-input.form__item::placeholder {
-  color: white;
-  opacity: 1; }
-
-input.login__item[type="text"], input.login__item[type="password"] {
-  color: #052049;
-  font-size: 1.3rem; }
-
-input.login__item::placeholder {
-  color: #052049;
-  opacity: 1; }
-
-.login__container--left {
-  font-family: 'Raleway';
-  letter-spacing: .5rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: white;
-  font-size: 2rem;
-  text-align: left; }
-
-.login__container--right {
-  font-family: 'Raleway';
-  color: #0c4aa8;
-  text-align: left;
-  font-size: 1.2rem; }
-
-.login--btn {
-  font-family: 'Raleway';
-  color: white;
-  font-weight: 700;
-  letter-spacing: .2rem;
-  text-transform: uppercase;
-  font-size: 1.2rem; }
-
-.navbar {
-  font-family: 'Libre Barcode 128 Text', cursive;
-  font-size: 2.5rem;
-  letter-spacing: .2rem;
-  text-transform: uppercase;
-  font-weight: bold; }
-  .navbar__links--login {
-    font-family: 'Comfortaa', cursive;
-    font-size: 1.2rem; }
-
-a.navbar__logo {
-  color: black; }
-
-.datetime {
-  font-family: 'Major Mono Display', monospace;
-  font-size: 1.5rem;
-  margin: 20px; }
-
 .u-margin-bottom {
   margin-bottom: 1.5rem !important; }
 
@@ -144,7 +73,15 @@ a.navbar__logo {
 .homepage {
   background-color: white; }
 
+a.navbar__logo {
+  color: black; }
+
 .navbar {
+  font-family: 'Libre Barcode 128 Text', cursive;
+  font-size: 2.5rem;
+  letter-spacing: .2rem;
+  text-transform: uppercase;
+  font-weight: bold;
   display: grid;
   min-height: 50px;
   grid-auto-flow: column;
@@ -164,6 +101,9 @@ a.navbar__logo {
     grid-auto-flow: column;
     grid-gap: 20px;
     font-size: 20px; }
+    .navbar__links--login {
+      font-family: 'Comfortaa', cursive;
+      font-size: 1.2rem; }
 
 .navbar__links--login {
   display: inline-block;
@@ -233,6 +173,12 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
   grid-area: item3; }
 
 .form__item--btn {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bolder;
+  color: #031631;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .3rem;
   margin-top: 1rem;
   grid-area: button;
   background: white;
@@ -247,6 +193,11 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
     box-shadow: 5px 6px 1px 3px #384d6e; }
 
 .form__item--4 {
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  letter-spacing: .1rem;
   grid-area: item4;
   margin-top: 1rem; }
 
@@ -269,6 +220,13 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
   background: white;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.356); }
   .login__container--left {
+    font-family: 'Raleway';
+    letter-spacing: .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    font-size: 2rem;
+    text-align: left;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -279,7 +237,11 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
     background: #052049;
     background-size: cover;
     box-sizing: border-box; }
-  .login__container__container, .login__container--right {
+  .login__container--right {
+    font-family: 'Raleway';
+    color: #0c4aa8;
+    text-align: left;
+    font-size: 1.2rem;
     float: right;
     width: 50%;
     height: 500px;
@@ -293,6 +255,12 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
   background: white; }
 
 .login--btn {
+  font-family: 'Raleway';
+  color: white;
+  font-weight: 700;
+  letter-spacing: .2rem;
+  text-transform: uppercase;
+  font-size: 1.2rem;
   margin: 20px 25%;
   border-radius: 50px;
   width: 55%;
@@ -305,6 +273,8 @@ input.form__item[type="text"], input.form__item[type="password"], input.form__it
     background: #083579; }
 
 input.login__item[type="text"], input.login__item[type="password"] {
+  color: #052049;
+  font-size: 1.3rem;
   border: 0;
   /* note: order --> border must be before border-bottom */
   border-bottom: 1px dashed #052049;
@@ -313,7 +283,47 @@ input.login__item[type="text"], input.login__item[type="password"] {
   width: 100%;
   margin: 10px 0; }
 
+input.login__item::placeholder {
+  color: #052049;
+  opacity: 1; }
+
+.searchbar {
+  text-align: center;
+  margin: 70px 0;
+  text-transform: lowercase; }
+  .searchbar__search {
+    font-family: 'Major Mono Display', monospace;
+    width: 50%;
+    font-size: 2rem;
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid black; }
+    .searchbar__search::placeholder {
+      text-transform: lowercase;
+      color: rgba(0, 0, 0, 0.336);
+      font-weight: bold; }
+    .searchbar__search:focus {
+      border-bottom: 2px solid #ffdd00; }
+
+.spacer {
+  width: 100%;
+  height: 90px; }
+
+.the5 {
+  font-family: 'Fredoka One', cursive;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 5rem; }
+  .the5__items {
+    font-size: 1.5rem; }
+
+ul {
+  list-style-type: none; }
+
 .datetime {
+  font-family: 'Major Mono Display', monospace;
+  font-size: 1.5rem;
+  margin: 20px;
   height: 20px;
   position: fixed;
   float: right;

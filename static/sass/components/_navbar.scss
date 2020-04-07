@@ -1,7 +1,17 @@
 .homepage {
     background-color: white;
 }
+
+a.navbar__logo {
+    color:black;
+}
 .navbar {
+    font-family: 'Libre Barcode 128 Text', cursive;
+    font-size: 2.5rem;
+    letter-spacing: .2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+
     display: grid;
     min-height: 50px;
     grid-auto-flow: column;
@@ -10,6 +20,7 @@
     padding-left: 20px;
     padding-right: 20px;
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+
     &__logo {
         display: grid;
         justify-content: start;
@@ -23,13 +34,19 @@
         grid-auto-flow: column;
         grid-gap: 20px;
         font-size: 20px;
+
+        &--login {
+            font-family: 'Comfortaa', cursive;
+            font-size: 1.2rem;
+        }
     }
 }
 .navbar__links--login {
     display: inline-block;
-position: relative; 
-padding: 5px;
+    position: relative; 
+    padding: 5px;
 }
+
 .navbar__links--login::before {
                 // content: "";
                 // position: absolute;

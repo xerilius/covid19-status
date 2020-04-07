@@ -10,7 +10,9 @@
 // font-family: 'Courier Prime', monospace;
 // font-family: 'Montserrat', sans-serif;
 
-
+body {
+    font-family: 'Raleway', sans-serif;
+}
 // HYPERLINKS
 a {
     text-decoration: none;
@@ -56,103 +58,3 @@ a.link {
     font-weight: bold;
 }
 
-// SIGN UP
-.form__item {
-    &--btn {
-    font-family: 'Raleway', sans-serif;
-    font-weight: bolder;
-    color: darken($color-1, 5%);
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: .3rem;
-    }
-    &--4 {
-        text-align: center;
-        font-size: 1.3rem;
-        font-family: 'Raleway', sans-serif;
-        color: white;
-        letter-spacing: .1rem;
-    }
-}
-
-input.form__item{
-    &[type="text"],  &[type="password"],  &[type="email"] {
-        color:white;
-        font-weight: 500;
-        font-size: 1.2rem;
-        font-family: 'Raleway', sans-serif;
-    }
-    &::placeholder {
-        color:white;
-        opacity: 1;
-   }
-}
-
-
-// LOGIN
-input.login__item {
-    &[type="text"], &[type="password"] {
-        color: $color-1;
-        font-size: 1.3rem;
-    }
-    &::placeholder {
-        color:$color-1;
-        opacity: 1;
-    }
-}
-.login{
-    &__container {     
-       &--left {
-           font-family: 'Raleway';
-           letter-spacing: .5rem;
-           text-transform: uppercase;
-           font-weight: 700;
-           color: white;
-           font-size: 2rem;
-           text-align: left;
-       }
-       &--right {
-        font-family: 'Raleway';
-        color: lighten($color-1, 20%);
-        text-align: left;
-        font-size: 1.2rem;
-       }
-    }
-
-    &--btn {
-        font-family: 'Raleway';
-        color: white;
-        font-weight: 700;
-        letter-spacing: .2rem;
-        text-transform:  uppercase;
-        font-size: 1.2rem;
-    }
-}
-
-// NAVBAR
-.navbar {
-    font-family: 'Libre Barcode 128 Text', cursive;
-    font-size: 2.5rem;
-    letter-spacing: .2rem;
-    text-transform: uppercase;
-    font-weight: bold;
-
-    &__links {
-        &--login {
-            font-family: 'Comfortaa', cursive;
-            font-size: 1.2rem;
-        }
-    }
-    
-}
-
-a.navbar__logo {
-    color:black;
-}
-
-.datetime {
-    font-family: 'Major Mono Display', monospace;
-    font-size: 1.5rem; 
-    margin: 20px;  
-    // font-weight: bold;
-}

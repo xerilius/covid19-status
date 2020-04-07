@@ -23,6 +23,14 @@
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.356);
     
          &--left {
+            font-family: 'Raleway';
+            letter-spacing: .5rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: white;
+            font-size: 2rem;
+            text-align: left;
+
             display:grid;
             grid-template-columns: repeat(6, 1fr);
             grid-template-rows: repeat(6, 1fr);
@@ -40,13 +48,19 @@
             background-size: cover;
             box-sizing: border-box;
         }
-        &__container, &--right {
+         &--right {
+            font-family: 'Raleway';
+            color: lighten($color-1, 20%);
+            text-align: left;
+            font-size: 1.2rem;
+
             float: right;
             width: 50%;
             height: 500px;
             box-sizing: border-box;
         }
     }
+
     &__formbox {
         width: 100%;
         padding: 80px 40px;
@@ -54,7 +68,15 @@
         height: 500px;
         background: white;
     }
+
     &--btn {
+        font-family: 'Raleway';
+        color: white;
+        font-weight: 700;
+        letter-spacing: .2rem;
+        text-transform:  uppercase;
+        font-size: 1.2rem;
+
         margin: 20px 25%;
         border-radius: 50px;
         width: 55%;
@@ -71,12 +93,20 @@
 }
 
 input.login__item {
-    &[type="text"], &[type="password"]{
+    &[type="text"], &[type="password"] {
+        color: $color-1;
+        font-size: 1.3rem;
+
         border: 0;  /* note: order --> border must be before border-bottom */
         border-bottom: 1px dashed $color-1;
         background: transparent;
         height: 50px;
         width: 100%;
         margin: 10px 0;
+    }
+    
+    &::placeholder {
+        color:$color-1;
+        opacity: 1;
     }
 }
