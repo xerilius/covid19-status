@@ -23,11 +23,12 @@ def show_signup_form():
     """Displays signup form"""
     return render_template("signup.html")
 
+
 @app.route('/signup', methods=["POST"])
 def process_signup():
     """Stores user registration data in db, redirect to homepage"""
 
-    username = request.form.get('username').title()
+    username = request.form.get('username').lower()
     email =  request.form.get('email')
     pw = request.form.get('pwd')
 
@@ -58,13 +59,14 @@ def show_login_form():
     """Displays login form"""
     return render_template("login.html")
 
+
 @app.route('/login', methods=["POST"])
 def process_login():
     """Queries database, redirects to dashboard"""
     # request.form.get(name-field-of-form-input)
     username = request.form.get("username")
     pw = request.form.get("pwd")
-    username = username.title()
+    username = username.lower()
     # Query for username & pw in DB
     user = User.query.filter_by(username=username, pw=pw).first()
     if not user:
@@ -73,7 +75,7 @@ def process_login():
     
     session['username'] = user.username
 
-    return redirect('/user/<username>')
+    return redirect('/')
 
 
 # LOGOUT
@@ -81,6 +83,7 @@ def process_login():
 def logout():
     """Logout user"""
     del session['username']
+    flash("You successfully logged out")
     return redirect('/')
 
 
@@ -91,10 +94,21 @@ def search_city():
 
 
 # DASHBOARD
-@app.route('/user/<username>')
+@app.route('/user/<username>', methods=["GET"])
 def show_dashboard(username):
-    """Redirects user to Dashboard"""
-    return render_template("dashboard.html")
+    """Displays user to Dashboard"""
+
+    today = date.today()
+    current_date = today.strftime("%B %d, %Y")
+
+    username = session.get("username")
+    if username:
+        user = db.session.query(User).filter(User.username==username).first()
+        user_name = user.username
+
+    return render_template("dashboard.html", 
+                            current_date=current_date,
+                            username=user_name)
 # check session username
 # query for favs
 # query for data
