@@ -93,6 +93,11 @@ a.sidenav__brand-link {
     height: 350px;
     background-color: #e3e4e6;
     color: slategray;
+
+    &__heading {
+      font-size: 1.5rem;
+      color: white;
+    }
   }
 
   .main-content {

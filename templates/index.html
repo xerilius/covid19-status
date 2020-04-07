@@ -7,9 +7,15 @@
             <h1><a class="navbar__logo--link" href="/">COVID-19 Status</a></h1>
         </div>
 
+        {% if session.get('username') %}
+        <div class="navbar__links">
+            <a class="navbar__links--login" href="/user/{{session['username'].lower()}}">{{ session['username'].upper() }}</a>
+        </div>
+        {% else %}
         <div class="navbar__links">
             <a class="navbar__links--login" href="/login">Login</a>
         </div>
+        {% endif %}
     </div>
     
     {% for message in get_flashed_messages() %}

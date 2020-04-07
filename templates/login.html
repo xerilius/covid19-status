@@ -2,6 +2,13 @@
 {% block title %}Login{% endblock %}
 {% block content %}
 <body class="login--bg" >
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert-message">
+        <b> {{ message }} </b>
+    </div>
+    {% endfor %}
+    
 <div class="login__container">
     <!-- LEFT SIDE  -->
     <div class="login__container--left"> 

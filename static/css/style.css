@@ -78,7 +78,7 @@ a.navbar__logo {
 
 .navbar {
   font-family: 'Libre Barcode 128 Text', cursive;
-  font-size: 2.5rem;
+  font-size: 2rem;
   letter-spacing: .2rem;
   text-transform: uppercase;
   font-weight: bold;
@@ -287,27 +287,33 @@ input.login__item::placeholder {
   color: #052049;
   opacity: 1; }
 
+.alert-message {
+  text-align: center;
+  font-family: 'Major Mono Display', monospace;
+  text-transform: lowercase;
+  letter-spacing: .2rem; }
+
 .searchbar {
   text-align: center;
-  margin: 70px 0;
+  margin: 100px 0;
   text-transform: lowercase; }
   .searchbar__search {
     font-family: 'Major Mono Display', monospace;
-    width: 50%;
+    width: 70rem;
     font-size: 2rem;
     outline: 0;
     border: 0;
-    border-bottom: 2px solid black; }
+    border-bottom: 2px dotted rgba(0, 0, 0, 0.288); }
     .searchbar__search::placeholder {
       text-transform: lowercase;
       color: rgba(0, 0, 0, 0.336);
       font-weight: bold; }
     .searchbar__search:focus {
-      border-bottom: 2px solid #ffdd00; }
+      border-bottom: 2px dotted #ffdd00; }
 
 .spacer {
   width: 100%;
-  height: 90px; }
+  height: 200px; }
 
 .the5 {
   font-family: 'Fredoka One', cursive;
@@ -322,7 +328,7 @@ ul {
 
 .datetime {
   font-family: 'Major Mono Display', monospace;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin: 20px;
   height: 20px;
   position: fixed;
@@ -416,6 +422,9 @@ a.sidenav__brand-link {
   height: 350px;
   background-color: #e3e4e6;
   color: slategray; }
+  .main-header__heading {
+    font-size: 1.5rem;
+    color: white; }
 
 .main-content {
   margin: 20px;
