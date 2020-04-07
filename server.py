@@ -10,6 +10,7 @@ app.secret_key = "abc"
 
 app.jinja_env.undefined = StrictUndefined
 
+# HOMEPAGE
 @app.route('/')
 def index():
     """Homepage"""
@@ -81,6 +82,12 @@ def logout():
     """Logout user"""
     del session['username']
     return redirect('/')
+
+
+# SEARCHBAR
+@app.route('/search')
+def search_city():
+    """Searches a city within DB"""
 
 
 # DASHBOARD
