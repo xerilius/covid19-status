@@ -1,24 +1,23 @@
 # COVID 19 TRACKER
 
-#### <ins>Go to project directory</ins> 
+#### Go to project directory
 
-#### <ins>Create & Activate Virtual Environment</ins>
+#### Create & Activate Virtual Environment
 $ `virtualenv env`  
 $ `source env/bin/activate`
 
-<br>
 
-#### </ins>Install dependencies </ins>
+#### Install dependencies
 $ `pip3 install -r requirements.txt`
 
-<br>
 
-#### <ins>Start Flask Server </ins>
+
+#### Start Flask Server
 $ `export FLASK_APP=server.py`  
 $ `flask run --host=0.0.0.0`
 
 <br>
 
-#### <ins>Seed data into database</ins>
+#### Seed data into database
 $ `python3 seed.py`  
 <sub>**Note:** Will take a while to insert all data into the database</sub>
