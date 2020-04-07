@@ -60,7 +60,7 @@ def write_confirmed_data():
     data_ = json.loads(r1.text)
     with open('confirmed-reports.json', 'w') as outfile:
         json.dump(data_, outfile, indent=4)
-    print('task done')
+    print('Task#1 completed.')
 
     # # Method 2
     # with open('confirmed-reports.txt', 'w') as f:
@@ -70,8 +70,9 @@ def write_confirmed_data():
 def write_death_data(json):
     """Writes death reports of COVID-19 in each state to txtfile."""
     r2 = requests.get(URL2)
-    with open('deaths-reports.txt', 'w') as f:
-        f.write(r2.text)
+    with open('deaths-reports.json', 'w') as outfile:
+        outfile.write(r2.text)
+    print('Task#2 completed.')
 
     # # Method 2
     # deaths_data = json.loads(r2.text)
@@ -96,8 +97,8 @@ if __name__ == "__main__":
     def run_task():
         """Update and rewrite data from API"""
         for i in range(0,1):
-            t1 = threading.Thread(target=get_confirmed_status, args=(confirmed_txt,))
-            t2 = threading.Thread(target=get_death_status, args=(deaths_txt,))
+            t1 = threading.Thread(target=get_confirmed_status)
+            t2 = threading.Thread(target=get_death_status)
     
             t1.start()
             print("t1 started")
@@ -110,7 +111,7 @@ if __name__ == "__main__":
             t1.join()
             t2.join()
 
-            print("Tasks are completed")
+            print("All tasks are completed")
     # run_task()
 
 
