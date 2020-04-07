@@ -10,8 +10,14 @@
         <div class="navbar__links">
             <a class="navbar__links--login" href="/login">Login</a>
         </div>
-
     </div>
+    
+    {% for message in get_flashed_messages() %}
+    <div class="alert-message">
+        <b> {{ message }} </b>
+    </div>
+    {% endfor %}
+
 </header>
 
 <body class="homepage">
@@ -20,17 +26,17 @@
     <div class="the5">
         <h2> Do the Five.</h2>
         <div class="the5__items">          
-               <i class="fas fa-house-user fa-2x"></i>&nbsp; Stay Home &nbsp;
-               <i class="fas fa-people-arrows fa-2x"></i>&nbsp; Keep 3ft Away &nbsp;
-               <i class="fas fa-hands-wash fa-2x"></i>&nbsp; Wash Hands &nbsp;
-               <i class="fas fa-head-side-cough-slash fa-2x"></i>&nbsp; Dab When You Cough &nbsp;
-               <i class="fas fa-phone-alt fa-2x"></i>&nbsp; Call in Sick &nbsp;
+            <i class="fas fa-house-user fa-2x"></i>&nbsp; Stay Home &nbsp;
+            <i class="fas fa-people-arrows fa-2x"></i>&nbsp; Keep 3ft Away &nbsp;
+            <i class="fas fa-hands-wash fa-2x"></i>&nbsp; Wash Hands &nbsp;
+            <i class="fas fa-head-side-cough-slash fa-2x"></i>&nbsp; Dab When You Cough &nbsp;
+            <i class="fas fa-phone-alt fa-2x"></i>&nbsp; Call in Sick &nbsp;
         </div>
     </div>
     <div class="searchbar">
-       <input class="searchbar__search" type="text" placeholder="Search a city:">
+    <input class="searchbar__search" type="text" placeholder="Search a city:">
     </div>
-        
+    <div class="spacer"></div>
  
 </body>
 {% endblock %}
