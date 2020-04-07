@@ -38,19 +38,12 @@ class Status(db.Model):
     # Association relationship for city
     city_status = db.relationship("City", secondary="citystatus",backref="status")
 
-    # state_id = db.Column(db.Integer, db.ForeignKey("states.state_id"))
-    # city_id = db.Column(db.Integer, db.ForeignKey("cities.city_id"))
-    # cities.status.append()
-    # city_status = db.relationship("City", backref="status")
-    # state_status = db.relationship("States_", backref="status")
-  
 
     def __repr__(self):
         """Provides info when printed"""
         return "<Status status_id={} status_date={} confirmed={}>".format(
             self.status_id, self.status_date, self.confirmed
         )
-
  
 
 class City(db.Model):
@@ -60,9 +53,7 @@ class City(db.Model):
 
     city_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     city_name = db.Column(db.String(64), unique=True)
-    state_id = db.Column(db.Integer, db.ForeignKey("states.state_id"))
-    # states.cities.append()
-    states_ = db.relationship("State_", backref="cities")
+    state_name = db.Column(db.String(64))
 
 
     def __repr__(self):
@@ -70,7 +61,6 @@ class City(db.Model):
         return "<City city_id={} city_name={}>".format(
             self.city_id, self.city_name
         )
-
 
 
 class CityStatus(db.Model):
@@ -84,20 +74,6 @@ class CityStatus(db.Model):
     def __repr__(self):
         return f"<CityStatus city_id={self.city_id} status_id={self.status_id}"
 
-
-class State_(db.Model):
-    """State information"""
-
-    __tablename__ = "states"
-
-    state_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    state_name = db.Column(db.String(50), nullable=False, unique=True)
-
-    def __repr__(self):
-        """Provide helpful representation when printed"""
-        return "<State state_id={} state_name={}>".format(
-            self.state_id, self.state_name
-        )
 
 
 # # SAVES
@@ -117,24 +93,6 @@ class State_(db.Model):
 #         """Provide save info when printed."""
 #         return f"<Save save_id={self.save_id}, user_id={self.user_id}, city_id={self.city_id}>"
 
-
-#     def add_saves(self, city):
-#         """Instantiates new saved city for user"""
-#         self.saves.append(city)
-
-
-#     def get_user_saves(self):
-#         """Get user's saved city_ids"""
-
-#         city_id_tups = db.session.query(Save.city_id).filter(Save.user_id ==  self.user_id).all()
-
-#         city_ids = []
-#         for tuple_ in city_id_tups:
-#             (city_id,) = tuple_
-#             city_ids.append(city_id)
-
-#         return city_ids
-   
 
 # Helper functions
 def connect_to_db(app, db_uri="postgresql:///covid19"):
