@@ -85,8 +85,8 @@ if __name__ == "__main__":
     from server import app
     import os
 
-    os.system("dropdb covid19")
-    os.system("createdb covid19")
+    # os.system("dropdb covid19")
+    # os.system("createdb covid19")
 
     connect_to_db(app)
     db.create_all()
