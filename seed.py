@@ -80,11 +80,11 @@ def enter_table_data():
 
 
 def write_confirmed_data():
-    """Writes confirmed reports of COVID-19 in each state to txt file."""
+    """Writes confirmed reports of COVID-19 in each state to jsonile."""
     r1 = requests.get(URL)
-    data_ = json.loads(r1.text)
+    confirmed_data = json.loads(r1.text)
     with open('confirmed-reports.json', 'w') as outfile:
-        json.dump(data_, outfile, indent=4)
+        json.dump(confirmed_data, outfile, indent=4)
     print('Task#1 completed.')
 
     # # Method 2
@@ -92,18 +92,45 @@ def write_confirmed_data():
     #     f.write(r1.text)
 
 
-def write_death_data(json):
-    """Writes death reports of COVID-19 in each state to txtfile."""
+def write_fatality_data():
+    """Writes fatality reports of COVID-19 in each state to jsonfile."""
     r2 = requests.get(URL2)
-    with open('deaths-reports.json', 'w') as outfile:
-        outfile.write(r2.text)
+    fatality_data = json.loads(r2.text)
+    with open('fatality-reports.json', 'w') as outfile:
+        json.dump(fatality_data, outfile, indent=4)
     print('Task#2 completed.')
 
     # # Method 2
-    # deaths_data = json.loads(r2.text)
+    # with open('fatality-reports.json', 'w') as outfile:
+    #     outfile.write(r2.text)
+    # print('Task#2 completed.')
+    ##############################
+
+    # fatality_data = json.loads(r2.text)
     # out_file = open(json, "w")
-    # json.dump(deaths_data, out_file, indent=4)
+    # json.dump(fatality_data, out_file, indent=4)
     # out_file.close()
+
+
+
+def run_task():
+    """Update and rewrite data from API"""
+    for i in range(0,1):
+        t1 = threading.Thread(target=write_confirmed_data)
+        t2 = threading.Thread(target=write_fatality_data)
+
+        t1.start()
+        print("Task#1 started")
+        t2.start()
+        print("Task#2 started")
+
+        # time.sleep(1440) 
+
+        # wait until threads are completely executed
+        t1.join()
+        t2.join()
+
+        print("All tasks are completed")
 
 
 
@@ -111,36 +138,19 @@ if __name__ == "__main__":
     from server import app
     import os
 
-    # os.system("dropdb covid19")
-    # os.system("createdb covid19")
+    run_task()
+
+    os.system("dropdb covid19")
+    os.system("createdb covid19")
 
     connect_to_db(app)
     db.create_all()
-
+    
     db.session.add(City(city_id=0, city_name="Unassigned"))
     db.session.commit()
     enter_table_data()
 
 
-    def run_task():
-        """Update and rewrite data from API"""
-        for i in range(0,1):
-            t1 = threading.Thread(target=get_confirmed_status)
-            t2 = threading.Thread(target=get_death_status)
-    
-            t1.start()
-            print("t1 started")
-            t2.start()
-            print("t2 started")
-
-            # time.sleep(1440) 
-
-            # wait until threads are completely executed
-            t1.join()
-            t2.join()
-
-            print("All tasks are completed")
-    # run_task()
 
 
 # # To seed data directly into DB without saving data into a file 
