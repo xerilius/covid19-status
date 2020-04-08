@@ -12,9 +12,10 @@ class User(db.Model):
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
+    signup_date = db.Column(db.Date, nullable=False)
     email = db.Column(db.String(50), nullable=False, unique=True)
     pw = db.Column(db.String(50), nullable=False)
-    signup_date = db.Column(db.Date, nullable=False)
+    
 
     # saves = db.relationship("City", secondary="saves",
     #                                 backref="users")
@@ -34,10 +35,12 @@ class Status(db.Model):
 
     status_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     status_date = db.Column(db.Date, nullable=False)
+    city_id = db.Column(db.Integer, db.ForeignKey('cities.city_id'), nullable=False)
+    state_name = db.Column(db.String(64), nullable=True)  # for testing purposes
     confirmed = db.Column(db.Integer, nullable=False)
-
+    
     # Association relationship for city
-    city_status = db.relationship("City", secondary="citystatus",backref="status")
+    city_status = db.relationship("City", backref="status")
 
 
     def __repr__(self):
@@ -54,7 +57,7 @@ class City(db.Model):
     __tablename__ = "cities"
 
     city_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    city_name = db.Column(db.String(64), unique=True)
+    city_name = db.Column(db.String(64),  nullable=False)
     state_name = db.Column(db.String(64))
 
 
@@ -63,20 +66,6 @@ class City(db.Model):
         return "<City city_id={} city_name={}>".format(
             self.city_id, self.city_name
         )
-
-
-
-class CityStatus(db.Model):
-    """Association table for City & Status"""
-
-    __tablename__ = "citystatus"
-
-    city_id = db.Column(db.Integer, db.ForeignKey('cities.city_id'), primary_key=True)
-    status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'), primary_key=True)
-
-    def __repr__(self):
-        return f"<CityStatus city_id={self.city_id} status_id={self.status_id}"
-
 
 
 
