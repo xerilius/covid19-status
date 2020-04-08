@@ -46,7 +46,8 @@ a.sidenav__brand-link {
     text-transform: uppercase;
     align-self: center;
     font-weight: bold;
-    &:active,  &:visited {
+
+    &:link, &:active, &:visited {
         color:black;
     }
  }

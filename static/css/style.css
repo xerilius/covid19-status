@@ -70,6 +70,15 @@ a.link__login {
 .u-text-center {
   text-align: center; }
 
+.u-spacer-l {
+  height: 200px; }
+
+.u-spacer-m {
+  height: 100px; }
+
+.u-spacer-s {
+  height: 50px; }
+
 .homepage {
   background-color: white; }
 
@@ -102,8 +111,10 @@ a.navbar__logo {
     grid-gap: 20px;
     font-size: 20px; }
     .navbar__links--login {
-      font-family: 'Comfortaa', cursive;
-      font-size: 1.2rem; }
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      font-weight: bold; }
 
 .navbar__links--login {
   display: inline-block;
@@ -303,7 +314,8 @@ input.login__item::placeholder {
     font-size: 2rem;
     outline: 0;
     border: 0;
-    border-bottom: 2px dotted rgba(0, 0, 0, 0.288); }
+    border-bottom: 2px dotted rgba(0, 0, 0, 0.288);
+    text-transform: lowercase; }
     .searchbar__search::placeholder {
       text-transform: lowercase;
       color: rgba(0, 0, 0, 0.336);
@@ -311,10 +323,6 @@ input.login__item::placeholder {
       letter-spacing: -.3rem; }
     .searchbar__search:focus {
       border-bottom: 2px dotted #ffdd00; }
-
-.spacer {
-  width: 100%;
-  height: 200px; }
 
 .the5 {
   font-family: 'Fredoka One', cursive;
@@ -385,7 +393,7 @@ a.sidenav__brand-link {
   text-transform: uppercase;
   align-self: center;
   font-weight: bold; }
-  a.sidenav__brand-link:active, a.sidenav__brand-link:visited {
+  a.sidenav__brand-link:link, a.sidenav__brand-link:active, a.sidenav__brand-link:visited {
     color: black; }
 
 .sidenav__list {
@@ -431,3 +439,23 @@ a.sidenav__brand-link {
   margin: 20px;
   background-color: black;
   height: 100px; }
+
+.results {
+  margin: 50px;
+  font-size: 1.5rem;
+  text-align: left;
+  color: black; }
+  .results__items {
+    padding: 50px; }
+
+.no-results {
+  text-align: center;
+  padding: 50px;
+  font-size: 2rem; }
+
+a.city-link {
+  color: black; }
+  a.city-link:link, a.city-link:visited {
+    color: black; }
+  a.city-link:hover {
+    color: #e6c700; }

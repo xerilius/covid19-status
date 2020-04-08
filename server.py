@@ -101,13 +101,8 @@ def show_results():
     search = "%{}%".format(city_search).title().strip()
     city_names = City.query.filter(City.city_name.ilike(search)).all()
     
-    if city_names:
-        return render_template('search_results.html', cities=city_names)
-
-
-    return render_template('search_results.html')
-
-
+    return render_template('search_results.html', cities=city_names)
+ 
 
 # DASHBOARD
 @app.route('/user/<username>', methods=["GET"])
