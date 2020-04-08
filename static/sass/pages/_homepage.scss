@@ -32,6 +32,7 @@
             text-transform: lowercase;
             color: rgba(0, 0, 0, 0.336);
             font-weight: bold;
+            letter-spacing: -.3rem;
         }
         &:focus {
             border-bottom: 2px dotted $color-2;

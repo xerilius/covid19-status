@@ -3,17 +3,20 @@ from flask import Flask, render_template, redirect, request, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 
 from datetime import date
-from model import connect_to_db, db, User
+from model import connect_to_db, db, User, Status, City
 
 app = Flask(__name__)
-app.secret_key = "abc"
+# # set a 'SECRET_KEY' to enable the Flask session cookies
+# app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+app.secret_key = "abc"  # will always store key in secrets.sh file or .env
 
 app.jinja_env.undefined = StrictUndefined
 
 # HOMEPAGE
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def index():
     """Homepage"""
+    
     return render_template("index.html")
 
 
@@ -88,9 +91,22 @@ def logout():
 
 
 # SEARCHBAR
-@app.route('/search')
-def search_city():
-    """Searches a city within DB"""
+
+@app.route('/search-results', methods=["POST"])
+def show_results():
+    """Displays city from search result"""
+
+    city_search = request.form.get("searchbar")
+    print(city_search)
+    search = "%{}%".format(city_search).title().strip()
+    city_names = City.query.filter(City.city_name.ilike(search)).all()
+    
+    if city_names:
+        return render_template('search_results.html', cities=city_names)
+
+
+    return render_template('search_results.html')
+
 
 
 # DASHBOARD

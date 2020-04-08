@@ -2,6 +2,13 @@
 {% block title %}Sign Up{% endblock %}
 {% block content %}
 <body class="signup-bg">
+  
+  {% for message in get_flashed_messages() %}
+    <div class="alert-message">
+      <b> {{ message }} </b>
+    </div>
+  {% endfor %}
+
 <div class="form__container">
 <h2 class="heading-secondary">Create an Account</h2>
 <h3 class="heading-tertiary">Keep track of COVID-19 in your state.</h3>

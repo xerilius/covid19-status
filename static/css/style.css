@@ -307,7 +307,8 @@ input.login__item::placeholder {
     .searchbar__search::placeholder {
       text-transform: lowercase;
       color: rgba(0, 0, 0, 0.336);
-      font-weight: bold; }
+      font-weight: bold;
+      letter-spacing: -.3rem; }
     .searchbar__search:focus {
       border-bottom: 2px dotted #ffdd00; }
 
