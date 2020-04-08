@@ -137,6 +137,13 @@ a.navbar__logo {
   visibility: visible;
   transform: scaleX(1); }
 
+#chart {
+  width: 1000px;
+  height: 800px;
+  background-color: white;
+  margin: 25px auto;
+  color: black; }
+
 .signup-bg {
   background: linear-gradient(to right bottom, #052049, white) fixed; }
 
@@ -420,7 +427,7 @@ a.sidenav__brand-link {
 
 .main {
   grid-area: main;
-  background-color: #252830; }
+  background-color: #000000dc; }
 
 .main-header {
   background: url(../img/sf.jpg) center no-repeat;
@@ -437,8 +444,8 @@ a.sidenav__brand-link {
 
 .main-content {
   margin: 20px;
-  background-color: black;
-  height: 100px; }
+  background-color: whitesmoke;
+  height: 50px; }
 
 .results {
   margin: 50px;

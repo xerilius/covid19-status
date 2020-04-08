@@ -1,3 +1,5 @@
+// background-color:#252830;
+// background-color:#000000dc;
 .grid-container {
     font-family: 'Raleway', sans-serif;
     display: grid;
@@ -80,7 +82,7 @@ a.sidenav__brand-link {
 }
   .main {
     grid-area: main;
-    background-color:#252830;
+    background-color: #000000dc;
   }
   
   .main-header {
@@ -103,6 +105,6 @@ a.sidenav__brand-link {
 
   .main-content {
       margin: 20px;
-      background-color: black;
-      height: 100px;
+      background-color: whitesmoke;
+      height: 50px;
   }
