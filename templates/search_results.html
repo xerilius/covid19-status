@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 {% block title %}Search Results{% endblock %}
 {% block content %}
-<meta charset="utf-8">
+<!-- <meta charset="utf-8"> -->
 <header>
     <div class="navbar">
         <div class="navbar__logo">
@@ -50,7 +50,8 @@
     <script src="https://d3js.org/d3.v5.js" charset="utf-8""></script>
     <script>
         let dataset = {{ data | safe }};  
-        let data = dataset['data']
+        let data = dataset['data'];
+        console.log(dataset)
         
         let time_parse = d3.timeParse("%Y-%m-%d");
         let time_format = d3.timeFormat("%Y-%m-%d");
