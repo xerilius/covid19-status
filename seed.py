@@ -9,24 +9,6 @@ import json
 URL = "https://api.covid19api.com/country/us/status/confirmed"
 URL2 = "https://api.covid19api.com/country/us/status/deaths"
 
-def create_city_table():
-    
-
-    with open('confirmed.json', 'r') as outfile:
-        api_data = json.load(outfile)
-
-    db_cities = {}
-
-    status_data = {
-        'state': None,
-        'city': "None",
-        'confirmed': None,
-        'date': None,
-    }
-
-    city_seen = {}
-
-
 
 def enter_table_data():
     # Retrieve data thru json file
@@ -63,10 +45,8 @@ def enter_table_data():
                 db_cities[status_data['city']] = i 
                 i += 1
             db.session.add(city_inst)       
-        db.session.commit()
-     
+        db.session.commit()    
     print(f"Successfully created {city_inst}")
-    print(db_cities)
 
     city_seen = {} 
 
@@ -96,7 +76,7 @@ def enter_table_data():
         db.session.add(status)
         db.session.commit()
 
-    print(f"Successfully created {status} and {city_inst}")
+    print(f"Successfully created {status}")
 
 
 def write_confirmed_data():
@@ -131,8 +111,8 @@ if __name__ == "__main__":
     from server import app
     import os
 
-    os.system("dropdb covid19")
-    os.system("createdb covid19")
+    # os.system("dropdb covid19")
+    # os.system("createdb covid19")
 
     connect_to_db(app)
     db.create_all()
@@ -140,7 +120,6 @@ if __name__ == "__main__":
     db.session.add(City(city_id=0, city_name="Unassigned"))
     db.session.commit()
     enter_table_data()
-    # enter_table_data()
 
 
     def run_task():
@@ -169,23 +148,3 @@ if __name__ == "__main__":
     # response.raise_for_status()
     # data_= json.loads(response.text)
     # w = data_
-
-    # for dictionaries in w:
-    #     # dictionaries = all dictionaries in the list
-
-    #     for key in dictionaries:
-    #         states = dictionaries.get("Province")
-    #         api_data['state'] = states
-    #         states_[states] = states
-
-    #         cities = dictionaries.get("City")
-    #         api_data['city'] = cities
-    #         # cities_[cities]=states
-    #         cities_[cities]=cities
-
-    #         cases = dictionaries.get("Cases")
-    #         api_data['cases'] = cases
-
-    #         date = dictionaries.get("Date")
-    #         api_data['date'] = date
-            
