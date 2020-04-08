@@ -22,9 +22,9 @@
     </div>
     
     {% for message in get_flashed_messages() %}
-        <div class="alert-message">
-            <b> {{ message }} </b>
-        </div>
+    <div class="alert-message">
+        <b> {{ message }} </b>
+    </div>
     {% endfor %}
 </header>
 
@@ -34,20 +34,20 @@
     <div class="results__item">
         {% if cities != None %}
         <div class="results__item--city">
-            {{ cities.city_name }}, {{states}}
-         </div>
-         {% endif %}
+            {{ cities.city_name }}, {{ states }}
+        </div>  
+
+        <div id="chart"></div>  
+        
     </div>
 
-    {% if not cities %}
+    {% else %}
     <div class="no-results"> Sorry, please try your search again!</div>
     {% endif %}
 
-    <div id="chart"></div>
-
+   
     {% block javascript %}
     <script src="https://d3js.org/d3.v5.js" charset="utf-8""></script>
-
     <script>
         let dataset = {{ data | safe }};  
         let data = dataset['data']
@@ -59,7 +59,6 @@
         let c_height = 800;
         let padding = 50;
         
-
         // convert date into date object
         data.forEach(function(e, i) {
             data[i].date = time_parse(e.date);
@@ -141,15 +140,7 @@
         
         console.log(line)
         console.log(line(data)) // gives coordinates on graph
-
-
-
-
     </script>
     {% endblock %}
-  
-
 </div>
-
-</body>
 {% endblock %}

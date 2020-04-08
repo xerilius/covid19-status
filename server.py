@@ -102,9 +102,14 @@ def show_results():
     print(city_search)
     search = "%{}%".format(city_search).title().strip()
     city_name = City.query.filter(City.city_name.ilike(search)).first()
-    state_name = city_name.state_name
-    city_id = city_name.city_id
-
+    if city_name:
+        state_name = city_name.state_name
+        city_id = city_name.city_id
+    else:
+        city_name = None
+        state_name = None
+        city_id = 0
+    
     # Get Recent 10 Records 
     status10 = db.session.query(Status).filter(Status.city_id == city_id).order_by(desc(Status.status_id)).limit(10)
 
@@ -117,8 +122,12 @@ def show_results():
 
         data = json.dumps({"data":datasets})
     
-    return render_template('search_results.html', cities=city_name,
-    states=state_name, status10=status10, data=data)
+    return render_template('search_results.html', 
+                            cities=city_name, 
+                            states=state_name, 
+                            status10=status10, 
+                            data=data)
+
 
 # DASHBOARD
 @app.route('/user/<username>', methods=["GET"])
@@ -143,4 +152,3 @@ if __name__ == '__main__':
     connect_to_db(app)
     DebugToolbarExtension(app)
     app.run(debug=True, host='0.0.0.0')
-
