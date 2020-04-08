@@ -10,6 +10,7 @@
         {% if session.get('username') %}
         <div class="navbar__links">
             <a class="navbar__links--login" href="/user/{{session['username'].lower()}}">{{ session['username'].upper() }}</a>
+            <a class="navbar__links--login" href="/logout">logout</a>
         </div>
         {% else %}
         <div class="navbar__links">
@@ -25,11 +26,17 @@
     {% endfor %}
 </header>
 
-    {% for city in cities %}
-        {{ city.city_name}}
-    {% endfor %}
-  {% if not cities %}
-    <div class="no-results"> Sorry, please try your search again!</div>
-  {% endif %}
+<div class="u-spacer-d">&nbsp;</div>
 
+<div class="results">
+    <div class="results__item">
+    {% for city in cities %}
+        <a class="city-link" href="/city">{{ city.city_name }}</a> <br>
+    {% endfor %}
+    </div>
+    {% if not cities %}
+    <div class="no-results"> Sorry, please try your search again!</div>
+    {% endif %}
+</div>
+</body>
 {% endblock %}
