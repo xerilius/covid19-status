@@ -9,10 +9,13 @@ import json
 URL = "https://api.covid19api.com/country/us/status/confirmed"
 URL2 = "https://api.covid19api.com/country/us/status/deaths"
 
-def enter_table_data():
-       # Retrieve data thru json file
+def create_city_table():
+    
+
     with open('confirmed.json', 'r') as outfile:
         api_data = json.load(outfile)
+
+    db_cities = {}
 
     status_data = {
         'state': None,
@@ -23,9 +26,56 @@ def enter_table_data():
 
     city_seen = {}
 
+
+
+def enter_table_data():
+    # Retrieve data thru json file
+    with open('confirmed.json', 'r') as outfile:
+        api_data = json.load(outfile)
+
+    status_data = {
+        'state': None,
+        'city': "None",
+        'confirmed': None,
+        'date': None,
+        'city_id': None,
+    }
+
+    city_seen = {}
+    db_cities = {"Unassigned": 0}
+    i = 1
+
+    # Create City Table & Manually creating city_ids
     for dict_ in api_data:
         city = dict_.get('City', "None")
         status_data['city'] = city
+
+        state = dict_['Province']
+        status_data['state'] = state
+
+        if status_data['city'] not in city_seen:
+            if status_data['city'] == "Unassigned":
+                i += 0
+            else: 
+                city_inst = City(city_name = status_data['city'], 
+                                    state_name=status_data['state'])
+                city_seen[status_data['city']] = status_data['city']
+                db_cities[status_data['city']] = i 
+                i += 1
+            db.session.add(city_inst)       
+        db.session.commit()
+     
+    print(f"Successfully created {city_inst}")
+    print(db_cities)
+
+    city_seen = {} 
+
+    # Create Status Table
+    for dict_ in api_data:
+        city = dict_.get('City', "None")
+        status_data['city'] = city
+        if city in db_cities:
+            status_data['city_id'] = db_cities[city]
 
         state = dict_['Province']
         status_data['state'] = state
@@ -40,14 +90,9 @@ def enter_table_data():
         status = Status(
             confirmed=int(status_data['case']),
             status_date=status_data['date'],
+            city_id=int(status_data['city_id']),
+            state_name=status_data['state']
         )
-        
-        if status_data['city'] not in city_seen:
-            city_inst = City(city_name = status_data['city'], 
-                             state_name=status_data['state'])
-            add_to_citystatus = status.city_status.append(city_inst)
-            city_seen[status_data['city']] = status_data['city']
-
         db.session.add(status)
         db.session.commit()
 
@@ -86,12 +131,16 @@ if __name__ == "__main__":
     from server import app
     import os
 
-    # os.system("dropdb covid19")
-    # os.system("createdb covid19")
+    os.system("dropdb covid19")
+    os.system("createdb covid19")
 
     connect_to_db(app)
     db.create_all()
+
+    db.session.add(City(city_id=0, city_name="Unassigned"))
+    db.session.commit()
     enter_table_data()
+    # enter_table_data()
 
 
     def run_task():
