@@ -1,0 +1,26 @@
+.results {
+    margin: 50px;
+    font-size: 1.5rem;
+    text-align: left;
+    color:black;
+    &__items {
+        padding: 50px;
+    }
+}
+
+.no-results {
+    text-align: center;
+    padding: 50px;
+    font-size: 2rem;
+}
+
+a.city-link {
+    color:black;
+    &:link, &:visited {
+        color:black;
+    }
+    &:hover {
+        color: darken($color-2, 5%);
+    }
+    
+}
