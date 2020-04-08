@@ -144,6 +144,22 @@ a.navbar__logo {
   margin: 25px auto;
   color: black; }
 
+#confirmed-graph {
+  width: 700px;
+  height: 400px;
+  background-color: transparent;
+  margin: 25px auto;
+  color: white;
+  grid-area: confirmed; }
+
+#fatalities-graph {
+  width: 700px;
+  height: 400px;
+  background-color: transparent;
+  margin: 25px auto;
+  color: white;
+  grid-area: fatality; }
+
 .signup-bg {
   background: linear-gradient(to right bottom, #052049, white) fixed; }
 
@@ -427,25 +443,30 @@ a.sidenav__brand-link {
 
 .main {
   grid-area: main;
-  background-color: #000000dc; }
-
-.main-header {
-  background: url(../img/sf.jpg) center no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  height: 350px;
-  background-color: #e3e4e6;
-  color: slategray; }
-  .main-header__heading {
-    font-size: 1.5rem;
-    color: white; }
-
-.main-content {
-  margin: 20px;
-  background-color: whitesmoke;
-  height: 50px; }
+  background-color: #000000dc;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 45% 1fr;
+  grid-template-areas: "banner" "graph"; }
+  .main-content {
+    grid-area: graph;
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "confirmed fatality"; }
+  .main-header {
+    background: url(../img/sf.jpg) center no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    height: 350px;
+    background-color: #e3e4e6;
+    color: slategray; }
+    .main-header__heading {
+      font-size: 1.5rem;
+      color: white; }
 
 .results {
   margin: 50px;
