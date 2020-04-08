@@ -138,7 +138,7 @@ if __name__ == "__main__":
     from server import app
     import os
 
-    run_task()
+    # run_task()
 
     os.system("dropdb covid19")
     os.system("createdb covid19")

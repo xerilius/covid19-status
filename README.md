@@ -1,4 +1,4 @@
-<h1 align="center"> COVID-19 TRACKER </h1>
+<h1 align="center"> 𝘾𝙊𝙑𝙄𝘿⑲𝙎𝙏𝘼𝙏𝙐𝙎 </h1>
 
 <b><ins>BUILT WITH</ins></b>  
 <a href="#">
@@ -76,7 +76,10 @@ city_id | Integer | foreign_key
 
 ## INSTALLATION
 
-#### Go to project directory
+#### Clone or fork this repo:
+
+$ `git clone https://github.com/xerilius/covid19-status.git`
+
 
 #### Create & Activate Virtual Environment
 $ `virtualenv env`  
@@ -88,7 +91,10 @@ $ `source env/bin/activate`
 
 #### Seed data into database
 (env) $ `python3 seed.py`  
-<sub>**Note:** Will take a while to insert all data into the database</sub>
+<sub>**Note:** Will take a while to insert all data into the database</sub>  
+<sub>You can update the data daily by run uncommenting `run_task()` at the bottom of the file
+</sub>
+
 
 #### Start Flask Server
 (env) $ `export FLASK_APP=server.py`  
