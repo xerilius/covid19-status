@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Search Results{% endblock %}
+{% block content %}
+    {% for city in cities %}
+        {{ city.city_name}}
+    {% endfor %}
+  {% if not cities %}
+    <div class="no-results"> Sorry, please try your search again!</div>
+  {% endif %}
+
+{% endblock %}
