@@ -8,6 +8,8 @@ A graph made with D3 shows the stats for the past 10 days.
 Features soon to be implemented include stats on fatalities and a tracker button that allows users to follow trends,
 which will be displayed in the user dashboard.
 
+<br>
+
 <b><ins>BUILT WITH</ins></b>  
 <a href="https://docs.python.org/3/">
 <img src="https://icongr.am/devicon/python-original.svg?size=50"></a>
