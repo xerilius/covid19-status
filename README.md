@@ -6,13 +6,13 @@ Features soon to be implemented include stats on fatalities and a tracker button
 which will be displayed in the user dashboard.
 
 <b><ins>BUILT WITH</ins></b>  
-<a href="#">
+<a href="https://docs.python.org/3/">
 <img src="https://icongr.am/devicon/python-original.svg?size=50"></a>
-<a href="#">
+<a href="https://d3js.org/">
 <img src="https://icongr.am/devicon/d3js-original.svg?size=50"></a>
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
   <img alt="js" src="https://icongr.am/devicon/javascript-original.svg?size=50"></a> 
-<a href="#">
+<a href="https://jquery.com/">
 <img src="https://icongr.am/devicon/jquery-original.svg?size=50"></a>
 <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5">
   <img alt="html" src="https://icongr.am/devicon/html5-original-wordmark.svg?size=60"></a>
@@ -20,11 +20,11 @@ which will be displayed in the user dashboard.
   <img alt="css" src="https://icongr.am/devicon/css3-original-wordmark.svg?size=60"></a>
 <a href="https://sass-lang.com/documentation">
 <img src="https://icongr.am/devicon/sass-original.svg?size=50"></a>
-<a href="#">
+<a href="https://www.postgresql.org/about/">
 <img src="https://icongr.am/devicon/postgresql-original.svg?size=50"></a>
-<a href="#">
+<a href="https://www.vagrantup.com/intro/index.html">
 <img src="https://icongr.am/devicon/vagrant-original.svg?size=50"></a>
-<a href="#">
+<a href="https://flask.palletsprojects.com/en/1.1.x/">
 <img src="https://icongr.am/simple/flask.svg?size=50"></a>
 
 <b><ins>OTHER TECHNOLOGIES</ins></b>  
