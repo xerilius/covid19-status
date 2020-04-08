@@ -101,7 +101,7 @@ $ `source env/bin/activate`
 #### Seed data into database
 (env) $ `python3 seed.py`  
 <sub>**Note:** Will take a while to insert all data into the database</sub>  
-<sub>You can update the data daily by run uncommenting `run_task()` at the bottom of the file
+<sub>You can update the data daily by uncommenting `run_task()` at the bottom of the file
 </sub>
 
 
