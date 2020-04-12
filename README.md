@@ -26,8 +26,6 @@ which will be displayed in the user dashboard.
 <img src="https://icongr.am/devicon/sass-original.svg?size=50"></a>
 <a href="https://www.postgresql.org/about/">
 <img src="https://icongr.am/devicon/postgresql-original.svg?size=50"></a>
-<a href="https://www.vagrantup.com/intro/index.html">
-<img src="https://icongr.am/devicon/vagrant-original.svg?size=50"></a>
 <a href="https://flask.palletsprojects.com/en/1.1.x/">
 <img src="https://icongr.am/simple/flask.svg?size=50"></a>
 
@@ -101,7 +99,7 @@ $ `source env/bin/activate`
 #### Seed data into database
 (env) $ `python3 seed.py`  
 <sub>**Note:** Will take a while to insert all data into the database</sub>  
-<sub>You can update the data daily by uncommenting `run_task()` at the bottom of the file
+<sub>You can update the data daily by  uncommenting `run_task()` at the bottom of the file
 </sub>
 
 
