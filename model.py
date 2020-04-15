@@ -35,12 +35,12 @@ class Status(db.Model):
 
     status_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     status_date = db.Column(db.Date, nullable=False)
-    city_id = db.Column(db.Integer, db.ForeignKey('cities.city_id'), nullable=False)
+    county_id = db.Column(db.Integer, db.ForeignKey('counties.county_id'), nullable=False)
     state_name = db.Column(db.String(64), nullable=True)  # for testing purposes
     confirmed = db.Column(db.Integer, nullable=False)
     
     # Association relationship for city
-    city_status = db.relationship("City", backref="status")
+    county_status = db.relationship("County", backref="status")
 
 
     def __repr__(self):
@@ -51,38 +51,41 @@ class Status(db.Model):
  
 
 
-class City(db.Model):
-    """Cities information"""
+class County(db.Model):
+    """County information"""
 
-    __tablename__ = "cities"
+    __tablename__ = "counties"
 
-    city_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    city_name = db.Column(db.String(64),  nullable=False)
+    county_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    county_name = db.Column(db.String(64),  nullable=False)
     state_name = db.Column(db.String(64))
+    # zipcode = db.Column(db.Integer, nullable=False)
+    # latitude = db.Column(db.Integer)
+    # longitude = db.Column(db.Integer)
 
 
     def __repr__(self):
         """Provides info when printed"""
-        return "<City city_id={} city_name={}>".format(
-            self.city_id, self.city_name
+        return "<County county_id={} county_name={}>".format(
+            self.county_id, self.county_name
         )
 
 
 
 class Save(db.Model):
-    """Cities saved by user."""
+    """Counties saved by user."""
 
     __tablename__ = "saves"
-    __table_args__ = (db.UniqueConstraint("user_id", "city_id"),)
+    __table_args__ = (db.UniqueConstraint("user_id", "county_id"),)
 
     save_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
-    city_id = db.Column(db.Integer, db.ForeignKey("cities.city_id"))
+    county_id = db.Column(db.Integer, db.ForeignKey("counties.county_id"))
 
 
     def __repr__(self):
         """Provide save info when printed."""
-        return f"<Save save_id={self.save_id}, user_id={self.user_id}, city_id={self.city_id}>"
+        return f"<Save save_id={self.save_id}, user_id={self.user_id}, county_id={self.county_id}>"
 
 
 
