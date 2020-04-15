@@ -59,9 +59,8 @@ class County(db.Model):
     county_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     county_name = db.Column(db.String(64),  nullable=False)
     state_name = db.Column(db.String(64))
-    # zipcode = db.Column(db.Integer, nullable=False)
-    # latitude = db.Column(db.Integer)
-    # longitude = db.Column(db.Integer)
+    lat = db.Column(db.Float)
+    lon = db.Column(db.Float)
 
 
     def __repr__(self):

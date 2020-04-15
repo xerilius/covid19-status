@@ -12,8 +12,7 @@ URL2 = "https://api.covid19api.com/country/us/status/deaths"
 
 
 def seed_data_directly_from_api():
-    """Parsing JSON directly from API and seeding into database. 
-        No written files involved."""
+    """Parsing JSON directly from API response and seed into database."""
 
     confirmed_response = requests.get(URL)
     # fatality_response = requests.get(URL2)
@@ -27,6 +26,8 @@ def seed_data_directly_from_api():
         'confirmed': None,
         'date': None,
         'city_id': None,
+        'lat': None,
+        'lon': None,
     }
 
     city_seen = {}
@@ -41,12 +42,22 @@ def seed_data_directly_from_api():
         state = dict_['Province']
         status_data['state'] = state
 
+
+        lat = dict_['Lat']
+        status_data['lat'] = lat
+
+        lon = dict_['Lon']
+        status_data['lon'] = lon
+
         if status_data['city'] not in city_seen:
             if status_data['city'] == "Unassigned":
                 i += 0
             else: 
                 county_inst = County(county_name = status_data['city'], 
-                                    state_name=status_data['state'])
+                                    state_name=status_data['state'],
+                                    lat=status_data['lat'],
+                                    lon=status_data['lon']
+                                    )
                 city_seen[status_data['city']] = status_data['city']
                 db_cities[status_data['city']] = i 
                 i += 1
@@ -269,7 +280,9 @@ if __name__ == "__main__":
     db.session.add(
         County(county_id=0, 
             county_name="Unassigned", 
-            state_name="TBA"))
+            state_name="TBA",
+            lat=0,
+            lon=0))
     db.session.commit()
 
     seed_data_directly_from_api()
