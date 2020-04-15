@@ -2,7 +2,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, redirect, request, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy import asc, desc
-from model import connect_to_db, db, User, Status, City
+from model import connect_to_db, db, User, Status, County
 
 import json
 from datetime import date
@@ -98,20 +98,20 @@ def logout():
 @app.route('/search-results', methods=["POST"])
 def show_results():
     """Displays city from search result"""
-    city_search = request.form.get("searchbar")
-    print(city_search)
-    search = "%{}%".format(city_search).title().strip()
-    city_name = City.query.filter(City.city_name.ilike(search)).first()
-    if city_name:
-        state_name = city_name.state_name
-        city_id = city_name.city_id
+    county_search = request.form.get("searchbar")
+    print(county_search)
+    search = "%{}%".format(county_search).title().strip()
+    county_name = County.query.filter(County.county_name.ilike(search)).first()
+    if county_name:
+        state_name = county_name.state_name
+        county_id = county_name.county_id
     else:
-        city_name = None
+        county_name = None
         state_name = None
-        city_id = 0
+        county_id = 0
     
     # Get Recent 10 Records 
-    status10 = db.session.query(Status).filter(Status.city_id == city_id).order_by(desc(Status.status_id)).limit(10)
+    status10 = db.session.query(Status).filter(Status.county_id == county_id).order_by(desc(Status.status_id)).limit(10)
 
     datasets = []
     for item in status10:
@@ -123,7 +123,7 @@ def show_results():
         data = json.dumps({"data":datasets})
     
     return render_template('search_results.html', 
-                            cities=city_name, 
+                            counties=county_name, 
                             states=state_name, 
                             status10=status10, 
                             data=data)
