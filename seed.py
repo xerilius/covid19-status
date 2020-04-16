@@ -142,18 +142,16 @@ def seed_usa_total_data_from_api():
     status_data = {
         'confirmed': None,
         'deaths': None,
-        'recovered': None,
         'date': None,
+        'recovered': None,
     }
 
     for dict_ in dataset_usa_total:
-        if dict_['Confirmed']:
-            confirmed = dict_['Confirmed']
-            status_data['confirmed'] = confirmed
-            
-        if dict_['Deaths']:
-            deaths = dict_['Deaths']
-            status_data['deaths'] = deaths
+        confirmed = dict_['Confirmed']
+        status_data['confirmed'] = confirmed
+              
+        deaths = dict_['Deaths']
+        status_data['deaths'] = deaths
 
         # recovered = dict_['Recovered']
         # status_data['recovered'] = recovered
@@ -163,12 +161,14 @@ def seed_usa_total_data_from_api():
         status_data['date'] = date
 
         usa_total = Usa(
-            confirmed_total=int(status_data['confirmed']),
-            fatality_total=int(status_data['deaths']),
+            confirmed_total=status_data['confirmed'],
+            fatality_total=status_data['deaths'],
             date=status_data['date']
         )
+        print(usa_total)
         db.session.add(usa_total)
     db.session.commit()
+
     print(f"Successfully created {usa_total}")
 
 ########################
@@ -347,13 +347,13 @@ if __name__ == "__main__":
 
     # run_writing_tasks()
 
-    # os.system("dropdb covid19")
-    # os.system("createdb covid19")
+    os.system("dropdb covid19")
+    os.system("createdb covid19")
 
     connect_to_db(app)
     db.create_all()
     
-    # seed_data_directly_from_api()
+    seed_data_directly_from_api()
     seed_usa_total_data_from_api()
 
     # run_all_json_files()
