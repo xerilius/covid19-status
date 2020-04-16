@@ -33,7 +33,7 @@ which will be displayed in the user dashboard.
  SQLAlchemy & Jinja2  
 
 <b><ins>API</ins></b>  
-<a href="https://covid19api.com/#details">COVID-19 API</a>   
+COVID19API  
 
 <br>
 
