@@ -76,7 +76,7 @@ class County(db.Model):
     __tablename__ = "counties"
 
     county_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    county_name = db.Column(db.String(64),  nullable=False)
+    county_name = db.Column(db.String(64), nullable=False)
     state_name = db.Column(db.String(64))
     lat = db.Column(db.Float)
     lon = db.Column(db.Float)
