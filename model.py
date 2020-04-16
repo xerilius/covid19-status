@@ -105,7 +105,7 @@ class USA(db.Model):
 
     __tablename__ = "usa"
 
-    total_id = db.Collumn(db.Integer, autoincrement=True, primary_key=True)
+    total_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     date = db.Column(db.Date, nullable=False)
     confirmed_total = db.Column(db.Integer, nullable=False)
     fatality_total = db.Column(db.Integer, nullable=False)
