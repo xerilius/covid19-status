@@ -66,22 +66,13 @@ def seed_data_directly_from_api():
             db_cities[status_data['city']] = i 
             i += 1
             db.session.add(county)
-            db.session.commit()  
-       
+    db.session.commit()   
     print(f"Successfully created {county}")
 
 
     city_seen = {} 
-   
-    # Create Status Table
+    # Insert data into Confirmed Table
     for dict_ in dataset_confirmed:
-        # if dict_['City']:
-        #     city = dict_['City']
-        #     status_data['city'] = city
-        
-        # if city in db_cities:
-        #     status_data['city_id'] = db_cities[city]
-
         if dict_['City']:
             city = dict_['City']
             
@@ -111,36 +102,43 @@ def seed_data_directly_from_api():
     print(f"Successfully created {confirmed}")
 
 
-    # city_seen = {}
-    # # Insert data into Fatality Table
-    # for dict_ in dataset_fatality:
-    #     if dict_['City']:
-    #         city = dict_['City']
-    #         status_data['city'] = city
-        
-    #     if city in db_cities:
-    #         status_data['city_id'] = db_cities[city]
+    city_seen = {}
+    # Insert data into Fatality Table
+    for dict_ in dataset_fatality:
+        if dict_['City']:
+            city = dict_['City']
+            
+        if dict_['Province']:
+            state = dict_['Province']
+            status_data['state'] = state
+            status_data['city'] = city + "," + " " + state
 
-    #     state = dict_['Province']
-    #     status_data['state'] = state
+        if (city + "," + " " + state) in db_cities:
+            status_data['city_id'] = db_cities[city + "," + " " + state]
 
-    #     case = dict_['Cases']
-    #     status_data['case'] = case
+        case = dict_['Cases']
+        status_data['case'] = case
 
-    #     date = dict_['Date']
-    #     date = datetime.strptime(date[0:10], '%Y-%m-%d')
-    #     status_data['date'] = date
+        date = dict_['Date']
+        date = datetime.strptime(date[0:10], '%Y-%m-%d')
+        status_data['date'] = date
 
-    #     fatality = Fatality(
-    #         fatalities=int(status_data['case']),
-    #         date=status_data['date'],
-    #         county_id=int(status_data['city_id']),
-    #         state_name=status_data['state']
-    #     )
-    #     db.session.add(fatality)
-    # db.session.commit()
-    # print(f"Successfully created {fatality}")
+        fatality = Fatality(
+            fatalities=int(status_data['case']),
+            date=status_data['date'],
+            county_id=int(status_data['city_id']),
+            state_name=status_data['state']
+        )
+        db.session.add(fatality)
+    db.session.commit()
+    print(f"Successfully created {fatality}")
 
+
+
+def run_all_json_files():
+    """Reads all JSON files"""
+    enter_county_data()
+    enter_confirmed_data()
 
 
 def read_json():
@@ -150,7 +148,7 @@ def read_json():
         api_data = json.load(outfile)
     return api_data
 
-
+# Update code for create_county_ids & enter_county_data funct !!!!!
 def create_county_ids():
     """Returns dictionary of county_ids"""
 
@@ -177,12 +175,6 @@ def create_county_ids():
                 i += 1
     return db_cities
 
-
-def run_all_json_files():
-    """Reads all JSON files"""
-    enter_county_data()
-    enter_confirmed_data()
-  
 
 def enter_county_data():
     """Inserts data for the City table"""
@@ -256,7 +248,6 @@ def enter_confirmed_data():
         )
         db.session.add(status)
     db.session.commit()
-
     print(f"Successfully created {status}")
 
     
