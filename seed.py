@@ -1,7 +1,7 @@
 """Parse data from API and store into database"""
 
 from datetime import datetime
-from model import connect_to_db, db, County, Fatality, Confirmed
+from model import connect_to_db, db, County, Fatality, Confirmed, Usa
 import requests, os, bs4, threading, time
 import json
 
@@ -10,7 +10,6 @@ import json
 URL = "https://api.covid19api.com/country/us/status/confirmed"
 URL2 = "https://api.covid19api.com/country/us/status/deaths"
 URL3 = "https://api.covid19api.com/total/country/us"
-
 
 
 def seed_data_directly_from_api():
@@ -138,7 +137,7 @@ def seed_usa_total_data_from_api():
     """Inserting total stats in US - confirmed, fatalities, recovered"""
 
     usa_total_response = requests.get(URL3)
-    dataset_usa_total = json.loads(us_total_response.text)
+    dataset_usa_total = json.loads(usa_total_response.text)
 
     status_data = {
         'confirmed': None,
