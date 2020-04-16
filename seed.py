@@ -20,7 +20,7 @@ def seed_data_directly_from_api():
     fatality_response = requests.get(URL2)
 
     dataset_confirmed = json.loads(confirmed_response.text)
-    # dataset_fatality = json.loads(fatality_response.text)
+    dataset_fatality = json.loads(fatality_response.text)
 
     status_data = {
         'state': None,
@@ -33,8 +33,9 @@ def seed_data_directly_from_api():
     }
 
     city_seen = {}
-    db_cities = {"Unassigned": 0}
+    db_cities = {}
     i = 1
+
     # Creating county_ids & inserting data into County Table
     for dict_ in dataset_confirmed:  
         if dict_['City']:
@@ -66,42 +67,48 @@ def seed_data_directly_from_api():
             i += 1
             db.session.add(county)
             db.session.commit()  
-        else:
-            i += 0   
        
     print(f"Successfully created {county}")
 
 
-    # city_seen = {} 
-
-    # # Create Status Table
-    # for dict_ in dataset_confirmed:
-    #     if dict_['City']:
-    #         city = dict_['City']
-    #         status_data['city'] = city
+    city_seen = {} 
+   
+    # Create Status Table
+    for dict_ in dataset_confirmed:
+        # if dict_['City']:
+        #     city = dict_['City']
+        #     status_data['city'] = city
         
-    #     if city in db_cities:
-    #         status_data['city_id'] = db_cities[city]
+        # if city in db_cities:
+        #     status_data['city_id'] = db_cities[city]
 
-    #     state = dict_['Province']
-    #     status_data['state'] = state
+        if dict_['City']:
+            city = dict_['City']
+            
+        if dict_['Province']:
+            state = dict_['Province']
+            status_data['state'] = state
+            status_data['city'] = city + "," + " " + state
 
-    #     case = dict_['Cases']
-    #     status_data['case'] = case
+        if (city + "," + " " + state) in db_cities:
+            status_data['city_id'] = db_cities[city + "," + " " + state]
 
-    #     date = dict_['Date']
-    #     date = datetime.strptime(date[0:10], '%Y-%m-%d')
-    #     status_data['date'] = date
+        case = dict_['Cases']
+        status_data['case'] = case
 
-    #     confirmed = Confirmed(
-    #         confirmed=int(status_data['case']),
-    #         date=status_data['date'],
-    #         county_id=int(status_data['city_id']),
-    #         state_name=status_data['state']
-    #     )
-    #     db.session.add(confirmed)
-    # db.session.commit()
-    # print(f"Successfully created {confirmed}")
+        date = dict_['Date']
+        date = datetime.strptime(date[0:10], '%Y-%m-%d')
+        status_data['date'] = date
+
+        confirmed = Confirmed(
+            confirmed=int(status_data['case']),
+            date=status_data['date'],
+            county_id=int(status_data['city_id']),
+            state_name=status_data['state']
+        )
+        db.session.add(confirmed)
+    db.session.commit()
+    print(f"Successfully created {confirmed}")
 
 
     # city_seen = {}
@@ -135,7 +142,6 @@ def seed_data_directly_from_api():
     # print(f"Successfully created {fatality}")
 
 
-#############################################################
 
 def read_json():
     """Reads json file"""
@@ -317,15 +323,6 @@ if __name__ == "__main__":
     connect_to_db(app)
     db.create_all()
     
-    # db.session.add(
-    #     County(county_id=0, 
-    #         county_name="Unassigned", 
-    #         state_name="TBA",
-    #         lat=0,
-    #         lon=0))
-    # db.session.commit()
-
     seed_data_directly_from_api()
 
     # run_all_json_files()
-    
