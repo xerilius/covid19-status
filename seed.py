@@ -9,7 +9,7 @@ import json
 # No API key needed
 URL = "https://api.covid19api.com/country/us/status/confirmed"
 URL2 = "https://api.covid19api.com/country/us/status/deaths"
-USTOTALSTATS = "https://api.covid19api.com/total/country/us"
+URL3 = "https://api.covid19api.com/total/country/us"
 
 
 
@@ -18,10 +18,10 @@ def seed_data_directly_from_api():
 
     confirmed_response = requests.get(URL)
     fatality_response = requests.get(URL2)
-
+    
     dataset_confirmed = json.loads(confirmed_response.text)
     dataset_fatality = json.loads(fatality_response.text)
-
+    
     status_data = {
         'state': None,
         'city': None,
@@ -134,6 +134,43 @@ def seed_data_directly_from_api():
     print(f"Successfully created {fatality}")
 
 
+def seed_usa_total_data_from_api():
+    """Inserting total stats in US - confirmed, fatalities, recovered"""
+
+    usa_total_response = requests.get(URL3)
+    dataset_usa_total = json.loads(us_total_response.text)
+
+    status_data = {
+        'confirmed': None,
+        'deaths': None,
+        'recovered': None,
+        'date': None,
+    }
+
+    for dict_ in dataset_usa_total:
+        if dict_['Confirmed']:
+            city = dict_['City']
+            
+        if dict_['Deaths']:
+            deaths = dict_['Deaths']
+
+        # recovered = dict_['Recovered']
+        # status_data['recovered'] = recovered
+
+        date = dict_['Date']
+        date = datetime.strptime(date[0:10], '%Y-%m-%d')
+        status_data['date'] = date
+
+        usa_total = USA(
+            confirmed_total=int(status_data['confirmed']),
+            fatality_total=int(status_data['deaths']),
+            date=status_data['date']
+        )
+        db.session.add(usa_total)
+    db.session.commit()
+    print(f"Successfully created {usa_total}")
+
+########################
 
 def run_all_json_files():
     """Reads all JSON files"""
@@ -148,7 +185,8 @@ def read_json():
         api_data = json.load(outfile)
     return api_data
 
-# Update code for create_county_ids & enter_county_data funct !!!!!
+
+##### Update code for create_county_ids & enter_county_data funct ##### 
 def create_county_ids():
     """Returns dictionary of county_ids"""
 
@@ -308,12 +346,13 @@ if __name__ == "__main__":
 
     # run_writing_tasks()
 
-    os.system("dropdb covid19")
-    os.system("createdb covid19")
+    # os.system("dropdb covid19")
+    # os.system("createdb covid19")
 
     connect_to_db(app)
     db.create_all()
     
-    seed_data_directly_from_api()
+    # seed_data_directly_from_api()
+    seed_usa_total_data_from_api()
 
     # run_all_json_files()
