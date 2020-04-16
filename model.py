@@ -26,8 +26,6 @@ class User(db.Model):
         )
 
 
-
-
 class County(db.Model):
     """County information"""
 
@@ -46,7 +44,6 @@ class County(db.Model):
         )
 
 
-
 class Save(db.Model):
     """Counties saved by user."""
 
@@ -60,8 +57,6 @@ class Save(db.Model):
     def __repr__(self):
         """Provide save info when printed."""
         return f"<Save save_id={self.save_id}, user_id={self.user_id}, county_id={self.county_id}>"
-
-
 
 
 class Confirmed(db.Model):
@@ -84,7 +79,6 @@ class Confirmed(db.Model):
             self.confirmed_id, self.date, self.confirmed
         )
  
-
 
 class Fatality(db.Model):
     """Information on fatalities from COVID"""
