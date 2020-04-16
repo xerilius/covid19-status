@@ -148,10 +148,12 @@ def seed_usa_total_data_from_api():
 
     for dict_ in dataset_usa_total:
         if dict_['Confirmed']:
-            city = dict_['City']
+            confirmed = dict_['Confirmed']
+            status_data['confirmed'] = confirmed
             
         if dict_['Deaths']:
             deaths = dict_['Deaths']
+            status_data['deaths'] = deaths
 
         # recovered = dict_['Recovered']
         # status_data['recovered'] = recovered
@@ -160,7 +162,7 @@ def seed_usa_total_data_from_api():
         date = datetime.strptime(date[0:10], '%Y-%m-%d')
         status_data['date'] = date
 
-        usa_total = USA(
+        usa_total = Usa(
             confirmed_total=int(status_data['confirmed']),
             fatality_total=int(status_data['deaths']),
             date=status_data['date']
