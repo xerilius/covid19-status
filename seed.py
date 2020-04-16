@@ -1,7 +1,7 @@
 """Parse data from API and store into database"""
 
 from datetime import datetime
-from model import connect_to_db, db, Status, County
+from model import connect_to_db, db, County, Fatality, Confirmed
 import requests, os, bs4, threading, time
 import json
 
@@ -9,16 +9,17 @@ import json
 # No API key needed
 URL = "https://api.covid19api.com/country/us/status/confirmed"
 URL2 = "https://api.covid19api.com/country/us/status/deaths"
+USTOTALSTATS = "https://api.covid19api.com/total/country/us"
 
 
 def seed_data_directly_from_api():
     """Parsing JSON directly from API response and seed into database."""
 
     confirmed_response = requests.get(URL)
-    # fatality_response = requests.get(URL2)
+    fatality_response = requests.get(URL2)
 
     dataset_confirmed = json.loads(confirmed_response.text)
-    # dataset_fatality = json.loads(fatality_response.text)
+    dataset_fatality = json.loads(fatality_response.text)
 
     status_data = {
         'state': None,
@@ -33,7 +34,7 @@ def seed_data_directly_from_api():
     city_seen = {}
     db_cities = {"Unassigned": 0}
     i = 1
-
+    # Creating county_ids & inserting data into County Table
     for dict_ in dataset_confirmed:  
         if dict_['City']:
             city = dict_['City']
@@ -53,7 +54,7 @@ def seed_data_directly_from_api():
             if status_data['city'] == "Unassigned":
                 i += 0
             else: 
-                county_inst = County(county_name = status_data['city'], 
+                county = County(county_name = status_data['city'], 
                                     state_name=status_data['state'],
                                     lat=status_data['lat'],
                                     lon=status_data['lon']
@@ -61,9 +62,10 @@ def seed_data_directly_from_api():
                 city_seen[status_data['city']] = status_data['city']
                 db_cities[status_data['city']] = i 
                 i += 1
-            db.session.add(county_inst)       
-        db.session.commit()    
-    print(f"Successfully created {county_inst}")
+            db.session.add(county)       
+        db.session.commit()     
+    print(f"Successfully created {county}")
+
 
     city_seen = {} 
 
@@ -86,14 +88,47 @@ def seed_data_directly_from_api():
         date = datetime.strptime(date[0:10], '%Y-%m-%d')
         status_data['date'] = date
 
-        status = Status(
+        confirmed = Confirmed(
             confirmed=int(status_data['case']),
-            status_date=status_data['date'],
+            date=status_data['date'],
             county_id=int(status_data['city_id']),
             state_name=status_data['state']
         )
-        db.session.add(status)
-        db.session.commit()
+        db.session.add(confirmed)
+    db.session.commit()
+    print(f"Successfully created {confirmed}")
+
+
+    city_seen = {}
+    # Insert data into Fatality Table
+    for dict_ in dataset_fatality:
+        if dict_['City']:
+            city = dict_['City']
+            status_data['city'] = city
+        
+        if city in db_cities:
+            status_data['city_id'] = db_cities[city]
+
+        state = dict_['Province']
+        status_data['state'] = state
+
+        case = dict_['Cases']
+        status_data['case'] = case
+
+        date = dict_['Date']
+        date = datetime.strptime(date[0:10], '%Y-%m-%d')
+        status_data['date'] = date
+
+        fatality = Fatality(
+            fatalities=int(status_data['case']),
+            date=status_data['date'],
+            county_id=int(status_data['city_id']),
+            state_name=status_data['state']
+        )
+        db.session.add(fatality)
+    db.session.commit()
+    print(f"Successfully created {fatality}")
+
 
 #############################################################
 
@@ -285,7 +320,7 @@ if __name__ == "__main__":
             lon=0))
     db.session.commit()
 
-    seed_data_directly_from_api()
+    # seed_data_directly_from_api()
     # run_all_json_files()
     
 
