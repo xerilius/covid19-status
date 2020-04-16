@@ -100,7 +100,7 @@ class Fatality(db.Model):
         return "<Fatality fatality_id={} fatality_date={} fatalities={}>".format(self.fatality_id, self.date, self.fatalities)
 
 
-class USA(db.Model):
+class Usa(db.Model):
     """Information on USA total confirmed & fatality numbers"""
 
     __tablename__ = "usa"
