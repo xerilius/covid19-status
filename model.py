@@ -100,6 +100,21 @@ class Fatality(db.Model):
         return "<Fatality fatality_id={} fatality_date={} fatalities={}>".format(self.fatality_id, self.date, self.fatalities)
 
 
+class USA(db.Model):
+    """Information on USA total confirmed & fatality numbers"""
+
+    __tablename__ = "usa"
+
+    total_id = db.Collumn(db.Integer, autoincrement=True, primary_key=True)
+    date = db.Column(db.Date, nullable=False)
+    confirmed_total = db.Column(db.Integer, nullable=False)
+    fatality_total = db.Column(db.Integer, nullable=False)
+    # recovered_total = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        """Provides info when printed"""
+        return f"<USA total_id={self.total_id} date={self.date} confirmed_total={self.confirmed_total} fatality_total={self.fatality_total}"
+
 
 
 # Helper functions
