@@ -1,7 +1,7 @@
 <h1 align="center">  𝘾𝙊𝙑𝙄𝘿⑲𝙎𝙏𝘼𝙏𝙐𝙎  </h1>
 Covid19 Status is a Python/Flask app that allows users to search up confirmed cases of Covid19 in their county.
 <br>  
-A graph made with D3 shows the stats for the past 10 days.
+A graph made with D3 shows the stats for the past 10 days.  
 
 <br>
 
