@@ -16,7 +16,7 @@ class User(db.Model):
     email = db.Column(db.String(50), nullable=False, unique=True)
     pw = db.Column(db.String(50), nullable=False)
     
-    saves = db.relationship("City", secondary="saves",
+    saves = db.relationship("County", secondary="saves",
                                     backref="users")
 
     def __repr__(self):
