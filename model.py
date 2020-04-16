@@ -28,27 +28,46 @@ class User(db.Model):
 
 
 
-class Status(db.Model):
-    """Case information"""
+class Confirmed(db.Model):
+    """Confirmed number of people tested positive for COVID"""
 
-    __tablename__ = "status"
+    __tablename__ = "confirmed"
 
-    status_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    status_date = db.Column(db.Date, nullable=False)
+    confirmed_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    date = db.Column(db.Date, nullable=False)
     county_id = db.Column(db.Integer, db.ForeignKey('counties.county_id'), nullable=False)
-    state_name = db.Column(db.String(64), nullable=True)  # for testing purposes
+    state_name = db.Column(db.String(64), nullable=True) 
     confirmed = db.Column(db.Integer, nullable=False)
     
     # Association relationship for city
-    county_status = db.relationship("County", backref="status")
+    county_confirmed = db.relationship("County", backref="confirmed")
 
 
     def __repr__(self):
         """Provides info when printed"""
-        return "<Status status_id={} status_date={} confirmed={}>".format(
-            self.status_id, self.status_date, self.confirmed
+        return "<Confirmed status_id={} status_date={} confirmed={}>".format(
+            self.confirmed_id, self.date, self.confirmed
         )
  
+
+class Fatality(db.Model):
+    """Information on fatalities from COVID"""
+
+    __tablename__ = "fatalities"
+
+    fatality_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    date = db.Column(db.Date, nullable=False)
+    county_id = db.Column(db.Integer, 
+                          db.ForeignKey('counties.county_id'), nullable=False)
+    state_name = db.Column(db.String(64), nullable=True) 
+    fatalities = db.Column(db.Integer, nullable=False)
+
+    # Association relationship for city
+    county_fatality = db.relationship("County", backref="fatalities")
+
+    def __repr__(self):
+        """Provides info when printed"""
+        return "<Fatality fatality_id={} fatality_date={} fatalities={}>".format(self.fatality_id, self.date, self.fatalities)
 
 
 class County(db.Model):
@@ -62,13 +81,11 @@ class County(db.Model):
     lat = db.Column(db.Float)
     lon = db.Column(db.Float)
 
-
     def __repr__(self):
         """Provides info when printed"""
         return "<County county_id={} county_name={}>".format(
             self.county_id, self.county_name
         )
-
 
 
 class Save(db.Model):
@@ -98,6 +115,8 @@ def connect_to_db(app, db_uri="postgresql:///covid19"):
     app.config['SQLALCHEMY_ECHO'] = True
     db.app = app
     db.init_app(app)
+
+
 
 if __name__ == '__main__':
     from server import app

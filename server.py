@@ -2,7 +2,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, redirect, request, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy import asc, desc
-from model import connect_to_db, db, User, Status, County
+from model import connect_to_db, db, County, Fatality, Confirmed
 
 import json
 from datetime import date
@@ -111,12 +111,12 @@ def show_results():
         county_id = 0
     
     # Get Recent 10 Records 
-    status10 = db.session.query(Status).filter(Status.county_id == county_id).order_by(desc(Status.status_id)).limit(10)
+    confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
 
     datasets = []
-    for item in status10:
+    for item in confirmed10:
         datasets.append({
-            'date': str(item.status_date), 
+            'date': str(item.date), 
             'num': item.confirmed
         })
 
@@ -125,7 +125,7 @@ def show_results():
     return render_template('search_results.html', 
                             counties=county_name, 
                             states=state_name, 
-                            status10=status10, 
+                            confirmed10=confirmed10, 
                             data=data)
 
 
