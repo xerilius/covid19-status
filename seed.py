@@ -171,7 +171,9 @@ def seed_usa_total_data_from_api():
 
     print(f"Successfully created {usa_total}")
 
-########################
+
+#######################################
+
 
 def run_all_json_files():
     """Reads all JSON files"""
@@ -289,7 +291,10 @@ def enter_confirmed_data():
     db.session.commit()
     print(f"Successfully created {status}")
 
-    
+
+############################################
+
+
 def run_writing_tasks():
     """Update and rewrite data from API"""
     for i in range(0, 1):
@@ -310,7 +315,6 @@ def run_writing_tasks():
         print("All tasks are completed")
 
 
-
 def write_confirmed_data():
     """Writes confirmed reports of COVID-19 in each state to jsonile."""
     r1 = requests.get(URL)
@@ -319,7 +323,6 @@ def write_confirmed_data():
     with open('confirmed-reports.json', 'w') as outfile:
         json.dump(confirmed_data, outfile, indent=4)
     print('Task#1 completed.')
-
 
 
 def write_fatality_data():
@@ -347,8 +350,8 @@ if __name__ == "__main__":
 
     # run_writing_tasks()
 
-    os.system("dropdb covid19")
-    os.system("createdb covid19")
+    # os.system("dropdb covid19")
+    # os.system("createdb covid19")
 
     connect_to_db(app)
     db.create_all()
