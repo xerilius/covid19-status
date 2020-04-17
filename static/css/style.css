@@ -321,6 +321,32 @@ input.login__item::placeholder {
   color: #052049;
   opacity: 1; }
 
+.country-stats {
+  display: grid;
+  margin: 0 35%;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-rows: 2fr, 1fr, 1fr;
+  grid-template-areas: " header header header header" " . confirmed deaths . " " . c-total d-total .";
+  grid-gap: 20px; }
+  .country-stats__header {
+    font-size: 3rem;
+    text-transform: uppercase;
+    grid-area: header; }
+  .country-stats__confirmed {
+    grid-area: confirmed;
+    font-size: 2rem;
+    text-transform: uppercase; }
+    .country-stats__confirmed--total {
+      grid-area: c-total; }
+  .country-stats__fatality {
+    grid-area: deaths;
+    font-size: 2rem;
+    text-transform: uppercase; }
+    .country-stats__fatality--total {
+      grid-area: d-total; }
+
 .alert-message {
   text-align: center;
   font-family: 'Major Mono Display', monospace;
@@ -358,15 +384,15 @@ input.login__item::placeholder {
 ul {
   list-style-type: none; }
 
-.datetime {
+.marquee {
   font-family: 'Major Mono Display', monospace;
   font-size: 1.2rem;
   margin: 20px;
   height: 20px;
   position: fixed;
-  float: right;
-  animation: marquee 20s linear infinite; }
-  .datetime:hover {
+  float: left;
+  animation: marquee 35s linear infinite; }
+  .marquee:hover {
     animation-play-state: paused; }
 
 a.navbar__logo--link:active, a.navbar__logo--link:visited {
