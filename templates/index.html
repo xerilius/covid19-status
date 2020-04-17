@@ -39,6 +39,11 @@
             <i class="fas fa-phone-alt fa-2x"></i>&nbsp; Call in Sick &nbsp;
         </div>
     </div>
+    <div class="country-stats">
+        <div class="country-stats__header">United States</div>
+        <div class="country-stats__confirmed">Confirmed: {{ confirmed_total }}</div>
+        <div class="country-stats__fatality">Fatalities: {{ fatality_total }}</div>
+    </div>
     <div class="searchbar">
         <form class="searchbar__form" action="/search-results" method="POST">
             <input class="searchbar__search" action="/search-results" type="text" name="searchbar" placeholder="Enter a city:">

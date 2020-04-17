@@ -2,7 +2,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, redirect, request, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy import asc, desc
-from model import connect_to_db, db, County, Fatality, Confirmed, User
+from model import connect_to_db, db, County, Fatality, Confirmed, User, Usa
 
 import json
 from datetime import date
@@ -15,11 +15,19 @@ app.secret_key = "abc"  # will always store key in secrets.sh file or .env
 app.jinja_env.undefined = StrictUndefined
 
 # HOMEPAGE
-@app.route('/', methods=["GET", "POST"])
+@app.route('/', methods=["GET"])
 def index():
     """Homepage"""
+
+    country_total= db.session.query(Usa.confirmed_total, Usa.fatality_total).order_by(desc(Usa.date)).limit(1)
+
+    for item in country_total:
+        confirmed_total = item[0]
+        fatality_total = item[1]
     
-    return render_template("index.html")
+    return render_template("index.html", 
+                        confirmed_total=confirmed_total, 
+                        fatality_total=fatality_total)
 
 
 # SIGNUP
