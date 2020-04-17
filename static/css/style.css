@@ -321,32 +321,6 @@ input.login__item::placeholder {
   color: #052049;
   opacity: 1; }
 
-.country-stats {
-  display: grid;
-  margin: 0 35%;
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
-  grid-template-columns: 1fr, 1fr;
-  grid-template-rows: 2fr, 1fr, 1fr;
-  grid-template-areas: " header header header header" " . confirmed deaths . " " . c-total d-total .";
-  grid-gap: 20px; }
-  .country-stats__header {
-    font-size: 3rem;
-    text-transform: uppercase;
-    grid-area: header; }
-  .country-stats__confirmed {
-    grid-area: confirmed;
-    font-size: 2rem;
-    text-transform: uppercase; }
-    .country-stats__confirmed--total {
-      grid-area: c-total; }
-  .country-stats__fatality {
-    grid-area: deaths;
-    font-size: 2rem;
-    text-transform: uppercase; }
-    .country-stats__fatality--total {
-      grid-area: d-total; }
-
 .alert-message {
   text-align: center;
   font-family: 'Major Mono Display', monospace;
@@ -408,11 +382,11 @@ a.navbar__links--login:active, a.navbar__links--login:visited {
   grid-template-rows: 50px 1fr;
   grid-template-areas: "sidenav header" "sidenav main";
   height: 100vh;
-  background: white; }
+  background: #232323; }
 
 .header {
   grid-area: header;
-  background: #000000dc;
+  background: #232323;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -469,7 +443,7 @@ a.sidenav__brand-link {
 
 .main {
   grid-area: main;
-  background-color: #000000dc;
+  background-color: #232323;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 45% 1fr;

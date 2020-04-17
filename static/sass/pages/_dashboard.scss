@@ -10,11 +10,11 @@
       "sidenav main";
 
     height: 100vh;
-    background: rgb(255, 255, 255);
+    background: #232323;
 }
 .header {
     grid-area: header;
-    background: #000000dc;
+    background: #232323;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -83,7 +83,7 @@ a.sidenav__brand-link {
 }
   .main {
     grid-area: main;
-    background-color: #000000dc;
+    background-color: #232323;
     
     display:grid;
     grid-template-columns: 1fr;
