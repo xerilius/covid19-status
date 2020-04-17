@@ -27,7 +27,7 @@
 </header>
 
 <body class="homepage">
-    <div class="datetime"></div>
+    <div class="marquee"></div>
     <div class="u-spacer-l">&nbsp;</div>
     <div class="the5">
         <h2> Do the Five.</h2>
@@ -39,17 +39,7 @@
             <i class="fas fa-phone-alt fa-2x"></i>&nbsp; Call in Sick &nbsp;
         </div>
     </div>
-    <div class="u-spacer-s">&nbsp;</div>
-    <div class="country-stats">
-        <div class="country-stats__header">United States</div>
-        <div class="country-stats__confirmed">Confirmed 
-            <div class="country-stats_confirmed--total">{{ confirmed_total }}</div>
-            
-        </div>
-        <div class="country-stats__fatality">Deaths
-             <div class="country-stats__fatality--total">{{ fatality_total }}</div>
-            </div>
-    </div>
+
     <div class="searchbar">
         <form class="searchbar__form" action="/search-results" method="POST">
             <input class="searchbar__search" action="/search-results" type="text" name="searchbar" placeholder="Enter a county name:">
@@ -62,7 +52,7 @@
         country_confirmed = {{ confirmed_total | tojson | safe }};
         country_deaths = {{ fatality_total | tojson | safe }};
     </script>
-    <script src="../static/js/time.js"></script>
+    <script src="../static/js/marquee.js"></script>
     {% endblock %}
 </body>
 {% endblock %}
