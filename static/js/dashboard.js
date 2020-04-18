@@ -27,8 +27,13 @@ $(document).ready(function() {
             timeOfDay = " PM";
         }
         let minutes = now.getMinutes();
+        if (minutes < 10) {
+            minutes = "0" + minutes.toString()
+        }
         let seconds = now.getSeconds();
-        
+        if (seconds < 10) {
+            seconds = "0" + seconds.toString()
+        }
         let todaysTime = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString() + timeOfDay;
         $(".main-header__time").text(todaysTime);
         
