@@ -34,7 +34,7 @@ $(document).ready(function() {
         if (seconds < 10) {
             seconds = "0" + seconds.toString()
         }
-        let todaysTime = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString() + timeOfDay;
+        let todaysTime = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString() + " " + timeOfDay;
         $(".main-header__time").text(todaysTime);
         
     }
