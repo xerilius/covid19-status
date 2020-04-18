@@ -5,7 +5,7 @@ from sqlalchemy import asc, desc
 from model import connect_to_db, db, County, Fatality, Confirmed, User, Usa
 
 import json
-from datetime import date
+from datetime import date, datetime
 
 app = Flask(__name__)
 # # set a 'SECRET_KEY' to enable the Flask session cookies
@@ -142,7 +142,7 @@ def show_results():
 def show_dashboard(username):
     """Displays user to Dashboard"""
 
-    today = date.today()
+    today = datetime.now()
     current_date = today.strftime("%B %d, %Y")
 
     username = session.get("username")
