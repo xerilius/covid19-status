@@ -12,7 +12,7 @@ $(document).ready(function() {
         let dates = now.getDate();
         let year = now.getFullYear();
         let weekday = weekdays[now.getDay()];
-        let todaysDate = mth + " " + dates + ", " + year +" (" + weekday + ")";
+        let todaysDate = mth + " " + dates + ", " + year + " (" + weekday + ")";
         // Display on page
         $(".header__date").html(todaysDate);
     }
