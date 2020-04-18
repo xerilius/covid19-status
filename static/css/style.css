@@ -335,18 +335,18 @@ input.login__item::placeholder {
   margin: 100px 0;
   text-transform: lowercase; }
   .searchbar__search {
-    font-family: 'Major Mono Display', monospace;
+    font-family: 'Montserrat', sans-serif;
+    grid-area: time;
     width: 70rem;
     font-size: 2rem;
     outline: 0;
     border: 0;
-    border-bottom: 2px dotted rgba(0, 0, 0, 0.288);
-    text-transform: lowercase; }
+    border-bottom: 2px dotted rgba(0, 0, 0, 0.144);
+    text-transform: uppercase; }
     .searchbar__search::placeholder {
-      text-transform: lowercase;
+      text-transform: uppercase;
       color: rgba(0, 0, 0, 0.336);
-      font-weight: bold;
-      letter-spacing: -.3rem; }
+      font-weight: bold; }
     .searchbar__search:focus {
       border-bottom: 2px dotted #ffdd00; }
 
@@ -479,9 +479,10 @@ a.sidenav__brand-link {
       grid-template-rows: repeat(3, 1fr);
       grid-template-areas: "." "time" "."; }
     .main-header__time {
+      font-family: 'Montserrat', sans-serif;
       grid-area: time;
       text-align: center;
-      font-size: 8rem;
+      font-size: 7.5rem;
       color: white;
       font-weight: bolder;
       text-shadow: 0 0 5px black; }

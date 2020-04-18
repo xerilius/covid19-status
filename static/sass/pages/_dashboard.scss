@@ -131,9 +131,10 @@ a.sidenav__brand-link {
           ".";
       }
       &__time {
+        font-family: 'Montserrat', sans-serif;
         grid-area: time;
         text-align: center;
-        font-size: 8rem;
+        font-size: 7.5rem;
         color: white;
         font-weight: bolder;
         text-shadow: 0 0 5px black;
