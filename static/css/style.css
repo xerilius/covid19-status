@@ -473,6 +473,18 @@ a.sidenav__brand-link {
     .main-header__heading {
       font-size: 1.5rem;
       color: white; }
+    .main-header__time-container {
+      display: grid;
+      width: 40%;
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-areas: "." "time" "."; }
+    .main-header__time {
+      grid-area: time;
+      text-align: center;
+      font-size: 8rem;
+      color: white;
+      font-weight: bolder;
+      text-shadow: 0 0 5px black; }
 
 .main-header__heading {
   color: white; }
