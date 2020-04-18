@@ -393,6 +393,8 @@ a.navbar__links--login:active, a.navbar__links--login:visited {
   padding: 0 16px;
   color: white;
   text-transform: uppercase; }
+  .header__date {
+    color: white; }
 
 a.header__logout:link, a.header__logout:visited {
   color: white; }
@@ -459,6 +461,7 @@ a.sidenav__brand-link {
     background: url(../img/sf.jpg) center no-repeat;
     background-size: cover;
     display: flex;
+    color: white;
     justify-content: space-between;
     padding: 20px;
     height: 350px;
@@ -467,6 +470,9 @@ a.sidenav__brand-link {
     .main-header__heading {
       font-size: 1.5rem;
       color: white; }
+
+.main-header__heading {
+  color: white; }
 
 .results {
   margin: 50px;

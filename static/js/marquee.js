@@ -6,7 +6,7 @@ $(document).ready(function() {
         
         // Display on page
         $(".marquee").text("⚠️ " + now);
-        $(".marquee").append("&nbsp; ▒&nbsp; United States".toLowerCase());
+        $(".marquee").append("&nbsp; ⋙ &nbsp; United States".toLowerCase());
         $(".marquee").append("&nbsp;  <b>Confirmed: </b>".toLowerCase());
         $(".marquee").append(country_confirmed);
         $(".marquee").append("&nbsp; <b>Deaths: </b>".toLowerCase());

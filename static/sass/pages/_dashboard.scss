@@ -21,6 +21,9 @@
     padding: 0 16px;
     color: white;
     text-transform: uppercase;
+    &__date{
+      color: white;
+    }
 
 }
 a.header__logout{
@@ -106,19 +109,22 @@ a.sidenav__brand-link {
     background: url(../img/sf.jpg) center no-repeat;
     background-size: cover;
     display: flex;
-    
+    color: white;
     justify-content: space-between;
     // margin: 20px;
     padding: 20px;
     height: 350px;
     background-color: #e3e4e6;
     color: slategray;
-
+    
     &__heading {
       font-size: 1.5rem;
       color: white;
     }
   }
+}
+.main-header__heading {
+  color: white;
 }
 
 // #confirmed-graph {
