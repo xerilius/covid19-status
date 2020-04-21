@@ -49,8 +49,8 @@
     {% block javascript %}
     <!-- Set country_confirmed as js global variable -->
     <script type="text/javascript"> 
-        country_confirmed = {{ confirmed_total | tojson | safe }};
-        country_deaths = {{ fatality_total | tojson | safe }};
+        country_confirmed = {{ confirmed_total | safe }};
+        country_deaths = {{ fatality_total | safe }};
     </script>
     <script src="../static/js/marquee.js"></script>
     {% endblock %}

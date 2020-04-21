@@ -113,10 +113,11 @@ def show_results():
     if county_name:
         state_name = county_name.state_name
         county_id = county_name.county_id
-    else:
+    if not county_name:
         county_name = None
         state_name = None
         county_id = 0
+        data = None
     
     # Get Recent 10 Records 
     confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
@@ -129,7 +130,7 @@ def show_results():
         })
 
         data = json.dumps({"data":datasets})
-    
+
     return render_template('search_results.html', 
                             counties=county_name, 
                             states=state_name, 
