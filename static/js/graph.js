@@ -1,7 +1,7 @@
 "use strict";
 
 let data = dataset['data'];
-        console.log(dataset)
+        // console.log(dataset)
         
         let time_parse = d3.timeParse("%Y-%m-%d");
         let time_format = d3.timeFormat("%Y-%m-%d");
@@ -89,5 +89,5 @@ let data = dataset['data'];
             .attr('stroke-width', 2)
             .attr('d', line); //set d attr to line funct
         
-        console.log(line)
-        console.log(line(data)) // gives coordinates on graph
+        // console.log(line)
+        // console.log(line(data)) // gives coordinates on graph
