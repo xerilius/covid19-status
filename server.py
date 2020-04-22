@@ -54,9 +54,14 @@ def show_results():
     print(county_search)
     search = "%{}%".format(county_search).title().strip()
     county_inst = County.query.filter(County.county_name.ilike(search)).first()
+    
     if county_inst:
         state_name = county_inst.state_name
         county_id = county_inst.county_id
+
+        county_info = county_inst.county_name.split(" ")
+        county_slug = "-".join(county_info)
+        county_state_slug = county_slug + "-" + county_inst.state_name
 
     if not county_inst:
         county_inst = None
@@ -70,6 +75,14 @@ def show_results():
     county_info = county_inst.county_name.split(" ")
     county_slug = "-".join(county_info)
     county_state_slug = county_slug + "-" + county_inst.state_name
+
+    # Check Saves
+    username = session['username']
+    user = User.query.filter_by(username=username).first()
+    user_id = user.user_id
+    
+    saved = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
+  
 
     # D3 Graph 
     datasets = []
@@ -85,7 +98,7 @@ def show_results():
                             counties=county_inst, 
                             states=state_name, 
                             confirmed10=confirmed10, 
-                            data=data, county_state_slug=county_state_slug)
+                            data=data, county_state_slug=county_state_slug, saved=saved, user_id=user_id)
 
 
 # DASHBOARD
