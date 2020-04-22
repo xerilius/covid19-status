@@ -14,6 +14,7 @@ app.secret_key = "abc"  # will always store key in secrets.sh file or .env
 
 app.jinja_env.undefined = StrictUndefined
 
+
 # SAVE BUTTON
 @app.route('/save/<county_info>', methods=["POST"])
 def create_save(county_info):
@@ -28,12 +29,12 @@ def create_save(county_info):
     county_name = " ".join(county_info)
     get_county = db.session.query(County).filter(County.state_name==state_name, County.county_name==county_name).first()
     county_id = get_county.county_id
-    print(county_id)
 
     db.session.add(Save(user_id=int(user_id), county_id=int(county_id)))
     db.session.commit()
     
     return ("OK", 200)
+
 
 # UNSAVE 
 @app.route('/save/<county_info>/delete', methods=["POST"])
@@ -42,6 +43,7 @@ def delete_save(county_info):
     # Updated database - delete county_id from save table
 
     return ("OK, 200")
+
 
 # SEARCH RESULTS
 @app.route('/search-results', methods=["POST"])
