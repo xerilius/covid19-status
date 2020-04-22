@@ -2,7 +2,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, redirect, request, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy import asc, desc
-from model import connect_to_db, db, County, Fatality, Confirmed, User, Usa
+from model import connect_to_db, db, County, Fatality, Confirmed, User, Usa, Save
 
 import json
 from datetime import date, datetime
@@ -13,6 +13,96 @@ app = Flask(__name__)
 app.secret_key = "abc"  # will always store key in secrets.sh file or .env
 
 app.jinja_env.undefined = StrictUndefined
+
+# SAVE BUTTON
+@app.route('/save/<county_info>', methods=["POST"])
+def create_save(county_info):
+    """Create save for county"""
+    username = session['username']
+    user = User.query.filter_by(username=username).first()
+    user_id = user.user_id
+    
+    save_info = county_info.split("-")
+    state_name = save_info[-1]
+    county_info = save_info[:-1]
+    county_name = " ".join(county_info)
+    get_county = db.session.query(County).filter(County.state_name==state_name, County.county_name==county_name).first()
+    county_id = get_county.county_id
+    print(county_id)
+
+    db.session.add(Save(user_id=int(user_id), county_id=int(county_id)))
+    db.session.commit()
+    
+    return ("OK", 200)
+
+# UNSAVE 
+@app.route('/save/<county_info>/delete', methods=["POST"])
+def delete_save(county_info):
+    """Unsave county"""
+    # Updated database - delete county_id from save table
+
+    return ("OK, 200")
+
+# SEARCH RESULTS
+@app.route('/search-results', methods=["POST"])
+def show_results():
+    """Displays city from search result"""
+
+    county_search = request.form.get("searchbar")
+    print(county_search)
+    search = "%{}%".format(county_search).title().strip()
+    county_inst = County.query.filter(County.county_name.ilike(search)).first()
+    if county_inst:
+        state_name = county_inst.state_name
+        county_id = county_inst.county_id
+
+    if not county_inst:
+        county_inst = None
+        state_name = None
+        county_id = 0
+        data = None
+    
+    # Get Recent 10 Records 
+    confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
+
+    county_info = county_inst.county_name.split(" ")
+    county_slug = "-".join(county_info)
+    county_state_slug = county_slug + "-" + county_inst.state_name
+
+    # D3 Graph 
+    datasets = []
+    for item in confirmed10:
+        datasets.append({
+            'date': str(item.date), 
+            'num': item.confirmed
+        })
+
+        data = json.dumps({"data":datasets})
+
+    return render_template('search_results.html', 
+                            counties=county_inst, 
+                            states=state_name, 
+                            confirmed10=confirmed10, 
+                            data=data, county_state_slug=county_state_slug)
+
+
+# DASHBOARD
+@app.route('/user/<username>', methods=["GET"])
+def show_dashboard(username):
+    """Displays user to Dashboard"""
+
+    today = datetime.now()
+    current_date = today.strftime("%B %d, %Y")
+
+    username = session.get("username")
+    if username:
+        user = db.session.query(User).filter(User.username==username).first()
+        user_name = user.username
+
+    return render_template("dashboard.html", 
+                            current_date=current_date,
+                            username=user_name)
+
 
 # HOMEPAGE
 @app.route('/', methods=["GET"])
@@ -101,59 +191,6 @@ def logout():
     flash("You successfully logged out")
     return redirect('/')
 
-
-# SEARCH RESULTS
-@app.route('/search-results', methods=["POST"])
-def show_results():
-    """Displays city from search result"""
-    county_search = request.form.get("searchbar")
-    print(county_search)
-    search = "%{}%".format(county_search).title().strip()
-    county_name = County.query.filter(County.county_name.ilike(search)).first()
-    if county_name:
-        state_name = county_name.state_name
-        county_id = county_name.county_id
-    if not county_name:
-        county_name = None
-        state_name = None
-        county_id = 0
-        data = None
-    
-    # Get Recent 10 Records 
-    confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
-
-    datasets = []
-    for item in confirmed10:
-        datasets.append({
-            'date': str(item.date), 
-            'num': item.confirmed
-        })
-
-        data = json.dumps({"data":datasets})
-
-    return render_template('search_results.html', 
-                            counties=county_name, 
-                            states=state_name, 
-                            confirmed10=confirmed10, 
-                            data=data)
-
-
-# DASHBOARD
-@app.route('/user/<username>', methods=["GET"])
-def show_dashboard(username):
-    """Displays user to Dashboard"""
-
-    today = datetime.now()
-    current_date = today.strftime("%B %d, %Y")
-
-    username = session.get("username")
-    if username:
-        user = db.session.query(User).filter(User.username==username).first()
-        user_name = user.username
-
-    return render_template("dashboard.html", 
-                            current_date=current_date,
-                            username=user_name)
 
 
 
