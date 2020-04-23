@@ -27,22 +27,67 @@ def create_save(county_info):
     state_name = save_info[-1]
     county_info = save_info[:-1]
     county_name = " ".join(county_info)
+
     get_county = db.session.query(County).filter(County.state_name==state_name, County.county_name==county_name).first()
     county_id = get_county.county_id
 
-    db.session.add(Save(user_id=int(user_id), county_id=int(county_id)))
-    db.session.commit()
-    
+    # check save
+    if request.method == 'POST':
+        check_save_exists = db.session.query(Save).filter(Save.user_id==user_id, Save.county_id==county_id).first()
+
+        if check_save_exists:
+            flash("Saved Already")
+        elif check_save_exists == None:
+            db.session.add(Save(user_id=int(user_id), county_id=int(county_id)))
+            db.session.commit()
+            
     return ("OK", 200)
 
 
+def get_username():
+    """Get username from session"""
+
+    username = session['username']
+    user = User.query.filter_by(username=username).first()
+    user_id = user.user_id
+
+    return user_id
+
+
+def get_countystate_from_slug(county_info):    
+    save_info = county_info.split("-")
+    state_name = save_info[-1]
+    county_info = save_info[:-1]
+    county_name = " ".join(county_info)
+
+    return [county_name, state_name]
+    
+
 # UNSAVE 
-@app.route('/save/<county_info>/delete', methods=["POST"])
+@app.route('/delete/<county_info>', methods=["POST"])
 def delete_save(county_info):
     """Unsave county"""
-    # Updated database - delete county_id from save table
+    username = session['username']
+    user = User.query.filter_by(username=username).first()
+    user_id = user.user_id
+    
+    save_info = county_info.split("-")
+    state_name = save_info[-1]
+    county_info = save_info[:-1]
+    county_name = " ".join(county_info)
 
-    return ("OK, 200")
+    get_county = db.session.query(County).filter(County.state_name==state_name, County.county_name==county_name).first()
+    county_id = get_county.county_id
+    print("---------------------------------------------", county_id)
+
+    get_save = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
+    save_id = get_save.save_id
+    print("---------------------------------------------", save_id)
+ 
+    db.session.delete(Save.query.get(int(save_id)))
+    db.session.commit()
+
+    return ("OK", 200)
 
 
 # SEARCH RESULTS
