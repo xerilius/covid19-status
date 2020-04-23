@@ -36,12 +36,15 @@ def create_save(county_info):
         check_save_exists = db.session.query(Save).filter(Save.user_id==user_id, Save.county_id==county_id).first()
 
         if check_save_exists:
-            flash("Saved Already")
+            return ("Already Saved")
+
         elif check_save_exists == None:
-            db.session.add(Save(user_id=int(user_id), county_id=int(county_id)))
+            save_data = Save(user_id=int(user_id), county_id=int(county_id))
+            db.session.add(save_data)
             db.session.commit()
+            print(">>> SAVED <<<", save_data)
             
-    return ("OK", 200)
+    return (">>> OK <<<", 200)
 
 
 def get_username():
@@ -78,16 +81,14 @@ def delete_save(county_info):
 
     get_county = db.session.query(County).filter(County.state_name==state_name, County.county_name==county_name).first()
     county_id = get_county.county_id
-    print("---------------------------------------------", county_id)
 
     get_save = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
     save_id = get_save.save_id
-    print("---------------------------------------------", save_id)
- 
+
     db.session.delete(Save.query.get(int(save_id)))
     db.session.commit()
-
-    return ("OK", 200)
+    
+    return (">>> UNSAVED <<<", 200)
 
 
 # SEARCH RESULTS
