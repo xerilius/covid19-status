@@ -5,10 +5,7 @@ const saveButton = document.getElementById("save");
 saveButton.addEventListener('click', saveCounty);
 
 function saveCounty(evt) {
-    console.log(evt);
-
-    let countyInfo = evt.target.dataset.countyInfo;
-    console.log(countyInfo);
+    const countyInfo = evt.target.dataset.countyInfo;
     
     if (saveButton.innerHTML == 'Save') {
         $.post(`/save/${countyInfo}`, function() {  
