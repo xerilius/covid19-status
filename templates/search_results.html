@@ -37,8 +37,12 @@
             {{ counties.county_name }}, {{ states }}
         </div> 
         {% if session.get('username') %}
-
+           {% if saved == None  %}
             <button type="submit" id="save" data-county-info="{{ county_state_slug}}">Save</button>
+        
+            {% elif user_id == saved.user_id %}
+            <button type="submit" id="save" data-county-info="{{ county_state_slug}}">Unsave</button>
+            {% endif %}
 
         {% endif %}
         <div id="chart"></div>  
