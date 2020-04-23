@@ -42,7 +42,7 @@ def create_save(county_info):
             save_data = Save(user_id=int(user_id), county_id=int(county_id))
             db.session.add(save_data)
             db.session.commit()
-            print(">>> SAVED <<<", save_data)
+            print(">>>>> SAVED <<<<<", save_data)
             
     return (">>> OK <<<", 200)
 
@@ -84,6 +84,8 @@ def delete_save(county_info):
 
     get_save = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
     save_id = get_save.save_id
+
+    print(">>>>> DELETE <<<<<", Save.query.get(int(save_id)))
 
     db.session.delete(Save.query.get(int(save_id)))
     db.session.commit()
