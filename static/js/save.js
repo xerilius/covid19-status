@@ -10,16 +10,20 @@ function saveCounty(evt) {
     
     if (saveButton.innerHTML == 'Save') {
         $.post(`/save/${countyInfo}`, function() {  
-                console.log("Save");
+            console.log("Save");           
         });
-        saveButton.innerHTML = 'Unsave';    
+        $('#save').toggleClass('unfollow follow');
+        saveButton.innerHTML = 'Unsave';     
     }
 
     else if (saveButton.innerHTML =='Unsave') {
         $.post(`/delete/${countyInfo}`, function() {
-            console.log("Delete");
+            console.log("Delete");       
         });
-        saveButton.innerHTML = 'Save';   
+        $('#save').toggleClass('follow unfollow');    
+        saveButton.innerHTML = 'Save'; 
+        
+        
     }
 }
 

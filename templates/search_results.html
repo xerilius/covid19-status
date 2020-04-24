@@ -35,16 +35,16 @@
         {% if counties != None %}
         <div class="results__item--city">
             {{ counties.county_name }}, {{ states }}
-        </div> 
+        
         {% if session.get('username') %}
            {% if saved == None  %}
-            <button type="submit" id="save" data-county-info="{{ county_state_slug}}">Save</button>
+            <button type="submit" id="save" class="follow" data-county-info="{{ county_state_slug}}">Save</button>
         
             {% elif user_id == saved.user_id %}
-            <button type="submit" id="save" data-county-info="{{ county_state_slug}}">Unsave</button>
+            <button type="submit"  id="save" class="unfollow" data-county-info="{{ county_state_slug}}">Unsave</button>
             {% endif %}
-
         {% endif %}
+    </div> 
         <div id="chart"></div>  
         
     </div>

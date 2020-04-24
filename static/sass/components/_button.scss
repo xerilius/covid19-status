@@ -1,0 +1,39 @@
+button {
+    outline: none;
+}
+#save {
+    // Dimension
+    padding: 10px 20px;
+    margin: 0 10px 10px 0;
+    // Positioning on page
+    float: right;
+    // Appearance
+    border-radius: 8px;
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: .5rem;
+
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+}
+
+#save:active{
+    transform: translate(0px,5px);
+    -webkit-transform: translate(0px,5px);
+    border-bottom: 1px solid;
+}
+
+.unfollow {
+    background-color: red;
+   border-bottom: 5px solid darken(red, 20%);
+   text-shadow: 0px -2px darken(red, 10%);
+}
+
+.follow {
+    background-color: green;
+   border-bottom: 5px solid darken(green, 10%);
+   text-shadow: 0px -2px darken(green, 10%);
+}

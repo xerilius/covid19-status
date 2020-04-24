@@ -163,6 +163,38 @@ a.navbar__logo {
   color: white;
   grid-area: fatality; }
 
+button {
+  outline: none; }
+
+#save {
+  padding: 10px 20px;
+  margin: 0 10px 10px 0;
+  float: right;
+  border-radius: 8px;
+  color: white;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .5rem;
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s; }
+
+#save:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 1px solid; }
+
+.unfollow {
+  background-color: red;
+  border-bottom: 5px solid #990000;
+  text-shadow: 0px -2px #cc0000; }
+
+.follow {
+  background-color: green;
+  border-bottom: 5px solid #004d00;
+  text-shadow: 0px -2px #004d00; }
+
 .signup-bg {
   background: linear-gradient(to right bottom, #052049, white) fixed; }
 
