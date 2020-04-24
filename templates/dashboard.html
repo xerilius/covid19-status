@@ -21,10 +21,13 @@
       <div class="sidenav__category">
       
         <div class="sidenav__category-title">Tracking</div>
-  
+        {% for item in county_list %}
        <ul class="sidenav__list">
-          <li class="sidenav__list-item">San Francisco, CA</li>
-          <li class="sidenav__list-item">New York, NY</li>
+          <li class="sidenav__list-item">{{item}}</li>
+
+      
+          {% endfor %}
+      
         </ul>
     </div>
   </aside>

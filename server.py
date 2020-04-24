@@ -131,7 +131,6 @@ def show_results():
     
     saved = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
   
-
     # D3 Graph 
     datasets = []
     for item in confirmed10:
@@ -161,11 +160,30 @@ def show_dashboard(username):
     if username:
         user = db.session.query(User).filter(User.username==username).first()
         user_name = user.username
+        user_id = user.user_id
+
+    # query for all saves ids with user_id # to display on dashboard side nav 
+    county_id_list = []
+    saves = db.session.query(Save).filter(Save.user_id==user_id).all()
+    for county in saves:
+        county_id = county.county_id
+        county_id_list.append(county_id)
+    print("@@@@@@@@@@@@",county_id_list)
+    county_inst_list = []
+    for id in county_id_list:
+        # get name of each county & state with id#
+        county_inst = db.session.query(County).filter(County.county_id==id).first()
+        county_name = county_inst.county_name
+        state_name = county_inst.state_name
+        county_state = county_name + ", " + state_name
+        county_inst_list.append(county_state)
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",county_inst_list)
+    # county_id_list.clear()
 
     return render_template("dashboard.html", 
-                            current_date=current_date,
-                            username=user_name)
-
+                                current_date=current_date,
+                                username=user_name, saves=saves, county_list=county_inst_list)
+    
 
 # HOMEPAGE
 @app.route('/', methods=["GET"])
