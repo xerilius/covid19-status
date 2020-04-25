@@ -34,7 +34,7 @@
     <div class="results__item">
         {% if counties != None %}
         <div class="results__item--city">
-            {{ counties.county_name }}, {{ states }}
+            {{ counties.county_name }}, {{ counties.state_name }}
         
         {% if session.get('username') %}
            {% if saved == None  %}
