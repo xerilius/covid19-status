@@ -116,20 +116,23 @@ def show_results():
         state_name = None
         county_id = 0
         data = None
+        county_state_slug = "None"
+        
     
     # Get Recent 10 Records 
     confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
 
-    county_info = county_inst.county_name.split(" ")
-    county_slug = "-".join(county_info)
-    county_state_slug = county_slug + "-" + county_inst.state_name
 
-    # Check Saves
-    username = session['username']
-    user = User.query.filter_by(username=username).first()
-    user_id = user.user_id
-    
-    saved = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
+    # Check Saves for User
+    if 'username' in session:
+        username = session['username']
+        user = User.query.filter_by(username=username).first()
+        user_id = user.user_id
+        
+        saved = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
+    else:
+        saved = None
+        user_id= None
   
     # D3 Graph 
     datasets = []
@@ -177,13 +180,13 @@ def show_dashboard(username):
         state_name = county_inst.state_name
         county_state = county_name + ", " + state_name
         county_inst_list.append(county_state)
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",county_inst_list)
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@", county_inst_list)
     # county_id_list.clear()
 
     return render_template("dashboard.html", 
                                 current_date=current_date,
                                 username=user_name, saves=saves, county_list=county_inst_list)
-    
+
 
 # HOMEPAGE
 @app.route('/', methods=["GET"])
