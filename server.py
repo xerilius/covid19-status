@@ -16,19 +16,15 @@ app.jinja_env.undefined = StrictUndefined
 
 
 # SAVE BUTTON
-@app.route('/save/<county_info>', methods=["POST"])
-def create_save(county_info):
+@app.route('/save/<county_id>', methods=["POST"])
+def create_save(county_id):
     """Create save for county"""
     username = session['username']
     user = User.query.filter_by(username=username).first()
     user_id = user.user_id
     
-    save_info = county_info.split("-")
-    state_name = save_info[-1]
-    county_info = save_info[:-1]
-    county_name = " ".join(county_info)
 
-    get_county = db.session.query(County).filter(County.state_name==state_name, County.county_name==county_name).first()
+    get_county = db.session.query(County).filter(County.county_id==int(county_id)).first()
     county_id = get_county.county_id
 
     # check save
@@ -67,19 +63,15 @@ def get_countystate_from_slug(county_info):
     
 
 # UNSAVE 
-@app.route('/delete/<county_info>', methods=["POST"])
-def delete_save(county_info):
+@app.route('/delete/<county_id>', methods=["POST"])
+def delete_save(county_id):
     """Unsave county"""
     username = session['username']
     user = User.query.filter_by(username=username).first()
     user_id = user.user_id
-    
-    save_info = county_info.split("-")
-    state_name = save_info[-1]
-    county_info = save_info[:-1]
-    county_name = " ".join(county_info)
 
-    get_county = db.session.query(County).filter(County.state_name==state_name, County.county_name==county_name).first()
+
+    get_county = db.session.query(County).filter(County.county_id==county_id).first()
     county_id = get_county.county_id
 
     get_save = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
@@ -105,13 +97,7 @@ def show_results():
 
     if len(county_data) == 1: 
         for county_inst in county_data:     
-            state_name = county_inst.state_name
             county_id = county_inst.county_id
-
-            county_info = county_inst.county_name.split(" ")
-            county_slug = "-".join(county_info)
-            county_state_slug = county_slug + "-" + county_inst.state_name
-
 
             confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
                 
@@ -135,44 +121,29 @@ def show_results():
                 })
                 data = json.dumps({"data":datasets})
 
-        return render_template('/county-info.html', counties=county_inst, 
-                            states=state_name, 
+        return render_template('/county-info.html', 
+                            counties=county_inst, 
                             confirmed10=confirmed10, 
-                            data=data, county_state_slug=county_state_slug, saved=saved, user_id=user_id)
+                            data=data, 
+                            saved=saved, 
+                            user_id=user_id)
 
     
     return render_template('search-results.html', counties=county_data)
 
 
 
-@app.route('/<county_slug>', methods=["GET", "POST"])
-def show_county_info(county_slug):
+@app.route('/county/<county_id>', methods=["GET"])
+def show_county_info(county_id):
     """Displays county information"""
 
-    county_search = request.form.get("searchbar")
-    print(county_search)
-    search = "%{}%".format(county_search).title().strip()
-    county_inst = County.query.filter(County.county_name.ilike(search)).first()
+    county_inst = County.query.filter(County.county_id==int(county_id)).first()
     
-    if county_inst:
-        state_name = county_inst.state_name
-        county_id = county_inst.county_id
+    state_name = county_inst.state_name
+    county_id = county_inst.county_id
 
-        county_info = county_inst.county_name.split(" ")
-        county_slug = "-".join(county_info)
-        county_state_slug = county_slug + "-" + county_inst.state_name
-
-    if not county_inst:
-        county_inst = None
-        state_name = None
-        county_id = 0
-        data = None
-        county_state_slug = "None"
-        
-    
     # Get Recent 10 Records 
     confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
-
 
     # Check Saves for User
     if 'username' in session:
@@ -199,7 +170,7 @@ def show_county_info(county_slug):
                             counties=county_inst, 
                             states=state_name, 
                             confirmed10=confirmed10, 
-                            data=data, county_state_slug=county_state_slug, saved=saved, user_id=user_id)
+                            data=data, saved=saved, user_id=user_id)
 
 # DASHBOARD
 @app.route('/user/<username>', methods=["GET"])

@@ -5,11 +5,11 @@ const saveButton = document.getElementById("save");
 saveButton.addEventListener('click', saveCounty);
 
 function saveCounty(evt) {
-    const countyInfo = evt.target.dataset.countyInfo;
+    const countyId = evt.target.dataset.countyId;
     console.log(evt)
     
     if (saveButton.innerHTML == 'Save') {
-        $.post(`/save/${countyInfo}`, function() {  
+        $.post(`/save/${countyId}`, function() {  
             console.log("Save");           
         });
         $('#save').toggleClass('unfollow follow');
@@ -17,7 +17,7 @@ function saveCounty(evt) {
     }
 
     else if (saveButton.innerHTML =='Unsave') {
-        $.post(`/delete/${countyInfo}`, function() {
+        $.post(`/delete/${countyId}`, function() {
             console.log("Delete");       
         });
         $('#save').toggleClass('follow unfollow');    
