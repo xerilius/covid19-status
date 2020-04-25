@@ -448,17 +448,17 @@ if __name__ == "__main__":
 
     # run_writing_tasks()
 
-    # os.system("dropdb covid19")
-    # os.system("createdb covid19")
+    os.system("dropdb covid19")
+    os.system("createdb covid19")
 
     connect_to_db(app)
     db.create_all()
 
-    dataset_confirmed = get_confirmed_api_response()
-    db_cities = create_county_ids(dataset_confirmed)
-    insert_county_data(dataset_confirmed, db_cities)
+    # dataset_confirmed = get_confirmed_api_response()
+    # db_cities = create_county_ids(dataset_confirmed)
+    # insert_county_data(dataset_confirmed, db_cities)
 
-    # seed_data_directly_from_api()
-    # seed_usa_total_data_from_api()
+    seed_data_directly_from_api()
+    seed_usa_total_data_from_api()
 
     # run_all_json_files()   
