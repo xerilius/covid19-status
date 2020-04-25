@@ -93,7 +93,7 @@ def show_results():
     county_search = request.form.get("searchbar")
     print(county_search)
     search = "%{}%".format(county_search).title().strip()
-    county_data = County.query.filter(County.county_name.ilike(search)).all()
+    county_data = County.query.filter(County.county_name.ilike(search) | County.state_name.ilike(search)).all()
 
     if len(county_data) == 1: 
         for county_inst in county_data:     
