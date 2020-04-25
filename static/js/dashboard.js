@@ -35,8 +35,7 @@ $(document).ready(function() {
             seconds = "0" + seconds.toString()
         }
         let todaysTime = hours.toString() + " : " + minutes.toString() + " : " + seconds.toString() + " " + timeOfDay;
-        $(".main-header__time").text(todaysTime);
-        
+        $(".main-header__time").text(todaysTime);        
     }
     setInterval(getTime, 1000);
 });

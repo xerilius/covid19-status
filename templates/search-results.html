@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+<meta charset="utf-8">
+{% block title %}Search Results{% endblock %}
+{% block content %}
+<header>
+    <div class="navbar">
+        <div class="navbar__logo">
+            <h1><a class="navbar__logo--link" href="/">COVID-19 Status</a></h1>
+        </div>
+
+        {% if session.get('username') %}
+        <div class="navbar__links">
+            <a class="navbar__links--login" href="/user/{{session['username'].lower()}}">{{ session['username'].upper() }}</a>
+            <a class="navbar__links--login" href="/logout">logout</a>
+        </div>
+        {% else %}
+        <div class="navbar__links">
+            <a class="navbar__links--login" href="/login">Login</a>
+        </div>
+        {% endif %}
+    </div>
+    
+    {% for message in get_flashed_messages() %}
+    <div class="alert-message">
+        <b> {{ message }} </b>
+    </div>
+    {% endfor %}
+</header>
+
+<div class="u-spacer-d">&nbsp;</div>
+
+<div class="results">
+    <div class="results__item">
+         
+        {% if counties | length ==0 %}
+        <div class="no-results"> 
+            Sorry, please try your search again!
+        </div>
+        
+        {% elif counties != None %}
+        {% for county in counties %}
+            {% if county %}
+            <div class="results__item--city">
+                {{ county.county_name }}, {{county.state_name}}
+            </div> 
+            {% endif %}       
+        {% endfor %}
+        {% endif %}
+    </div>
+
+{% endblock %}

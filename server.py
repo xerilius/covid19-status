@@ -101,6 +101,61 @@ def show_results():
     county_search = request.form.get("searchbar")
     print(county_search)
     search = "%{}%".format(county_search).title().strip()
+    county_data = County.query.filter(County.county_name.ilike(search)).all()
+
+    if len(county_data) == 1: 
+        for county_inst in county_data:     
+            state_name = county_inst.state_name
+            county_id = county_inst.county_id
+
+            county_info = county_inst.county_name.split(" ")
+            county_slug = "-".join(county_info)
+            county_state_slug = county_slug + "-" + county_inst.state_name
+
+            if not county_inst:
+                county_inst = None
+                state_name = None
+                county_id = 0
+                data = None
+                county_state_slug = "None"
+
+            confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
+                
+            # Check Saves for User
+            if 'username' in session:
+                username = session['username']
+                user = User.query.filter_by(username=username).first()
+                user_id = user.user_id
+                
+                saved = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
+            else:
+                saved = None
+                user_id= None
+        
+            # D3 Graph 
+            datasets = []
+            for item in confirmed10:
+                datasets.append({
+                    'date': str(item.date), 
+                    'num': item.confirmed
+                })
+
+                data = json.dumps({"data":datasets})
+
+        return render_template('/county-info.html', counties=county_inst, 
+                            states=state_name, 
+                            confirmed10=confirmed10, 
+                            data=data, county_state_slug=county_state_slug, saved=saved, user_id=user_id)
+
+    return render_template('search-results.html', counties=county_data)
+
+@app.route('/<county_slug>', methods=["GET", "POST"])
+def show_county_info(county_slug):
+    """Displays county information"""
+
+    county_search = request.form.get("searchbar")
+    print(county_search)
+    search = "%{}%".format(county_search).title().strip()
     county_inst = County.query.filter(County.county_name.ilike(search)).first()
     
     if county_inst:
@@ -144,12 +199,11 @@ def show_results():
 
         data = json.dumps({"data":datasets})
 
-    return render_template('search_results.html', 
+    return render_template('county-info.html', 
                             counties=county_inst, 
                             states=state_name, 
                             confirmed10=confirmed10, 
                             data=data, county_state_slug=county_state_slug, saved=saved, user_id=user_id)
-
 
 # DASHBOARD
 @app.route('/user/<username>', methods=["GET"])
