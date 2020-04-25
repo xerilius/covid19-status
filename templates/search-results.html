@@ -38,13 +38,12 @@
         </div>
         
         {% elif counties != None %}
-        {% for county in counties %}
-            {% if county %}
-            <div class="results__item--city">
-                {{ county.county_name }}, {{county.state_name}}
-            </div> 
-            {% endif %}       
-        {% endfor %}
+            {% for county in counties %}
+                <div class="results__item--city">
+                    {% set county_name = county.county_name.split(" ") %}  
+                    <a href="/search-results" class="county-link" data-county-info="{{ county_name | join("-") }}-{{ county.state_name }}">{{ county.county_name }}, {{county.state_name}} </a>
+                        </div> 
+            {% endfor %}
         {% endif %}
     </div>
 </div>

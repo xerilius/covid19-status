@@ -112,12 +112,6 @@ def show_results():
             county_slug = "-".join(county_info)
             county_state_slug = county_slug + "-" + county_inst.state_name
 
-            if not county_inst:
-                county_inst = None
-                state_name = None
-                county_id = 0
-                data = None
-                county_state_slug = "None"
 
             confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
                 
@@ -139,7 +133,6 @@ def show_results():
                     'date': str(item.date), 
                     'num': item.confirmed
                 })
-
                 data = json.dumps({"data":datasets})
 
         return render_template('/county-info.html', counties=county_inst, 
@@ -147,7 +140,10 @@ def show_results():
                             confirmed10=confirmed10, 
                             data=data, county_state_slug=county_state_slug, saved=saved, user_id=user_id)
 
+    
     return render_template('search-results.html', counties=county_data)
+
+
 
 @app.route('/<county_slug>', methods=["GET", "POST"])
 def show_county_info(county_slug):
