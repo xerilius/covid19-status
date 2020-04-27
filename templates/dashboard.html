@@ -23,7 +23,7 @@
         <div class="sidenav__category-title">Tracking</div>
         {% for item in county_list %}
        <ul class="sidenav__list">
-          <li class="sidenav__list-item">{{ item }}</li>      
+          <li class="sidenav__list-item" data-county-id="{{ item[1] }}">{{ item[0] }}</li>      
           {% endfor %}
       
         </ul>

@@ -1,5 +1,20 @@
 "use strict";
 $(document).ready(function() {
+
+    const countyLinks = document.getElementsByClassName("sidenav__list-item");
+    for (let countyLink of countyLinks) {
+        countyLink.addEventListener('click', showCountyInfo);
+    }
+
+    function showCountyInfo(evt) {
+        const countyLink = evt.target;
+        const countyId = countyLink.dataset.countyId;
+        console.log(countyLink);
+        $.get('/dashboard', function() {
+            // display chart of that county_id
+        })
+    }
+
     const getDate = function() {
         // Date object
         const now = new Date();
@@ -38,4 +53,5 @@ $(document).ready(function() {
         $(".main-header__time").text(todaysTime);        
     }
     setInterval(getTime, 1000);
+
 });

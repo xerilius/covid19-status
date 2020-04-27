@@ -193,20 +193,22 @@ def show_dashboard(username):
         county_id = county.county_id
         county_id_list.append(county_id)
     print("@@@@@@@@@@@@",county_id_list)
+
     county_inst_list = []
     for id in county_id_list:
         # get name of each county & state with id#
         county_inst = db.session.query(County).filter(County.county_id==id).first()
         county_name = county_inst.county_name
         state_name = county_inst.state_name
-        county_state = county_name + ", " + state_name
+        county_state = (county_name + ", " + state_name , id)
         county_inst_list.append(county_state)
     print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@", county_inst_list)
     # county_id_list.clear()
 
     return render_template("dashboard.html", 
                                 current_date=current_date,
-                                username=user_name, saves=saves, county_list=county_inst_list)
+                                username=user_name,
+                                county_list=county_inst_list)
 
 
 # HOMEPAGE
