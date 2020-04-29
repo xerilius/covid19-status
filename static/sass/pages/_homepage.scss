@@ -30,11 +30,12 @@
         font-family: 'Montserrat', sans-serif;
         grid-area: time;
         width: 70rem;
-        font-size: 2rem;
+        font-size: 2.5rem;
         outline:0;
         border: 0;
         text-transform: uppercase;
-        letter-spacing: .5rem;
+        letter-spacing: .3rem;
+        text-align: center;
         
 
         &::placeholder {
@@ -60,6 +61,7 @@
     padding: 0;
     position: relative;
     /*perspective: 20px;*/
+    text-align: center;
   }
   
   .searchbar__suggestions li {
@@ -70,10 +72,10 @@
     margin: 0;
     padding: 20px;
     transition: background 0.2s;
-    display: flex;
-    justify-content: space-between;
+
     text-transform: uppercase;
     letter-spacing: .2rem;
+    
   }
   
   .searchbar__suggestions li:nth-child(even) {
@@ -100,7 +102,6 @@
     top: 10px;
     z-index: 2;
     border-radius: 5px;
-    font-size: 40px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
   }
 
