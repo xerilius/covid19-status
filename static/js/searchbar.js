@@ -14,7 +14,7 @@ function displaySuggestions(evt) {
 
   $.ajax({
     data: {input: `${search}`},
-    type: 'POST',
+    type: 'GET',
     url: '/searchbar.json'
   })
   .done(function(data){

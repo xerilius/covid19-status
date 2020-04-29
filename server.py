@@ -14,12 +14,13 @@ app.secret_key = "abc"  # will always store key in secrets.sh file or .env
 
 app.jinja_env.undefined = StrictUndefined
 
-
-@app.route('/searchbar.json', methods=["POST"])
+@app.route('/dashgraph.json')
+ 
+@app.route('/searchbar.json', methods=["GET"])
 def get_counties_states():
     """Gets input from searchbar and returns searchbar matches"""
 
-    county_search = request.form.get("input")
+    county_search = request.args.get("input")
     search = "%{}%".format(county_search).title().strip()
     county_data = County.query.filter(County.county_name.ilike(search) | County.state_name.ilike(search)).all()
 
@@ -29,7 +30,7 @@ def get_counties_states():
         county_state = county_obj.state_name  
         county_id = county_obj.county_id   
         data.append({'county': county_name, 'state': county_state, 'id': county_id})
-    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',data)
+  
     return jsonify(data)
 
 # SEARCH RESULTS
