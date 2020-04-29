@@ -82,6 +82,9 @@ a.link__login {
 .u-spacer-s {
   height: 50px; }
 
+.u-highlight {
+  background: #ffc600; }
+
 .homepage {
   background-color: white; }
 
@@ -381,13 +384,11 @@ input.login__item::placeholder {
     text-align: center; }
     .searchbar__search::placeholder {
       text-transform: uppercase;
-      color: rgba(0, 0, 0, 0.336);
       font-weight: bold; }
     .searchbar__search:focus {
-      background-color: #ffc600; }
-
-.h1 {
-  background: #ffc600; }
+      background-color: #ffc600;
+      color: white;
+      font-weight: bold; }
 
 .searchbar__suggestions {
   margin: 0;
@@ -400,7 +401,7 @@ input.login__item::placeholder {
   background: white;
   list-style: none;
   border-bottom: 1px solid #D8D8D8;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.12);
   margin: 0;
   padding: 20px;
   transition: background 0.2s;

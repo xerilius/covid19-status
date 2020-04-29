@@ -20,8 +20,8 @@ function displaySuggestions(evt) {
   .done(function(data){
     const regex = new RegExp(search, 'gi');
     const html = data.map(place => {
-      let countyName = place.county.replace(regex, `<span class="h1"> ${search}</span>`)
-      let stateName = place.state.replace(regex, `<span class="h1"> ${search}</span>`)
+      let countyName = place.county.replace(regex, `<span class="u-highlight"> ${search}</span>`)
+      let stateName = place.state.replace(regex, `<span class="u-highlight"> ${search}</span>`)
       return (`
         <li> 
         <span class="name"><a href="/county/${place.id}" class="county-link" data-county-id="${place.id}"> ${countyName}, ${stateName} </a> </span>
