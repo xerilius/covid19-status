@@ -1,5 +1,5 @@
 from jinja2 import StrictUndefined
-from flask import Flask, render_template, redirect, request, flash, session
+from flask import Flask, render_template, redirect, request, flash, session,jsonify #Markup
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy import asc, desc
 from model import connect_to_db, db, County, Fatality, Confirmed, User, Usa, Save
@@ -15,75 +15,21 @@ app.secret_key = "abc"  # will always store key in secrets.sh file or .env
 app.jinja_env.undefined = StrictUndefined
 
 
-# SAVE BUTTON
-@app.route('/save/<county_id>', methods=["POST"])
-def create_save(county_id):
-    """Create save for county"""
-    username = session['username']
-    user = User.query.filter_by(username=username).first()
-    user_id = user.user_id
-    
+@app.route('/searchbar.json', methods=["POST"])
+def get_counties_states():
+    """Gets input from searchbar and returns searchbar matches"""
 
-    get_county = db.session.query(County).filter(County.county_id==int(county_id)).first()
-    county_id = get_county.county_id
+    county_search = request.form.get("input")
+    search = "%{}%".format(county_search).title().strip()
+    county_data = County.query.filter(County.county_name.ilike(search) | County.state_name.ilike(search)).all()
 
-    # check save
-    if request.method == 'POST':
-        check_save_exists = db.session.query(Save).filter(Save.user_id==user_id, Save.county_id==county_id).first()
-
-        if check_save_exists:
-            return ("Already Saved")
-
-        elif check_save_exists == None:
-            save_data = Save(user_id=int(user_id), county_id=int(county_id))
-            db.session.add(save_data)
-            db.session.commit()
-            print(">>>>> SAVED <<<<<", save_data)
-            
-    return (">>> OK <<<", 200)
-
-
-def get_username():
-    """Get username from session"""
-
-    username = session['username']
-    user = User.query.filter_by(username=username).first()
-    user_id = user.user_id
-
-    return user_id
-
-
-def get_countystate_from_slug(county_info):    
-    save_info = county_info.split("-")
-    state_name = save_info[-1]
-    county_info = save_info[:-1]
-    county_name = " ".join(county_info)
-
-    return [county_name, state_name]
-    
-
-# UNSAVE 
-@app.route('/delete/<county_id>', methods=["POST"])
-def delete_save(county_id):
-    """Unsave county"""
-    username = session['username']
-    user = User.query.filter_by(username=username).first()
-    user_id = user.user_id
-
-
-    get_county = db.session.query(County).filter(County.county_id==county_id).first()
-    county_id = get_county.county_id
-
-    get_save = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
-    save_id = get_save.save_id
-
-    print(">>>>> DELETE <<<<<", Save.query.get(int(save_id)))
-
-    db.session.delete(Save.query.get(int(save_id)))
-    db.session.commit()
-    
-    return (">>> UNSAVED <<<", 200)
-
+    data = []
+    for county_obj in county_data:
+        county_name = county_obj.county_name
+        county_state = county_obj.state_name     
+        data.append({'county': county_name, 'state': county_state})
+    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',data)
+    return jsonify(data)
 
 # SEARCH RESULTS
 @app.route('/search-results', methods=["POST"])
@@ -211,6 +157,24 @@ def show_dashboard(username):
                                 county_list=county_inst_list)
 
 
+app.route('/data/<county_id>', methods=["GET"])
+def return_graph_data(county_id):       
+    """Returns graph data"""
+
+    confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
+
+    # D3 Graph 
+    datasets = []
+    for item in confirmed10:
+        datasets.append({
+            'date': str(item.date), 
+            'num': item.confirmed
+        })
+
+    return json.dumps({"data":datasets})
+        
+
+
 # HOMEPAGE
 @app.route('/', methods=["GET"])
 def index():
@@ -225,6 +189,77 @@ def index():
     return render_template("index.html", 
                         confirmed_total=confirmed_total, 
                         fatality_total=fatality_total)
+
+
+# SAVE BUTTON
+@app.route('/save/<county_id>', methods=["POST"])
+def create_save(county_id):
+    """Create save for county"""
+    username = session['username']
+    user = User.query.filter_by(username=username).first()
+    user_id = user.user_id
+    
+
+    get_county = db.session.query(County).filter(County.county_id==int(county_id)).first()
+    county_id = get_county.county_id
+
+    # check save
+    if request.method == 'POST':
+        check_save_exists = db.session.query(Save).filter(Save.user_id==user_id, Save.county_id==county_id).first()
+
+        if check_save_exists:
+            return ("Already Saved")
+
+        elif check_save_exists == None:
+            save_data = Save(user_id=int(user_id), county_id=int(county_id))
+            db.session.add(save_data)
+            db.session.commit()
+            print(">>>>> SAVED <<<<<", save_data)
+            
+    return (">>> OK <<<", 200)
+
+
+def get_username():
+    """Get username from session"""
+
+    username = session['username']
+    user = User.query.filter_by(username=username).first()
+    user_id = user.user_id
+
+    return user_id
+
+
+def get_countystate_from_slug(county_info):    
+    save_info = county_info.split("-")
+    state_name = save_info[-1]
+    county_info = save_info[:-1]
+    county_name = " ".join(county_info)
+
+    return [county_name, state_name]
+    
+
+# UNSAVE 
+@app.route('/delete/<county_id>', methods=["POST"])
+def delete_save(county_id):
+    """Unsave county"""
+    username = session['username']
+    user = User.query.filter_by(username=username).first()
+    user_id = user.user_id
+
+
+    get_county = db.session.query(County).filter(County.county_id==county_id).first()
+    county_id = get_county.county_id
+
+    get_save = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
+    save_id = get_save.save_id
+
+    print(">>>>> DELETE <<<<<", Save.query.get(int(save_id)))
+
+    db.session.delete(Save.query.get(int(save_id)))
+    db.session.commit()
+    
+    return (">>> UNSAVED <<<", 200)
+
 
 
 # SIGNUP

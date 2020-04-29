@@ -41,8 +41,11 @@
     </div>
 
     <div class="searchbar">
-        <form class="searchbar__form" action="/search-results" method="POST">
-            <input class="searchbar__search" action="/search-results" type="text" name="searchbar" placeholder="Enter your county or state:">
+        <form class="searchbar__form">
+            <input class="searchbar__search" type="text" name="search" placeholder="Enter your county or state">
+            <ul class="searchbar__suggestions">
+            
+            </ul>
         </form>
     </div>
 
@@ -53,6 +56,7 @@
         country_deaths = {{ fatality_total | safe }};
     </script>
     <script src="../static/js/marquee.js"></script>
+    <script src="../static/js/searchbar.js"></script>
     {% endblock %}
 </body>
 {% endblock %}
