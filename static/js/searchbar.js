@@ -2,14 +2,7 @@
 const searchInput = document.querySelector('.searchbar__search');
 const suggestions = document.querySelector('.searchbar__suggestions');
 
-searchInput.addEventListener('submit', disableSubmit);
 searchInput.addEventListener('keyup', displaySuggestions);
-
-
-function disableSubmit(evt) {
-  console.log("hiiiiiiiiiiiiiiiiiiiiiiiiii");
-  evt.preventDefault();
-}
 
 function displaySuggestions(evt) {
   console.log(evt);
@@ -31,7 +24,7 @@ function displaySuggestions(evt) {
       let stateName = place.state.replace(regex, `<span class="h1"> ${search}</span>`)
       return (`
         <li> 
-        <span class="name"> ${countyName}, ${stateName} </span>
+        <span class="name"><a href="/county/${place.id}" class="county-link" data-county-id="${place.id}"> ${countyName}, ${stateName} </a> </span>
         </li>`);
       }).join('');
       suggestions.innerHTML = html;

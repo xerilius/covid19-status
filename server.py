@@ -26,8 +26,9 @@ def get_counties_states():
     data = []
     for county_obj in county_data:
         county_name = county_obj.county_name
-        county_state = county_obj.state_name     
-        data.append({'county': county_name, 'state': county_state})
+        county_state = county_obj.state_name  
+        county_id = county_obj.county_id   
+        data.append({'county': county_name, 'state': county_state, 'id': county_id})
     print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',data)
     return jsonify(data)
 
