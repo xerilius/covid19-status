@@ -389,6 +389,8 @@ input.login__item::placeholder {
       background-color: #ffc600;
       color: white;
       font-weight: bold; }
+      .searchbar__search:focus::placeholder {
+        color: white; }
 
 .searchbar__suggestions {
   margin: 0;

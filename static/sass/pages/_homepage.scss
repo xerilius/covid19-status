@@ -40,19 +40,21 @@
 
         &::placeholder {
             text-transform: uppercase;
-            font-weight: bold;         
+            font-weight: bold;      
         }
         &:focus {
             background-color: #ffc600;
             color: white;
             font-weight: bold;
+            
+            &::placeholder {
+              color: white;
+            }
         }     
     }
 }
 
-
-
-  
+ 
   .searchbar__suggestions {
     margin: 0;
     padding: 0;
