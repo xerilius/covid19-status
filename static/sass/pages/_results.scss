@@ -14,13 +14,10 @@
     font-size: 2rem;
 }
 
-a.city-link {
+a.county-link {
     color:black;
     &:link, &:visited {
         color:black;
-    }
-    &:hover {
-        color: darken($color-2, 5%);
     }
     
 }

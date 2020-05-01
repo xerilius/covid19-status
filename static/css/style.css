@@ -581,9 +581,7 @@ a.sidenav__brand-link {
   padding: 50px;
   font-size: 2rem; }
 
-a.city-link {
+a.county-link {
   color: black; }
-  a.city-link:link, a.city-link:visited {
+  a.county-link:link, a.county-link:visited {
     color: black; }
-  a.city-link:hover {
-    color: #e6c700; }

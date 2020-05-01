@@ -10,7 +10,8 @@ import json
 URL = "https://api.covid19api.com/country/us/status/confirmed"
 URL2 = "https://api.covid19api.com/country/us/status/deaths"
 URL3 = "https://api.covid19api.com/total/country/us"
-URL_UPDATE = "https://api.covid19api.com/country/us?from=2020-03-01T00:00:00Z&to=2020-04-30T00:00:00Z"
+URL_UPDATE_DATA = "https://api.covid19api.com/country/us?from=2020-03-01T00:00:00Z&to=2020-04-30T00:00:00Z"
+URL_UPDATE_TOTAL = ""
 
 
 def get_confirmed_api_response():
@@ -449,8 +450,8 @@ if __name__ == "__main__":
 
     # run_writing_tasks()
 
-    os.system("dropdb covid19")
-    os.system("createdb covid19")
+    # os.system("dropdb covid19")
+    # os.system("createdb covid19")
 
     connect_to_db(app)
     db.create_all()
