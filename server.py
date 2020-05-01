@@ -15,10 +15,17 @@ app.secret_key = "abc"  # will always store key in secrets.sh file or .env
 app.jinja_env.undefined = StrictUndefined
 
 @app.route('/dashgraph.json')
+def get_graph_data():
+    """Returns JSON that contains graph data"""
+    pass
+
+    return jsonify()
+
+
  
 @app.route('/searchbar.json', methods=["GET"])
 def get_counties_states():
-    """Gets input from searchbar and returns searchbar matches"""
+    """Gets input from searchbar and returns JSON of searchbar matches"""
 
     county_search = request.args.get("input")
     search = "%{}%".format(county_search).title().strip()
@@ -33,52 +40,51 @@ def get_counties_states():
   
     return jsonify(data)
 
-# SEARCH RESULTS
-@app.route('/search-results', methods=["POST"])
-def show_results():
-    """Displays city from search result"""
+# # SEARCH RESULTS
+# @app.route('/search-results', methods=["POST"])
+# def show_results():
+#     """Displays city from search result"""
 
-    county_search = request.form.get("searchbar")
-    print(county_search)
-    search = "%{}%".format(county_search).title().strip()
-    county_data = County.query.filter(County.county_name.ilike(search) | County.state_name.ilike(search)).all()
+#     county_search = request.form.get("searchbar")
+#     print(county_search)
+#     search = "%{}%".format(county_search).title().strip()
+#     county_data = County.query.filter(County.county_name.ilike(search) | County.state_name.ilike(search)).all()
 
-    if len(county_data) == 1: 
-        for county_inst in county_data:     
-            county_id = county_inst.county_id
+#     if len(county_data) == 1: 
+#         for county_inst in county_data:     
+#             county_id = county_inst.county_id
 
-            confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
+#             confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
                 
-            # Check Saves for User
-            if 'username' in session:
-                username = session['username']
-                user = User.query.filter_by(username=username).first()
-                user_id = user.user_id
+#             # Check Saves for User
+#             if 'username' in session:
+#                 username = session['username']
+#                 user = User.query.filter_by(username=username).first()
+#                 user_id = user.user_id
                 
-                saved = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
-            else:
-                saved = None
-                user_id= None
+#                 saved = db.session.query(Save).filter(Save.county_id==county_id, Save.user_id==user_id).first()
+#             else:
+#                 saved = None
+#                 user_id= None
         
-            # D3 Graph 
-            datasets = []
-            for item in confirmed10:
-                datasets.append({
-                    'date': str(item.date), 
-                    'num': item.confirmed
-                })
-                data = json.dumps({"data":datasets})
+#             # D3 Graph 
+#             datasets = []
+#             for item in confirmed10:
+#                 datasets.append({
+#                     'date': str(item.date), 
+#                     'num': item.confirmed
+#                 })
+#                 data = json.dumps({"data":datasets})
 
-        return render_template('/county-info.html', 
-                            counties=county_inst, 
-                            confirmed10=confirmed10, 
-                            data=data, 
-                            saved=saved, 
-                            user_id=user_id)
+#         return render_template('/county-info.html', 
+#                             counties=county_inst, 
+#                             confirmed10=confirmed10, 
+#                             data=data, 
+#                             saved=saved, 
+#                             user_id=user_id)
 
     
-    return render_template('search-results.html', counties=county_data)
-
+#     return render_template('search-results.html', counties=county_data)
 
 
 @app.route('/county/<county_id>', methods=["GET"])
