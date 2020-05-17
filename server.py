@@ -113,7 +113,6 @@ def show_county_info(county_id):
     # D3 Graph 
     datasets = []
     for item in case10:
-        print(item.confirmed)
         datasets.append({
             'date': str(item.date), 
             'num': item.confirmed
