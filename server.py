@@ -97,7 +97,7 @@ def show_county_info(county_id):
     county_id = county_inst.county_id
 
     # Get Recent 10 Records 
-    confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
+    case10 = db.session.query(Case).filter(Case.county_id == county_id).order_by(desc(Case.case_id)).limit(10)
 
     # Check Saves for User
     if 'username' in session:
@@ -112,7 +112,8 @@ def show_county_info(county_id):
   
     # D3 Graph 
     datasets = []
-    for item in confirmed10:
+    for item in case10:
+        print(item.confirmed)
         datasets.append({
             'date': str(item.date), 
             'num': item.confirmed
@@ -120,10 +121,11 @@ def show_county_info(county_id):
 
         data = json.dumps({"data":datasets})
 
+
     return render_template('county-info.html', 
                             counties=county_inst, 
                             states=state_name, 
-                            confirmed10=confirmed10, 
+                            case10=case10, 
                             data=data, saved=saved, user_id=user_id)
 
 # DASHBOARD
@@ -169,11 +171,11 @@ app.route('/data/<county_id>', methods=["GET"])
 def return_graph_data(county_id):       
     """Returns graph data"""
 
-    confirmed10 = db.session.query(Confirmed).filter(Confirmed.county_id == county_id).order_by(desc(Confirmed.confirmed_id)).limit(10)
+    cases10 = db.session.query(Case).filter(Case.county_id == county_id).order_by(desc(Case.case_id)).limit(10)
 
     # D3 Graph 
     datasets = []
-    for item in confirmed10:
+    for item in case10:
         datasets.append({
             'date': str(item.date), 
             'num': item.confirmed
