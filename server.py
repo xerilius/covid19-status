@@ -11,7 +11,6 @@ app = Flask(__name__)
 # # set a 'SECRET_KEY' to enable the Flask session cookies
 # app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 app.secret_key = "abc"  # will always store key in secrets.sh file or .env
-
 app.jinja_env.undefined = StrictUndefined
 
 @app.route('/dashgraph.json')
@@ -22,7 +21,6 @@ def get_graph_data():
     return jsonify()
 
 
- 
 @app.route('/searchbar.json', methods=["GET"])
 def get_counties_states():
     """Gets input from searchbar and returns JSON of searchbar matches"""
@@ -119,7 +117,6 @@ def show_county_info(county_id):
         })
 
         data = json.dumps({"data":datasets})
-
 
     return render_template('county-info.html', 
                             counties=county_inst, 
