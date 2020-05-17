@@ -15,8 +15,8 @@ URL2 = f"https://api.covid19api.com/country/us/status/deaths?from={d1}T00:00:00Z
 
 URL3 = "https://api.covid19api.com/total/country/us"
 
-start_date = "2020-01-22"
-end_date = "2020-03-22"
+start_date = "2020-03-23"
+end_date = "2020-05-16"
 URL_UPDATE_DATA = f"https://api.covid19api.com/country/us?from={start_date}T00:00:00Z&to={end_date}T00:00:00Z"
 
 # URL_UPDATE_DATA = "https://api.covid19api.com/country/us?from=2020-05-03T00:00:00Z&to=2020-05-08T00:00:00Z"
@@ -56,8 +56,8 @@ def create_county_ids():
     f.write(json_file)
     f.close()
 
-    print("db_cities.json created")
-    return db_cities
+    print("File: db_cities.json successfully created")
+    
 
 
 def update_data_from_api_response(db_cities):
@@ -115,7 +115,7 @@ def update_data_from_api_response(db_cities):
 
         db.session.add(cases)
     db.session.commit()
-    print(f"Successfully created {confirmed}")
+    print(f"Successfully created {cases}")
 
 ##############################################################################
 
@@ -225,14 +225,14 @@ if __name__ == "__main__":
     from server import app
     import os
 
-    os.system("dropdb covid19")
-    os.system("createdb covid19")
+    # os.system("dropdb covid19")
+    # os.system("createdb covid19")
 
     connect_to_db(app)
     db.create_all()
 
     db_cities = read_db_cities_json()
-    insert_county_data(create_county_ids())
+    # insert_county_data(create_county_ids())
     update_data_from_api_response(db_cities)
-    seed_usa_total_data_from_api()
+    # seed_usa_total_data_from_api()
 
