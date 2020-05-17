@@ -59,45 +59,61 @@ class Save(db.Model):
         return f"<Save save_id={self.save_id}, user_id={self.user_id}, county_id={self.county_id}>"
 
 
-class Confirmed(db.Model):
-    """Confirmed number of people tested positive for COVID"""
+class Case(db.Model):
+    """Confirmed, Deaths, Recovered, Active Cases"""
 
-    __tablename__ = "confirmed"
+    __tablename__ = "cases"
 
-    confirmed_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    case_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     date = db.Column(db.Date, nullable=False)
-    county_id = db.Column(db.Integer, db.ForeignKey('counties.county_id'), nullable=False)
+    county_id = db.Column(db.Integer, db.ForeignKey('counties.county_id'),      
+                          nullable=False)
     state_name = db.Column(db.String(64), nullable=True) 
     confirmed = db.Column(db.Integer, nullable=False)
-    
-    # Association relationship for city
-    county_confirmed = db.relationship("County", backref="confirmed")
+    deaths = db.Column(db.Integer, nullable=False)
+    recovered = db.Column(db.Integer, nullable=False)
+    active = db.Column(db.Integer, nullable=False)
 
-    def __repr__(self):
-        """Provides info when printed"""
-        return "<Confirmed status_id={} status_date={} confirmed={}>".format(
-            self.confirmed_id, self.date, self.confirmed
-        )
+
+# class Confirmed(db.Model):
+#     """Confirmed number of people tested positive for COVID"""
+
+#     __tablename__ = "confirmed"
+
+#     confirmed_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     date = db.Column(db.Date, nullable=False)
+#     county_id = db.Column(db.Integer, db.ForeignKey('counties.county_id'), nullable=False)
+#     state_name = db.Column(db.String(64), nullable=True) 
+#     confirmed = db.Column(db.Integer, nullable=False)
+    
+#     # Association relationship for city
+#     county_confirmed = db.relationship("County", backref="confirmed")
+
+#     def __repr__(self):
+#         """Provides info when printed"""
+#         return "<Confirmed status_id={} status_date={} confirmed={}>".format(
+#             self.confirmed_id, self.date, self.confirmed
+#         )
  
 
-class Fatality(db.Model):
-    """Information on fatalities from COVID"""
+# class Fatality(db.Model):
+#     """Information on fatalities from COVID"""
 
-    __tablename__ = "fatalities"
+#     __tablename__ = "fatalities"
 
-    fatality_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    date = db.Column(db.Date, nullable=False)
-    county_id = db.Column(db.Integer, 
-                          db.ForeignKey('counties.county_id'), nullable=False)
-    state_name = db.Column(db.String(64), nullable=True) 
-    fatalities = db.Column(db.Integer, nullable=False)
+#     fatality_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     date = db.Column(db.Date, nullable=False)
+#     county_id = db.Column(db.Integer, 
+#                           db.ForeignKey('counties.county_id'), nullable=False)
+#     state_name = db.Column(db.String(64), nullable=True) 
+#     fatalities = db.Column(db.Integer, nullable=False)
 
-    # Association relationship for city
-    county_fatality = db.relationship("County", backref="fatalities")
+#     # Association relationship for city
+#     county_fatality = db.relationship("County", backref="fatalities")
 
-    def __repr__(self):
-        """Provides info when printed"""
-        return "<Fatality fatality_id={} fatality_date={} fatalities={}>".format(self.fatality_id, self.date, self.fatalities)
+#     def __repr__(self):
+#         """Provides info when printed"""
+#         return "<Fatality fatality_id={} fatality_date={} fatalities={}>".format(self.fatality_id, self.date, self.fatalities)
 
 
 class Usa(db.Model):
