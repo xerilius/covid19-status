@@ -60,7 +60,7 @@ Case | Data Type | Keys
 :--: | :--: | :--: 
 case_id | Integer | primary_key
 case_date | Date | - 
-city_id | Integer | foreign_key
+county_id | Integer | foreign_key
 state_name| String | -
 confirmed | Integer | - 
 deaths | Integer | -
