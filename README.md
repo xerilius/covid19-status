@@ -74,7 +74,6 @@ Save | Data Type | Keys
 user_id | Integer | foreign_key
 city_id | Integer | foreign_key
 
-<sub> <ins>Note</ins> : Save feature not yet implemented<sub>
 
 <br>
 
