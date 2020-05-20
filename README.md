@@ -48,24 +48,26 @@ signup_date | Date | -
 
 <br>
 
-City | Data Type | Keys 
+County | Data Type | Keys 
 :--: | :--: | :--: 
-city_id | Integer | primary_key
-city_name | String | -
+county_id | Integer | primary_key
+county_name | String | -
 state_name | String | -
 
 <br>
 
-Status | Data Type | Keys 
+Case | Data Type | Keys 
 :--: | :--: | :--: 
-status_id | Integer | primary_key
-status_date | Date | - 
+case_id | Integer | primary_key
+case_date | Date | - 
 city_id | Integer | foreign_key
 state_name| String | -
 confirmed | Integer | - 
+deaths | Integer | -
+recovered | Integer | - 
+active | Integer |
 
 <br>
-
 
 Save | Data Type | Keys
 :--: | :--: |:--:
@@ -76,9 +78,9 @@ city_id | Integer | foreign_key
 
 <br>
 
-<b><ins>DATA MODEL</ins></b>   
+<!-- <b><ins>DATA MODEL</ins></b>    -->
 
-![Data Model](./static/img/datamodel.png)
+<!-- ![Data Model](./static/img/datamodel.png) -->
 
 <br>
 
