@@ -38,6 +38,7 @@ COVID19API
 
 <br>
 
+![Projectl](./static/img/covid-status.gif)
 
 <b><ins>DATABASE TABLES</ins></b>  
 User | Data Type | Keys 
